@@ -581,6 +581,11 @@ enum class QuestExecType(val id: Int) : IntKey {
     QUEST_EXEC_ADD_ABYSS_WAR_ACCOUNT_DATA (116),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_FINISH_ANECDOTE (117),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     QUEST_EXEC_UNKNOWN (9999);

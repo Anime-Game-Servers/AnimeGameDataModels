@@ -1040,6 +1040,46 @@ Known occurrences include:
     NEW_ACTIVITY_MUSIC_GAME_BOOK_BANNER(5303),
 
     /**
+     * TODO identify 5.4 event
+     */
+    NEW_ACTIVITY_MIKAWA_FLOWER(5401),
+
+    /**
+     * TODO identify 5.4 event
+     */
+    NEW_ACTIVITY_AD_SHOOTING(5402),
+
+    /**
+     * TODO identify 5.4 event
+     */
+    NEW_ACTIVITY_FISHING_JOY(5403),
+
+    /**
+     * TODO identify 5.4 event
+     */
+    NEW_ACTIVITY_TOWER_CHALLENGE(5404),
+
+    /**
+     * TODO identify 5.4 event
+     */
+    NEW_ACTIVITY_ANECDOTE(5405),
+
+    /**
+     * TODO identify 5.5 event
+     */
+    NEW_ACTIVITY_NATLAN_DRILL(5501),
+
+    /**
+     * TODO identify 5.5 event
+     */
+    NEW_ACTIVITY_PARTY(5502),
+
+    /**
+     * TODO identify 5.5 event
+     */
+    NEW_ACTIVITY_NATLAN_ARENA(5503),
+
+    /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.
      */
     NEW_ACTIVITY_UNKNOWN(999999);
