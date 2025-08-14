@@ -804,6 +804,16 @@ enum class QuestCondType(val id: Int) : IntKey {
     QUEST_COND_INSTRUMENT_TRIAL (150),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_COND_ACTIVITY_CUSTOM (151),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_FINISH_ANY_LEY_LINE_CHALLENGE (152),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     QUEST_COND_UNKNOWN(9999);

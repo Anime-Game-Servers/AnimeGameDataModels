@@ -567,6 +567,11 @@ enum class QuestContentType(val id: Int) : IntKey {
     QUEST_CONTENT_ABYSS_WAR_LIMIT_REIGON_STATE_EQUAL (185),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_PARENT_QUEST_STATE_EQUAL (186),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     QUEST_CONTENT_UNKNOWN(9999);

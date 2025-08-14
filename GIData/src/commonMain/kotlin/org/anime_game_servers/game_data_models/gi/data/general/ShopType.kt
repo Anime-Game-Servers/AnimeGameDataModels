@@ -158,6 +158,12 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_FISH_NATLAN(1122),
     SHOP_TYPE_NPC_Anchieta(1123),
     SHOP_TYPE_EXPIRED_WIDGET_FONTAIN(1124),
+    HOP_TYPE_NPC_Macuahuitl(1125),
+    SHOP_TYPE_NPC_Teuciztli(1126),
+    SHOP_TYPE_NPC_Fournier(1127),
+    SHOP_TYPE_NPC_Motolinia(1128),
+
+    SHOP_TYPE_NPC_Nataba(1141),
 
     SHOP_TYPE_GCG_CARD(2000),
     SHOP_TYPE_GCG_CARD_FACE(2001),

@@ -1080,6 +1080,51 @@ Known occurrences include:
     NEW_ACTIVITY_NATLAN_ARENA(5503),
 
     /**
+     * TODO identify 5.6 event
+     */
+    NEW_ACTIVITY_DIVERSITY_BATTLE(5601),
+
+    /**
+     * TODO identify 5.6 event
+     */
+    NEW_ACTIVITY_THEME_PARK_SIM(5602),
+
+    /**
+     * TODO identify 5.6 event
+     */
+    NEW_ACTIVITY_SAURUS_1V3(5603),
+
+    /**
+     * TODO identify 5.6 event
+     */
+    NEW_ACTIVITY_MVM2(5604),
+
+    /**
+     * TODO identify 5.7 event
+     */
+    NEW_ACTIVITY_LEY_LINE_CHALLENGE(5701),
+
+    /**
+     * TODO identify 5.7 event
+     */
+    NEW_ACTIVITY_AUTO_CHESS(5702),
+
+    /**
+     * TODO identify 5.8 event
+     */
+    NEW_ACTIVITY_HOLIDAY_RESORT(5801),
+
+    /**
+     * TODO identify 5.8 event
+     */
+    NEW_ACTIVITY_AGENTRECON(5802),
+
+    /**
+     * TODO identify 5.8 event
+     */
+    NEW_ACTIVITY_MUSIC_GAME_BOOK_LIMITED_TIME_BANNER(5803),
+
+    /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.
      */
     NEW_ACTIVITY_UNKNOWN(999999);

@@ -20,7 +20,6 @@ enum class Element(val id:Int) : IntKey {
     LiquidPhlogiston(14),
     SolidPhlogiston(15),
     SolidifyPhlogiston(16),
-    COUNT(14),
     DEFAULT(255);
 
     override fun getIntKey() = id
