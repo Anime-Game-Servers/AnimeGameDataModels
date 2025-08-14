@@ -18,7 +18,7 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class CityTaskOpenData(
     val cityId: Int,
     val questId: Int,
-    val unk: List<Int>? = null,
+    val cityGuaranteedPool: List<Int>? = null,
     ) : IntKey {
     override fun getIntKey() = cityId
 

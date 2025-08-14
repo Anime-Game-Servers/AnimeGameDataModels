@@ -1,4 +1,4 @@
-package org.anime_game_servers.game_data_models.gi.data.scene
+package org.anime_game_servers.game_data_models.gi.data.scene.scene_tag
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
