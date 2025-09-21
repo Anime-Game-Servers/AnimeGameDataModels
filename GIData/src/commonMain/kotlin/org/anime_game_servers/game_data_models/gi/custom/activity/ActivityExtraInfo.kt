@@ -42,6 +42,15 @@ data class ActivityExtraInfo(
     ) : IntKey {
     override fun getIntKey() = activityId
 
+
+    fun hasDuration() = duration > 0
+    fun hasRewardPreview() = rewardPreview > 0
+    fun hasSpecialReward() = specialReward > 0
+    fun hasDefaultGroups() = !defaultGroups.isNullOrEmpty()
+    fun hasDefaultWatchers() = !defaultWatchers.isNullOrEmpty()
+    fun hasStartConditions() = !startConditions.isNullOrEmpty()
+    fun hasActiveConditions() = !activeConditions.isNullOrEmpty()
+
     /**
      * Defines one condition for an ActivityInfo
      * The params usage depends on the type, check [ActivityStateCondType] documentation for more information on the specific types parameters
