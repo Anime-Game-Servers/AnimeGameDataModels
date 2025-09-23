@@ -23,7 +23,6 @@ data class CoopChapterData(
     val avatarSortId: Int = UnsetInt,
     val chapterIcon: String? = null,
     val unlockCond: List<CoopCondConfig>? = null,
-    val unlockCondTips: List<Int>? = null,
     val openMaterialId: Int = UnsetInt,
     val openMaterialNum: Int = UnsetInt,
     val beginTimeStr: String? = null,
@@ -33,6 +32,7 @@ data class CoopChapterData(
     val graphYRatio: Float = UnsetFloat,
 
     //TextMapHash
+    val unlockCondTips: List<TextMapHash>? = null,
     val chapterNameTextMapHash: TextMapHash = UnsetTextMap,
     val coopPageTitleTextMapHash: TextMapHash = UnsetTextMap,
     ) : IntKey {
