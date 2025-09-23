@@ -814,6 +814,71 @@ enum class QuestCondType(val id: Int) : IntKey {
     QUEST_COND_FINISH_ANY_LEY_LINE_CHALLENGE (152),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_COND_OPEN_STATE_EQUAL_V2(153),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_FLOWER_TASK_ACTIVE(154),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_WORLD_LEVEL_REACH(155),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_HAVE_AVATAR(156),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_CURRENT_AVATAR(157),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_CURRENT_NOT_AVATAR(158),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_TEAM_CONTAINS_AVATAR(159),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_TEAM_NOT_CONTAINS_AVATAR(160),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_STORY_GLOBAL_VALUE(161),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_TIME_VAR_PASS_REFRESH_POLICY(162),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_GALLANT_PATH_REWARD_CAN_GET(163),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_SHOP_NEW_FORMULA_GOODS(164),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_SHOP_NEW_GADGET_GOODS(165),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     QUEST_COND_UNKNOWN(9999);

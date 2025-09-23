@@ -570,6 +570,21 @@ enum class QuestContentType(val id: Int) : IntKey {
      * TODO document specifics
      */
     QUEST_CONTENT_PARENT_QUEST_STATE_EQUAL (186),
+    
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_PLAYER_HAVE_AVATAR(187),
+    
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_FINISH_ANY_FOOD_COOK(188),
+    
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_TIME_VAR_PASS_REFRESH_POLICY(189),
 
     /**
      * An unknown condition type, check the representation string to get the missing enum values name

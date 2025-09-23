@@ -1125,6 +1125,21 @@ Known occurrences include:
     NEW_ACTIVITY_MUSIC_GAME_BOOK_LIMITED_TIME_BANNER(5803),
 
     /**
+     * TODO identify 6.0 event
+     */
+    NEW_ACTIVITY_BOMBER_V3(6001),
+
+    /**
+     * TODO identify 6.0 event
+     */
+    NEW_ACTIVITY_NODKRAI_TOUR(6002),
+
+    /**
+     * TODO identify 6.0 event
+     */
+    NEW_ACTIVITY_WEEK_ACTIVE(6003),
+
+    /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.
      */
     NEW_ACTIVITY_UNKNOWN(999999);

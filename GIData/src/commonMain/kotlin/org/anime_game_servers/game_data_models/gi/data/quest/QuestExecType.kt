@@ -584,6 +584,16 @@ enum class QuestExecType(val id: Int) : IntKey {
      * TODO document specifics
      */
     QUEST_EXEC_FINISH_ANECDOTE (117),
+    
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_SET_OPEN_STATE_V2(118),
+    
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_ACTIVE_DAMSELETTE_FREE_MOON_PHASE(119),
 
     /**
      * An unknown condition type, check the representation string to get the missing enum values name
