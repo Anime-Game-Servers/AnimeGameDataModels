@@ -29,8 +29,8 @@ class DataProcessor(
     }
 
     private inline fun <reified T:Enum<T>> KSAnnotation.getEnumArgument(member: KProperty<T>, fallback: T): T {
-        return (arguments.find { it.name?.asString() == member.name }?.value as? KSType)
-            ?.declaration?.simpleName?.asString()?.let{
+        return (arguments.find { it.name?.asString() == member.name }?.value as? KSClassDeclaration)
+            ?.simpleName?.asString()?.let{
                 java.lang.Enum.valueOf(T::class.java, it)
             } ?: fallback
     }

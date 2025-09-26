@@ -8,7 +8,6 @@ version = libs.versions.anime.game.data.models.get()
 kotlin {
     jvmToolchain(17)
     jvm {
-        withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }

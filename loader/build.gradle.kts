@@ -6,9 +6,12 @@ group = "org.anime_game_servers.data_models"
 version = libs.versions.anime.game.data.models.get()
 
 kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
     jvmToolchain(17)
     jvm {
-        withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }

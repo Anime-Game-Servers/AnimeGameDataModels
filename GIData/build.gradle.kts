@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
 plugins {
     kotlin("multiplatform")
     alias(libs.plugins.kotlinx.serialization)
@@ -9,9 +11,12 @@ group = "org.anime_game_servers.data_models"
 version = libs.versions.anime.game.data.models.get()
 
 kotlin {
+    compilerOptions{
+        freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+    }
+
     jvmToolchain(17)
     jvm {
-        withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
@@ -105,7 +110,7 @@ tasks{
     getTasksByName("iosX64SourcesJar", false).forEach {
         it.dependsOn("kspCommonMainKotlinMetadata")
     }
-    withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>> {
+    withType<KotlinCompilationTask<*>> {
         if (name != "kspCommonMainKotlinMetadata")
             dependsOn("kspCommonMainKotlinMetadata")
     }

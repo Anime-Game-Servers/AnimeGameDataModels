@@ -1,22 +1,22 @@
 [versions]
 # https://kotlinlang.org/docs/releases.html#release-details
-kotlin = "2.1.10"
+kotlin = "2.2.20"
 # https://github.com/google/ksp/releases
-ksp = "2.1.10-1.0.29"
+ksp = "2.2.20-2.0.3"
 # https://github.com/Kotlin/kotlinx-io/releases
-kx_io = "0.5.4"
+kx_io = "0.8.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
-kx_coroutines = "1.9.0"
+kx_coroutines = "1.10.2"
 # https://github.com/Kotlin/kotlinx.serialization/releases
-kx_serialization = "1.7.3"
+kx_serialization = "1.9.0"
 # https://github.com/hfhbd/kotlinx-serialization-csv/releases
-kx_serialization_csv = "0.0.15"
+kx_serialization_csv = "0.0.23"
 # https://github.com/Kotlin/dokka/releases
-dokka = "1.9.20"
+dokka = "2.1.0-Beta"
 # https://github.com/oshai/kotlin-logging/releases
-logger = "6.0.9"
+logger = "7.0.13"
 # https://github.com/KotlinCrypto/hash/releases
-kotlin_crypto = "0.5.3"
+kotlin_crypto = "0.8.0"
 
 ## testing libs
 # https://github.com/junit-team/junit5/releases
