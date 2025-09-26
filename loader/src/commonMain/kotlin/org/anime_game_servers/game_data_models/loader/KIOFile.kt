@@ -29,8 +29,8 @@ class KIOFile(val path: Path, val fileSystem: FileSystem = SystemFileSystem) : A
         return fileSystem.metadataOrNull(path)?.isDirectory ?: false
     }
 
-    override suspend fun getFile(path: String): AGDMFile {
-        return KIOFile(Path(this.path, path), fileSystem)
+    override suspend fun getFile(targetPath: String): AGDMFile {
+        return KIOFile(Path(this.path, targetPath), fileSystem)
     }
 
     override suspend fun listFiles(): List<AGDMFile> {

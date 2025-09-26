@@ -11,7 +11,7 @@ interface AGDMFile : AutoCloseable{
     suspend fun isFile(): Boolean
     suspend fun getBaseName(): String
     suspend fun isDirectory(): Boolean
-    suspend fun getFile(path: String): AGDMFile
+    suspend fun getFile(targetPath: String): AGDMFile
     suspend fun listFiles(): List<AGDMFile>
     suspend fun getSource(ioDispatcher: CoroutineDispatcher = defaultIoDispatcher): Source
     suspend fun getSink(ioDispatcher: CoroutineDispatcher = defaultIoDispatcher): Sink
