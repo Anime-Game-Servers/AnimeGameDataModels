@@ -31,7 +31,7 @@ data class EchoShellData(
     @Transient
     val echoShellType: EchoShellType? = nullableEnumValueOfOrDefault(
         echoShellTypeString,
-        EchoShellType.ECHO_SHELL_TYPE_NORMAL_UNKNOWN
+        EchoShellType.ECHO_SHELL_TYPE_UNKNOWN
     ),
     val storyId: Int,
     val reminderList: List<Int>,
