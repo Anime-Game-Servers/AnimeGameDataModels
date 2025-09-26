@@ -7,6 +7,7 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.core.base.interfaces.StringKey
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 
 @Serializable
@@ -22,7 +23,7 @@ data class QuestContent(
     @JsonNames("param", "_param")
     val param: List<Int>? = null,
     @JsonNames("count", "_count")
-    val count: Int = -1
+    val count: Int = UnsetInt
 ) : StringKey {
     override fun getStringKey() = (typeString ?: "")+(param?.getOrNull(0) ?: "")
 }
@@ -62,7 +63,7 @@ data class QuestGuide(
     val type: QuestGuideType? = nullableEnumValueOfOrDefault(typeString, QuestGuideType.QUEST_GUIDE_UNKNOWN),
     @JsonNames("param", "_param")
     val param: List<String>? = null,
-    val guideScene: Int = -1,
+    val guideScene: Int = UnsetInt,
     val guideStyle: String? = null,
     val guideLayer: String? = null,
     val autoGuide: String? = null,
@@ -84,9 +85,9 @@ enum class QuestGuideType(val id: Int) : IntKey {
 @Serializable
 data class GainItem (
     @JsonNames("id")
-    val itemId: Int = -1,
+    val itemId: Int = UnsetInt,
     @JsonNames("itemCount", "itemNum")
-    val count: Int = -1
+    val count: Int = UnsetInt
 ) : IntKey{
     override fun getIntKey() = itemId
 }

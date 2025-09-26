@@ -4,6 +4,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetLong
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -36,9 +38,9 @@ data class TalkData(
     @JsonNames("nextTalks", "_nextTalks") // TODO check
     val nextTalks: List<Int>? = null,
     @JsonNames("priority", "_priority")
-    val priority: Int = -1,
+    val priority: Int = UnsetInt,
     @JsonNames("initDialog", "_initDialog")
-    val initDialog: Long = -1,
+    val initDialog: Long = UnsetLong,
     @JsonNames("npcIds", "_npcId", "npcId")
     val npcIds: List<Int>? = null,
     @JsonNames("performCfg", "_performCfg")
@@ -46,9 +48,9 @@ data class TalkData(
     @JsonNames("prePerformCfg", "_prePerformCfg")
     val prePerformCfg: String? = null,
     @JsonNames("questId", "_questId")
-    val questId: Int = -1,
+    val questId: Int = UnsetInt,
     @JsonNames("decoratorId", "_decoratorID") // E.g. EJHGBAPGFHG
-    val decoratorID: Int = -1,
+    val decoratorID: Int = UnsetInt,
 
     @JsonNames("crowdLOD0List", "_crowdLOD0List") // E.g. DGOJPEGIFOC
     val crowdLOD0List: List<Int>? = null,
@@ -57,7 +59,7 @@ data class TalkData(
     @JsonNames("nextRandomTalks", "_nextRandomTalks") // E.g. NECBIIDHGOA
     val nextRandomTalks: List<Int>? = null,
     @JsonNames("showRandomTalkCount", "_showRandomTalkCount") // E.g. PBJHILLACIA
-    val showRandomTalkCount: Int = -1,
+    val showRandomTalkCount: Int = UnsetInt,
     @JsonNames("lockGameTime", "_lockGameTime")
     val lockGameTime: Boolean? = null,
     @JsonNames("finishExec", "_finishExec")
@@ -77,7 +79,7 @@ data class TalkData(
     val dontBlockDaily: Boolean? = null,
 
     // binout only:
-    val assetIndex: Long = -1,
+    val assetIndex: Long = UnsetLong,
 
     // binout unknown (3.2)
     //val CIAAAKHILBD: List<Int>? = null,

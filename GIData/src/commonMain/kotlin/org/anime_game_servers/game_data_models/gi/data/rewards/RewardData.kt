@@ -2,6 +2,7 @@ package org.anime_game_servers.game_data_models.gi.data.rewards
 
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.quest.GainItem
 import org.anime_game_servers.game_data_models.gi.data.quest.MainQuestData
 import org.anime_game_servers.game_data_models.gi.data.watcher.ReunionWatcherData
@@ -35,18 +36,18 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @DataFile("txt/RewardData.txt", FileType.TSV, FolderType.EXCEL)
 data class RewardData(
     val rewardId: Int,
-    val hcoin: Int = -1,
-    val scoin: Int = -1,
-    val playerExp: Int = -1,
+    val hcoin: Int = UnsetInt,
+    val scoin: Int = UnsetInt,
+    val playerExp: Int = UnsetInt,
     val rewardItemList: List<GainItem>,
     // custom
-    val characterExp: Int = -1,
-    val friendshipExp: Int = -1,
-    val resin: Int = -1,
-    val outputSourceType: Int = -1, //TODO what is this
-    val dailyLimit: Int = -1,
-    val totalLimit: Int = -1,
-    val activityLimit: Int = -1,
+    val characterExp: Int = UnsetInt,
+    val friendshipExp: Int = UnsetInt,
+    val resin: Int = UnsetInt,
+    val outputSourceType: Int = UnsetInt, //TODO what is this
+    val dailyLimit: Int = UnsetInt,
+    val totalLimit: Int = UnsetInt,
+    val activityLimit: Int = UnsetInt,
 ) : IntKey {
     override fun getIntKey() = rewardId
 }

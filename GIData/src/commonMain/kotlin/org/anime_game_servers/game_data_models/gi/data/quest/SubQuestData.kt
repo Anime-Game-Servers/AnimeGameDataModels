@@ -6,6 +6,7 @@ import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.LogicType
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
@@ -18,8 +19,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class SubQuestData(
     val subId: Int,
     val mainId: Int,
-    val order: Int = -1,
-    val subIdSet: Int = -1,
+    val order: Int = UnsetInt,
+    val subIdSet: Int = UnsetInt,
     val isMpBlock: Boolean? = null,
     val showType: String? = null,
     val failParentShow: String? = null,
@@ -60,7 +61,7 @@ data class SubQuestData(
     val showGuide: String? = null,
     val banType: String? = null,
     val exclusiveNpcList: List<Int>? = null,
-    val exclusiveNpcPriority: Int = -1,
+    val exclusiveNpcPriority: Int = UnsetInt,
     val sharedNpcList: List<Int>? = null,
     val exclusivePlaceList: List<Int>? = null,
 

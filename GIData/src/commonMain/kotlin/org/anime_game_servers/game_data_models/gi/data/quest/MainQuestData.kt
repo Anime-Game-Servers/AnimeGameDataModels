@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetLong
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.data.talks.TalkData
 import org.anime_game_servers.game_data_models.loader.DataFile
@@ -22,35 +24,35 @@ data class MainQuestData(
     @JsonNames("id", "mainId")
     val id: Int,
 
-    val collectionId: Int = -1,
-    val series: Int = -1,
-    val chapterId: Int = -1,
+    val collectionId: Int = UnsetInt,
+    val series: Int = UnsetInt,
+    val chapterId: Int = UnsetInt,
     @JsonNames("taskType", "type")
     val taskType: String? = null, // TODO enum
 
 
     val luaPath: String? = null,
     @SerialName("recommendLevel")
-    val recommendedLevel: Int = -1,
+    val recommendedLevel: Int = UnsetInt,
     val showType: String? = null,
     val repeatable: Boolean? = null,
     val suggestTrackOutOfOrder: Boolean? = null,
     val suggestTrackMainQuestList: List<Int>? = null,
     val rewardIdList: List<Int>? = null,
     val activeMode: String? = null,
-    val activityId: Int = -1,
+    val activityId: Int = UnsetInt,
     val mainQuestTag: String? = null,
     val showRedPoint: Boolean? = null,
     @JsonNames("taskId", "taskID")
-    val taskId: Int = -1,
+    val taskId: Int = UnsetInt,
 
     // Textmaps
     val titleTextMapHash: TextMapHash = UnsetTextMap,
     val descTextMapHash: TextMapHash = UnsetTextMap,
 
     // only txt
-    val activityType: Int = -1,
-    val videoKey: Long = -1,
+    val activityType: Int = UnsetInt,
+    val videoKey: Long = UnsetLong,
 
     // only binout and patched
     val subQuests: List<SubQuestData>? = null,
