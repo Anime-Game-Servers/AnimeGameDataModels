@@ -45,6 +45,7 @@ kotlin {
                 api(project(":base"))
                 api(libs.bundles.common.ags.base)
                 api(libs.bundles.common.models.serialization)
+                api(libs.bundles.common.models.ktx)
                 implementation(libs.ags.core.gi)
                 implementation(libs.bundles.common.crypto)
             }
@@ -58,7 +59,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlin.test)
             }
         }
         val jvmMain by getting

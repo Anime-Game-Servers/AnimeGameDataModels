@@ -1,18 +1,20 @@
 [versions]
 # https://kotlinlang.org/docs/releases.html#release-details
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 # https://github.com/google/ksp/releases
-ksp = "2.2.20-2.0.3"
+ksp = "2.3.2"
 # https://github.com/Kotlin/kotlinx-io/releases
 kx_io = "0.8.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kx_coroutines = "1.10.2"
+# https://github.com/Kotlin/kotlinx-datetime/releases
+kx_datetime = "0.7.1"
 # https://github.com/Kotlin/kotlinx.serialization/releases
 kx_serialization = "1.9.0"
 # https://github.com/hfhbd/kotlinx-serialization-csv/releases
 kx_serialization_csv = "0.0.23"
 # https://github.com/Kotlin/dokka/releases
-dokka = "2.1.0-Beta"
+dokka = "2.1.0"
 # https://github.com/oshai/kotlin-logging/releases
 logger = "7.0.13"
 # https://github.com/KotlinCrypto/hash/releases
@@ -31,10 +33,12 @@ anime_game_data_models = "0.2"
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kx_io" }
 jvm-kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core-jvm", version.ref = "kx_io" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kx_coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kx_datetime" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kx_serialization" }
 kotlinx-serialization-csv = { module = "app.softwork:kotlinx-serialization-csv", version.ref = "kx_serialization_csv" }
 logging = { module = "io.github.oshai:kotlin-logging", version.ref = "logger" }
 
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 ksp-sympbol-processing = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 kotlin_crypto_md5 = { module = "org.kotlincrypto.hash:md", version.ref = "kotlin_crypto" }
@@ -45,6 +49,7 @@ ags-data-base = { module = "org.anime_game_servers.data_models:base", version.re
 
 
 [bundles]
+common_models_ktx = ["kotlinx-datetime"]
 common_models_serialization = ["kotlinx-serialization-json", "kotlinx-serialization-csv"]
 common_ags_base = ["ags-core-base"]
 common_ktx = ["kotlinx-io-core", "kotlinx-coroutines-core"]
