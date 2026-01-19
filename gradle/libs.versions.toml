@@ -1,10 +1,10 @@
 [versions]
 # https://kotlinlang.org/docs/releases.html#release-details
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 # https://github.com/google/ksp/releases
-ksp = "2.3.2"
+ksp = "2.3.4"
 # https://github.com/Kotlin/kotlinx-io/releases
-kx_io = "0.8.0"
+kx_io = "0.8.2"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kx_coroutines = "1.10.2"
 # https://github.com/Kotlin/kotlinx-datetime/releases
@@ -16,7 +16,7 @@ kx_serialization_csv = "0.0.23"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.1.0"
 # https://github.com/oshai/kotlin-logging/releases
-logger = "7.0.13"
+logger = "7.0.14"
 # https://github.com/KotlinCrypto/hash/releases
 kotlin_crypto = "0.8.0"
 
