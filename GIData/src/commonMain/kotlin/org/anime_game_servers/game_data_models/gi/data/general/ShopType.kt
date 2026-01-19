@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.general
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityShopOverallData
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityType
@@ -175,6 +176,14 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_NPC_Tarno(1139),
     SHOP_TYPE_NPC_Punchkickduck(1140),
     SHOP_TYPE_NPC_Nataba(1141),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_NPC_Kofitse (1142),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_NPC_Kuzmich01 (1143),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_NPC_Kuzmich02 (1144),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_NPC_Kuzmich03 (1145),
 
     SHOP_TYPE_GCG_CARD(2000),
     SHOP_TYPE_GCG_CARD_FACE(2001),
@@ -228,6 +237,19 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_ACTIVITY_FILMFEST (43002),
     SHOP_TYPE_ACTIVITY_ALCHEMY_SIM (45001),
     SHOP_TYPE_ACTIVITY_GREAT_FESTIVAL_V2_NPC (46001),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_ACTIVITY_LANTERN_RITE_V6 (63001),
+
+    @AddedIn(GI_6_1_0)
+    SHOP_TYPE_BEYOND_MCOIN(100000),
+    @AddedIn(GI_6_1_0)
+    SHOP_TYPE_BEYOND_COSTUME(101000),
+    @AddedIn(GI_6_1_0)
+    SHOP_TYPE_BEYOND_FACE_PART(102000),
+    @AddedIn(GI_6_1_0)
+    SHOP_TYPE_BEYOND_EXCHANGE(103000),
+    @AddedIn(GI_6_3_0)
+    SHOP_TYPE_BEYOND_RECOMMEND(104000),
     SHOP_TYPE_UNKNOWN(99999);
 
     override fun getIntKey() = id

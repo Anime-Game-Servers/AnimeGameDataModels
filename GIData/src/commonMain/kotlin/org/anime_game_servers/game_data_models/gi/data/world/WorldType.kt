@@ -1,6 +1,7 @@
 package org.anime_game_servers.game_data_models.gi.data.world
 
 import kotlinx.serialization.Serializable
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 @Serializable
@@ -16,6 +17,18 @@ enum class WorldType(val id: Int) : IntKey {
      * This is the Teapot default world
      */
     WORLD_HOME(2),
+
+    /**
+     * TODO
+     */
+    @AddedIn(GI_6_1_0)
+    WORLD_BEYOND(3),
+
+    /**
+     * TODO
+     */
+    @AddedIn(GI_6_1_0)
+    WORLD_HALL(4),
 
     /**
      * This is used when the type is unknown to the library, check the string version of the field to see what it contained

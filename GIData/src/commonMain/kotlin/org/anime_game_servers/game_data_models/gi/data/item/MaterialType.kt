@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.item
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 enum class MaterialType(val id: Int) : IntKey {
@@ -78,9 +79,22 @@ enum class MaterialType(val id: Int) : IntKey {
     MATERIAL_ROBO_GIFT(69),
     MATERIAL_HOLIDAY_RESORT_INVITE(70),
     MATERIAL_AGENT_RECON_PHOTO(71),
+    @AddedIn(GI_6_0_0)
     MATERIAL_RARE_GROWTH_MATERIAL(72),
+    @AddedIn(GI_6_0_0)
     MATERIAL_AVATAR_TALENT_MATERIAL(73),
+    @AddedIn(GI_6_0_0)
     MATERIAL_PROFILE_FRAME(74),
+    @AddedIn(GI_6_1_0)
+    MATERIAL_CLUE_SHOP_HANDBOOK(75),
+    @AddedIn(GI_6_2_0)
+    MATERIAL_MOON_NIGHT_CARD(76),
+    @AddedIn(GI_6_2_0)
+    MATERIAL_MAGIC_STORY_BOOK(77),
+    @AddedIn(GI_6_3_0)
+    MATERIAL_BRONZE_CARRIAGE_BOX(77),
+    @AddedIn(GI_6_3_0)
+    MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST(77),
     MATERIAL_UNKNOWN(9999);
 
     override fun getIntKey() = id

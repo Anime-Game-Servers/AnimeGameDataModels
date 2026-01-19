@@ -1,6 +1,7 @@
 package org.anime_game_servers.game_data_models.gi.data.scene
 
 import kotlinx.serialization.Serializable
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.dungeon.DungeonData
 
@@ -39,6 +40,18 @@ enum class SceneType(val id: Int) : IntKey {
      * This is currently unused, but can be used for activity specific scenes in the future.
      */
     SCENE_ACTIVITY(6),
+
+    /**
+     * TODO
+     */
+    @AddedIn(GI_6_1_0)
+    SCENE_BEYOND_EDIT(7),
+
+    /**
+     * TODO
+     */
+    @AddedIn(GI_6_1_0)
+    SCENE_HALL_WORLD(8),
 
     /**
      * This is used when the type is unknown to the library, check the string version of the field to see what it contained

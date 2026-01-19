@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 /**
@@ -211,8 +212,24 @@ enum class ActivityCondition(val id: Int) : IntKey {
     NEW_ACTIVITY_COND_THEME_PARK_SIM_FINISH_STAGE(131),
     NEW_ACTIVITY_COND_THEME_PARK_SIM_BUSINESS_LEVEL_REACH(132),
     NEW_ACTIVITY_COND_SLIME_CANNON_FINISH_LEVEL(133),
+    @AddedIn(GI_6_0_0)
     NEW_ACTIVITY_COND_FINISH_ACTIVITY_PLAY_LEVEL_COUNT(134),
+    @AddedIn(GI_6_0_0)
     NEW_ACTIVITY_COND_WEEK_ACTIVE_NOT_TAKEN_REWARD(135),
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_COND_REGISTER_VERSION_CONFIG_ID_GREAT_EQUAL(136),
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_COND_REGISTER_DAYS_LESS_EQUAL(137),
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_COND_SNOW_RACE_HIDE_FINISH(138),
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_COND_QUEST_NOT_FINISH(139),
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_COND_NOT_FINISH_ACTIVITY_PLAY_LEVEL(140),
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_COND_SETTLE_ACTIVITY_PLAY_LEVEL(141),
+    @AddedIn(GI_6_3_0)
+    NEW_ACTIVITY_COND_LAN_V6_NOT_BUY_SKIN(142),
     NEW_ACTIVITY_COND_UNKNOWN(9999);
 
     override fun getIntKey() = id

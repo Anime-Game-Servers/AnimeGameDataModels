@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 enum class QuestExecType(val id: Int) : IntKey {
@@ -588,12 +589,38 @@ enum class QuestExecType(val id: Int) : IntKey {
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_EXEC_SET_OPEN_STATE_V2(118),
     
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_EXEC_ACTIVE_DAMSELETTE_FREE_MOON_PHASE(119),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_2_0)
+    QUEST_EXEC_CHANGE_CURRENT_AVATAR(120),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_EXEC_ACTIVATE_SCENERY (121),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_EXEC_CHANGE_AVATAR_COSTUME (122),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_EXEC_BATCH_SET_OPEN_STATE (123),
 
     /**
      * An unknown condition type, check the representation string to get the missing enum values name

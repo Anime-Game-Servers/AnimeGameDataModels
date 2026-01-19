@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.shop
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 enum class ShopPrecondition(val id: Int) : IntKey {
@@ -25,7 +26,12 @@ enum class ShopPrecondition(val id: Int) : IntKey {
     SHOP_PRECONDITION_DONE_TEASURE_HUNT_V4_REGION(19),
     SHOP_PRECONDITION_ALCHEMY_SIM_LIMIT(20),
     SHOP_PRECONDITION_HISTORY_GOT_ANY_ITEM(21),
+    @AddedIn(GI_6_0_0)
     SHOP_PRECONDITION_HISTORY_NEVER_GOT_ANY_ITEM(22),
+    @AddedIn(GI_6_1_0)
+    SHOP_PRECONDITION_QUEST_GLOBAL_VAR_EQUAL(23),
+    @AddedIn(GI_6_2_0)
+    SHOP_PRECONDITION_LAN_V6_REST(24),
     SHOP_PRECONDITION_UNKNOWN(9999);
 
     override fun getIntKey() = id

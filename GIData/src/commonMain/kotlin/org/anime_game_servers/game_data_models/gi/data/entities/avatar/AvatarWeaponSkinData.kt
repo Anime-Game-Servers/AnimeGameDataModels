@@ -20,7 +20,7 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * ExcelBinOutput/AvatarWeaponSkinExcelConfigData.json
  * txt/AvatarWeaponSkinData.txt
  * @property weaponSkinId The id of the weapon skin and primary identifier
- * @property itemId the item id used to give a player this skin
+ * @property itemId item id of the item this skin is attached to
  * @property jsonName TODO document
  * @property iconPath TODO document
  * @property imagePath TODO document

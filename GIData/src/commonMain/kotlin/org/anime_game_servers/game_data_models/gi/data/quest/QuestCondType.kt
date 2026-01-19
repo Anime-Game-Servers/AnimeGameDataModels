@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.Element
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityCondData
@@ -816,67 +817,146 @@ enum class QuestCondType(val id: Int) : IntKey {
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_OPEN_STATE_EQUAL_V2(153),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_FLOWER_TASK_ACTIVE(154),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_WORLD_LEVEL_REACH(155),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_PLAYER_HAVE_AVATAR(156),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_PLAYER_CURRENT_AVATAR(157),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_PLAYER_CURRENT_NOT_AVATAR(158),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_PLAYER_TEAM_CONTAINS_AVATAR(159),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_PLAYER_TEAM_NOT_CONTAINS_AVATAR(160),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_STORY_GLOBAL_VALUE(161),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_TIME_VAR_PASS_REFRESH_POLICY(162),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_GALLANT_PATH_REWARD_CAN_GET(163),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_SHOP_NEW_FORMULA_GOODS(164),
 
     /**
      * TODO document specifics
      */
+    @AddedIn(GI_6_0_0)
     QUEST_COND_SHOP_NEW_GADGET_GOODS(165),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_1_0)
+    QUEST_COND_STORYBOARD_RUNNING(167),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_1_0)
+    QUEST_COND_CURATORIUM_STAFF_BOARD_SCENE(168),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_1_0)
+    QUEST_COND_CURATORIUM_INTELLIGENCE_FINISH_SCAN(169),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_2_0)
+    QUEST_COND_SCENE_TAG(170),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_2_0)
+    QUEST_COND_EXTERNAL_SYSTEM_UNLOCK(171),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_2_0)
+    QUEST_COND_AVATAR_LEVEL_EQUAL_GREATER(172),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_COND_SCENERY_STATE_EQUAL (173),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_COND_EVENT_ARCHIVE_STATE_EQUAL (174),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_COND_AVATAR_FETTER_EQUAL_GREATER (175),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_COND_ACTIVITY_COND_MEET_OR_END (176),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_3_0)
+    QUEST_COND_LANV6_SHOP_CAN_BUY (177),
 
     /**
      * An unknown condition type, check the representation string to get the missing enum values name

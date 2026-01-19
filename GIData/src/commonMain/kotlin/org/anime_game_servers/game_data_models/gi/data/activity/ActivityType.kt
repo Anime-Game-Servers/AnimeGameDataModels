@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 import org.anime_game_servers.game_data_models.gi.data.activity.echo_shell.EchoShellData
@@ -144,7 +145,10 @@ enum class ActivityType(val id: Int) : IntKey {
     NEW_ACTIVITY_BLESSING(1300),
 
     /**
-     * This events first occurence should be the "[Five Flushes of Fortune](https://genshin-impact.fandom.com/wiki/Five_Flushes_of_Fortune)" event.
+     * This events first occurence was the "[Vishaps and Where to Find Them](https://genshin-impact.fandom.com/wiki/Vishaps_and_Where_to_Find_Them)" event from version 1.3.
+     * Other occurences are:
+     * * "[Spectral Secrets](https://genshin-impact.fandom.com/wiki/Spectral_Secrets)" event from version 2.1.
+     * This events first occurence should be the  event.
      * TODO document used models
      */
     NEW_ACTIVITY_EXPEDITION(1301),
@@ -1124,20 +1128,106 @@ Known occurrences include:
      */
     NEW_ACTIVITY_MUSIC_GAME_BOOK_LIMITED_TIME_BANNER(5803),
 
+
     /**
      * TODO identify 6.0 event
      */
+    @AddedIn(GI_6_0_0)
     NEW_ACTIVITY_BOMBER_V3(6001),
 
     /**
      * TODO identify 6.0 event
      */
+    @AddedIn(GI_6_0_0)
     NEW_ACTIVITY_NODKRAI_TOUR(6002),
 
     /**
      * TODO identify 6.0 event
      */
+    @AddedIn(GI_6_0_0)
     NEW_ACTIVITY_WEEK_ACTIVE(6003),
+
+    
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_NEWBIE_PERMANENT_BANNER(6101),
+
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_SUMERU_ADVENTURE_TRAINING(6102),
+
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_HUMAN_DRAGON_PUZZLE(6103),
+
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_MUSIC_PARTY(6104),
+
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_BEYOND_COSTUME_BANNER(6105),
+
+    /**
+     * TODO identify 6.1 event
+     */
+    @AddedIn(GI_6_1_0)
+    NEW_ACTIVITY_BEYOND_INITIAL_ACTIVE(6106),
+
+
+    /**
+     * TODO identify 6.2 event
+     */
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_BIRD_PIN_BALL(6201),
+
+    /**
+     * TODO identify 6.2 event
+     */
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_SNOW_RACE(6202),
+
+    /**
+     * TODO identify 6.2 event
+     */
+    @AddedIn(GI_6_2_0)
+    NEW_ACTIVITY_NATLAN_DRAGON_PARTY(6203),
+
+
+    /**
+     * TODO identify 6.3 event
+     */
+    @AddedIn(GI_6_3_0)
+    NEW_ACTIVITY_MONSTER_CHESS_V2 (6301),
+
+    /**
+     * TODO identify 6.3 event
+     */
+    @AddedIn(GI_6_3_0)
+    NEW_ACTIVITY_TIME_STOP_PHOTO (6302),
+
+    /**
+     * TODO identify 6.3 event
+     */
+    @AddedIn(GI_6_3_0)
+    NEW_ACTIVITY_LANTERN_RITE_V6 (6303),
+
+    /**
+     * TODO identify 6.3 event
+     */
+    @AddedIn(GI_6_3_0)
+    NEW_ACTIVITY_SKIN_BANNER (6304),
+
 
     /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.

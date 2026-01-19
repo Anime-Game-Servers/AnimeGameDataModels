@@ -38,7 +38,7 @@ anime_game_data_models = "$version"
 # For the basic loader of the resource files
 ags-datamodels_loader = { module = "org.anime_game_servers.data_models:loader", version.ref = "anime_game_data_models" }
 # For the model definitions for the GI anime game
-ags-datamodels_gidata = { module = "org.anime_game_servers.data_models:GIData ", version.ref = "anime_game_data_models" }
+ags-datamodels_gidata = { module = "org.anime_game_servers.data_models:GIData", version.ref = "anime_game_data_models" }
 ```
 
 ### Using the data models

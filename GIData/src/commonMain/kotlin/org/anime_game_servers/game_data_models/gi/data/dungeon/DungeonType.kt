@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.dungeon
 
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 enum class DungeonType(val id: Int) : IntKey {
@@ -128,9 +129,51 @@ enum class DungeonType(val id: Int) : IntKey {
     DUNGEON_HOLIDAY_RESORT_SNIPER(129),
     DUNGEON_HOLIDAY_RESORT_BATTLE(130),
     DUNGEON_HOLIDAY_RESORT_GRAFFITI(131),
+
+    @AddedIn(GI_6_0_0)
     DUNGEON_BOMBER_V3(132),
+    @AddedIn(GI_6_0_0)
     DUNGEON_NODKRAI_TOUR_PARKOUR(133),
+    @AddedIn(GI_6_0_0)
     DUNGEON_NODKRAI_TOUR_HACK(134),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_SUMERU_ADVENTURE_PARKOUR(135),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_SUMERU_ADVENTURE_PATHWAY_PLANNING(136),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_SUMERU_ADVENTURE_GOAL_FIGHTING(137),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_HUMAN_DRAGON_PUZZLE(138),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_MUSIC_PARTY(139),
+    @AddedIn(GI_6_1_0)
+    DUNGEON_PLOT_NEFER_CHESS(140),
+
+    @AddedIn(GI_6_2_0)
+    DUNGEON_MUSIC_GAME_BOOK_PVP(141),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_BIRD_PIN_BALL(142),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_DRAGON_PARTY(143),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_SNOW_RACE_HIDE(144),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_SNOW_RACE_PARKOUR(145),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_SNOW_RACE_THROW(146),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_SNOW_RACE_COMBAT(147),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_BIRD_PIN_BALL_PLOT(148),
+    @AddedIn(GI_6_2_0)
+    DUNGEON_QUEST_BOMBER(149),
+
+    @AddedIn(GI_6_3_0)
+    DUNGEON_MONSTER_CHESS_V2(150),
+    @AddedIn(GI_6_3_0)
+    DUNGEON_LAN_V6_PARKOUR(151),
+    @AddedIn(GI_6_3_0)
+    DUNGEON_LAN_V6_BATTLE(152),
     DUNGEON_UNKNOWN(9999);
 
     override fun getIntKey() = id
