@@ -6,6 +6,7 @@ import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.data.activity.ActivityCondition
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -18,6 +19,7 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * @property duration in days that the activity is active
  * @property rewardPreview id of the reward preview
  * @property specialReward id of the special reward
+ * @property bannerConditionId [ActivityCondition] id to check for showing the activity banner. If it's meet, send ActivityBannerNotify to the client to show the banner.
  * @property defaultGroups list of groups that should be registered by default during this activity
  * @property defaultWatchers list of watchers that should be registered by default during this activity
  * @property startConditions list of conditions that must be met for the activity to start
@@ -31,6 +33,7 @@ data class ActivityExtraInfo(
     val duration: Int = UnsetInt,
     val rewardPreview: Int = UnsetInt,
     val specialReward: Int = UnsetInt,
+    val bannerConditionId: Int = UnsetInt,
     val defaultGroups: List<Int>? = null,
     val defaultWatchers: List<Int>? = null,
 
@@ -41,11 +44,11 @@ data class ActivityExtraInfo(
 
     ) : IntKey {
     override fun getIntKey() = activityId
-
-
+    
     fun hasDuration() = duration > 0
     fun hasRewardPreview() = rewardPreview > 0
     fun hasSpecialReward() = specialReward > 0
+    fun hasBannerConditionId() = bannerConditionId > 0
     fun hasDefaultGroups() = !defaultGroups.isNullOrEmpty()
     fun hasDefaultWatchers() = !defaultWatchers.isNullOrEmpty()
     fun hasStartConditions() = !startConditions.isNullOrEmpty()
