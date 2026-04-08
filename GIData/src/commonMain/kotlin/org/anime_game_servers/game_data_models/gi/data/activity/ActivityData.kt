@@ -33,14 +33,18 @@ data class ActivityData(
         activityTypeString,
         ActivityType.NEW_ACTIVITY_UNKNOWN
     ),
-    val activitySceneTag: String? = null,
     @JsonNames("condGroupIds", "condGroupId")
     val condGroupIds: List<Int>? = null,
     @JsonNames("watcherIds", "watcherId")
     val watcherIds: List<Int>? = null,
     @JsonNames("dungeonIds", "dungeonIdList")
     val dungeonIds: List<Int>? = null,
+    @JsonNames("activityCoinIdList")
     val activityTokens: List<Int>? = null,
+    val isLoadTerrain: Boolean? = null,
+
+    // client only
+    val activitySceneTag: String? = null,
 
     val nameTextMapHash: TextMapHash = UnsetTextMap,
 
