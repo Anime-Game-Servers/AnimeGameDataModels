@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.shop
 
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -10,7 +11,12 @@ import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetLong
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetDouble
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetFloat
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.data.quest.GainItem
+import org.anime_game_servers.game_data_models.gi.serializers.StringToLocalDatetimeSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -59,14 +65,12 @@ data class ShopGoodsData(
     val refreshParam: Int = UnsetInt,
     @JsonNames("display_days_before_sell")
     val displayDaysBeforeSell: Int = UnsetInt,
+    @Serializable(with = StringToLocalDatetimeSerializer::class)
     @JsonNames("begin_time")
-    val beginTime: String? = null,
+    val beginTime: LocalDateTime? = null,
+    @Serializable(with = StringToLocalDatetimeSerializer::class)
     @JsonNames("end_time")
-    val endTime: String? = null,
-    @JsonNames("begin_timestamp")
-    val beginTimestamp: Long = UnsetLong,
-    @JsonNames("end_timestamp")
-    val endTimestamp: Long = UnsetLong,
+    val endTime: LocalDateTime? = null,
     @JsonNames("is_buy_once")
     val isBuyOnce: Boolean? = null,
     @SerialName("precondition")
@@ -96,6 +100,21 @@ data class ShopGoodsData(
     val chooseOneGroupId: Int = UnsetInt,
     @JsonNames("platform_type_list")
     val platformTypeList: List<Long>? = null,
+
+    @JsonNames("sub_tag_name")
+    val subTagName: String? = null,
+    @JsonNames("sub_tab_id")
+    val subTabId: Int = UnsetInt,
+    @JsonNames("show_id")
+    val showId: Int = UnsetInt,
+    @JsonNames("discount_rate")
+    val discountRate: Double = UnsetDouble,
+    @JsonNames("original_price")
+    val originalPrice: Int = UnsetInt,
+
+    // Textmaps
+    @JsonNames("sub_tag_name_text_map_hash")
+    val subTagNameTextMapHash: TextMapHash = UnsetTextMap
 ) : IntKey {
     override fun getIntKey() = goodsId
 }

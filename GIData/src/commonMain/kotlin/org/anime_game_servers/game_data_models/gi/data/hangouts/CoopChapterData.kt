@@ -1,8 +1,14 @@
+@file:OptIn(ExperimentalSerializationApi::class)
+
 package org.anime_game_servers.game_data_models.gi.data.hangouts
 
+import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.*
+import org.anime_game_servers.game_data_models.gi.serializers.StringToLocalDatetimeSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -25,7 +31,9 @@ data class CoopChapterData(
     val unlockCond: List<CoopCondConfig>? = null,
     val openMaterialId: Int = UnsetInt,
     val openMaterialNum: Int = UnsetInt,
-    val beginTimeStr: String? = null,
+    @Serializable(with = StringToLocalDatetimeSerializer::class)
+    @JsonNames("beginTimeStr")
+    val beginTime: LocalDateTime? = null,
     val confidenceValue: Int = UnsetInt,
     val pointGraphPath: String? = null,
     val graphXRatio: Float = UnsetFloat,
