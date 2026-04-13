@@ -184,16 +184,26 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_NPC_Kuzmich02 (1144),
     @AddedIn(GI_6_3_0)
     SHOP_TYPE_NPC_Kuzmich03 (1145),
+    @AddedIn(GI_6_5_0)
+    SHOP_TYPE_NPC_Josephus(1146),
+    @AddedIn(GI_6_5_0)
+    SHOP_TYPE_NPC_Frith(1147),
+    @AddedIn(GI_6_5_0)
+    SHOP_TYPE_NPC_Benthem(1148),
+
 
     SHOP_TYPE_GCG_CARD(2000),
     SHOP_TYPE_GCG_CARD_FACE(2001),
     SHOP_TYPE_GCG_APPEARANCE(2002),
     SHOP_TYPE_GCG_EXCHANGE(2003),
 
+
     SHOP_TYPE_NPC_WOLF_POSE(2100),
     SHOP_TYPE_NPC_WOLF_BOOK(2101),
 
+
     SHOP_TYPE_MUSIC_GAME_BOOK(2200),
+
 
     /**
      * Shop from the [ActivityType.NEW_ACTIVITY_CHANNELER_SLAB]/Energy Amplifier (v1.5) event.
@@ -240,6 +250,7 @@ enum class ShopType(val id: Int) : IntKey {
     @AddedIn(GI_6_3_0)
     SHOP_TYPE_ACTIVITY_LANTERN_RITE_V6 (63001),
 
+
     @AddedIn(GI_6_1_0)
     SHOP_TYPE_BEYOND_MCOIN(100000),
     @AddedIn(GI_6_1_0)
@@ -250,6 +261,8 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_BEYOND_EXCHANGE(103000),
     @AddedIn(GI_6_3_0)
     SHOP_TYPE_BEYOND_RECOMMEND(104000),
+
+
     SHOP_TYPE_UNKNOWN(99999);
 
     override fun getIntKey() = id

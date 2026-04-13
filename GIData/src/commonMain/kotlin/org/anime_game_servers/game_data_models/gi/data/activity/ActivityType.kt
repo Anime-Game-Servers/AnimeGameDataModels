@@ -1604,6 +1604,54 @@ enum class ActivityType(val id: Int) : IntKey {
     @AddedIn(GI_6_3_0)
     NEW_ACTIVITY_SKIN_BANNER (6304),
 
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.4
+     */
+    NEW_ACTIVITY_TOWER_DEFENSE(6401),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.4
+     */
+    NEW_ACTIVITY_MONSTER_SNAP(6402),
+    
+    /**
+     * This is the 6.4 flagship event "[Homeward, He Who Caught the Wind](https://genshin-impact.fandom.com/wiki/Homeward,_He_Who_Caught_the_Wind)"
+     * @since 6.4
+     */
+    NEW_ACTIVITY_BUBBLE_DRAMA(6403),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.4
+     */
+    NEW_ACTIVITY_BEYOND_WELFARE(6404),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.5
+     */
+    NEW_ACTIVITY_MAP_MARK(6501),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.5
+     */
+    NEW_ACTIVITY_SHORT_VIDEO(6502),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.5
+     */
+    NEW_ACTIVITY_TRADE_SHOW(6503),
+
 
     /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.

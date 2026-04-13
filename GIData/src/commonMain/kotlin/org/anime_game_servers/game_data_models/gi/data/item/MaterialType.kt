@@ -95,6 +95,11 @@ enum class MaterialType(val id: Int) : IntKey {
     MATERIAL_BRONZE_CARRIAGE_BOX(77),
     @AddedIn(GI_6_3_0)
     MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST(77),
+    @AddedIn(GI_6_4_0)
+    MATERIAL_BUBBLE_DRAMA_INVITE(80),
+    @AddedIn(GI_6_5_0)
+    MATERIAL_NATURALIST_CODEX(81),
+
     MATERIAL_UNKNOWN(9999);
 
     override fun getIntKey() = id

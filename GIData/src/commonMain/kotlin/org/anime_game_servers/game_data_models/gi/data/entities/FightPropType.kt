@@ -4,6 +4,7 @@ package org.anime_game_servers.game_data_models.gi.data.entities
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.JsonNames
+import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
 enum class FightPropType(val id: Int): IntKey {
@@ -21,6 +22,7 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_SPEED_PERCENT(11),
     FIGHT_PROP_HP_MP_PERCENT(12),
     FIGHT_PROP_ATTACK_MP_PERCENT(13),
+
     FIGHT_PROP_CRITICAL(20),
     FIGHT_PROP_ANTI_CRITICAL(21),
     FIGHT_PROP_CRITICAL_HURT(22),
@@ -34,6 +36,7 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_PHYSICAL_ADD_HURT(30),
     FIGHT_PROP_DEFENCE_IGNORE_RATIO(31),
     FIGHT_PROP_DEFENCE_IGNORE_DELTA(32),
+
     FIGHT_PROP_FIRE_ADD_HURT(40),
     FIGHT_PROP_ELEC_ADD_HURT(41),
     FIGHT_PROP_WATER_ADD_HURT(42),
@@ -42,6 +45,7 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_ROCK_ADD_HURT(45),
     FIGHT_PROP_ICE_ADD_HURT(46),
     FIGHT_PROP_HIT_HEAD_ADD_HURT(47),
+
     FIGHT_PROP_FIRE_SUB_HURT(50),
     FIGHT_PROP_ELEC_SUB_HURT(51),
     FIGHT_PROP_WATER_SUB_HURT(52),
@@ -49,12 +53,15 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_WIND_SUB_HURT(54),
     FIGHT_PROP_ROCK_SUB_HURT(55),
     FIGHT_PROP_ICE_SUB_HURT(56),
+
     FIGHT_PROP_EFFECT_HIT(60),
     FIGHT_PROP_EFFECT_RESIST(61),
     FIGHT_PROP_FREEZE_RESIST(62),
     FIGHT_PROP_DIZZY_RESIST(64),
     FIGHT_PROP_FREEZE_SHORTEN(65),
+    
     FIGHT_PROP_DIZZY_SHORTEN(67),
+
     FIGHT_PROP_MAX_FIRE_ENERGY(70),
     FIGHT_PROP_MAX_ELEC_ENERGY(71),
     FIGHT_PROP_MAX_WATER_ENERGY(72),
@@ -62,8 +69,19 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_MAX_WIND_ENERGY(74),
     FIGHT_PROP_MAX_ICE_ENERGY(75),
     FIGHT_PROP_MAX_ROCK_ENERGY(76),
+    FIGHT_PROP_MAX_SPECIAL_ENERGY(77),
+    FIGHT_PROP_START_SPECIAL_ENERGY(78),
+
     FIGHT_PROP_SKILL_CD_MINUS_RATIO(80),
     FIGHT_PROP_SHIELD_COST_MINUS_RATIO(81),
+
+    @AddedIn(GI_6_1_0)
+    FIGHT_PROP_BASE_ENMITY_MULTIPLIER(90),
+    @AddedIn(GI_6_1_0)
+    FIGHT_PROP_ENMITY_MULTIPLIER_PERCENT(91),
+    @AddedIn(GI_6_1_0)
+    FIGHT_PROP_ENMITY_MULTIPLIER(92),
+    
     FIGHT_PROP_CUR_FIRE_ENERGY(1000),
     FIGHT_PROP_CUR_ELEC_ENERGY(1001),
     FIGHT_PROP_CUR_WATER_ENERGY(1002),
@@ -72,7 +90,9 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_CUR_ICE_ENERGY(1005),
     FIGHT_PROP_CUR_ROCK_ENERGY(1006),
     FIGHT_PROP_CUR_SPECIAL_ENERGY(1007),
+
     FIGHT_PROP_CUR_HP(1010),
+
     FIGHT_PROP_MAX_HP(2000),
     FIGHT_PROP_CUR_ATTACK(2001),
     FIGHT_PROP_CUR_DEFENSE(2002),
@@ -80,6 +100,10 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_CUR_HP_DEBTS(2004),
     FIGHT_PROP_CUR_HP_PAID_DEBTS(2005),
     FIGHT_PROP_CUR_NATLAN_HP(2006),
+
+    @AddedIn(GI_6_1_0)
+    FIGHT_PROP_CUR_ENMITY_MULTIPLIER(2020),
+
     FIGHT_PROP_NONEXTRA_ATTACK(3000),
     FIGHT_PROP_NONEXTRA_DEFENSE(3001),
     FIGHT_PROP_NONEXTRA_CRITICAL(3002),

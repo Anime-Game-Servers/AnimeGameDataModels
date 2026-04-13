@@ -959,6 +959,24 @@ enum class QuestCondType(val id: Int) : IntKey {
     QUEST_COND_LANV6_SHOP_CAN_BUY (177),
 
     /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_5_0)
+    QUEST_COND_ITEM_EXCHANGE_FINISH(178),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_5_0)
+    QUEST_COND_TALK_FINISH_SAVED(179),
+
+    /**
+     * TODO document specifics
+     */
+    @AddedIn(GI_6_5_0)
+    QUEST_COND_ANY_TALK_FINISH_SAVED(180),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     QUEST_COND_UNKNOWN(9999);

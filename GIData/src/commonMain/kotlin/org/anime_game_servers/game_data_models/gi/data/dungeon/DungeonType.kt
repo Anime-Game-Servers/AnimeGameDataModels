@@ -174,6 +174,35 @@ enum class DungeonType(val id: Int) : IntKey {
     DUNGEON_LAN_V6_PARKOUR(151),
     @AddedIn(GI_6_3_0)
     DUNGEON_LAN_V6_BATTLE(152),
+
+    @AddedIn(GI_6_4_0)
+    DUNGEON_TOWER_DEFENSE(153),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_MONSTER_SNAP(154),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_BUBBLE_DRAMA_DRINK(155),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_BUBBLE_DRAMA_PHOTO(156),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_BUBBLE_DRAMA_BLADE(157),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_BUBBLE_DRAMA_AIR_FIGHT(158),
+    @AddedIn(GI_6_4_0)
+    DUNGEON_V_SOLO_CHALLENGE(169),
+
+    @AddedIn(GI_6_5_0)
+    DUNGEON_MAP_MARK(159),
+    @AddedIn(GI_6_5_0)
+    DUNGEON_SHORT_VIDEO(160),
+    @AddedIn(GI_6_5_0)
+    DUNGEON_TRADE_SHOW_TD(161),
+    @AddedIn(GI_6_5_0)
+    DUNGEON_TRADE_SHOW_STG(162),
+    @AddedIn(GI_6_5_0)
+    DUNGEON_TRADE_SHOW_BATTLE(163),
+    @AddedIn(GI_6_5_0)
+    DUNGEON_TRADE_SHOW_TD_TUTORIAL(170),
+    
     DUNGEON_UNKNOWN(9999);
 
     override fun getIntKey() = id
