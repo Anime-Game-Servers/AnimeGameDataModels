@@ -3,6 +3,11 @@
 kotlin = "2.3.20"
 # https://github.com/google/ksp/releases
 ksp = "2.3.6"
+# https://github.com/vanniktech/gradle-maven-publish-plugin/releases
+maven_publish = "0.35.0"
+# https://github.com/Kotlin/dokka/releases
+dokka = "2.2.0"
+
 # https://github.com/Kotlin/kotlinx-io/releases
 kx_io = "0.9.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
@@ -13,8 +18,7 @@ kx_datetime = "0.7.1"
 kx_serialization = "1.11.0"
 # https://github.com/hfhbd/kotlinx-serialization-csv/releases
 kx_serialization_csv = "0.0.23"
-# https://github.com/Kotlin/dokka/releases
-dokka = "2.2.0"
+
 # https://github.com/oshai/kotlin-logging/releases
 logger = "7.0.14"
 # https://github.com/KotlinCrypto/hash/releases
@@ -61,3 +65,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "maven_publish" }
