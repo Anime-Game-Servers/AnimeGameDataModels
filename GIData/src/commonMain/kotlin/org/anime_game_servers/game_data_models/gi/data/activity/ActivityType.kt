@@ -1606,18 +1606,18 @@ enum class ActivityType(val id: Int) : IntKey {
 
     // TODO document used models
     /**
-     * TODO
+     * This is the 6.4 "[Operation Stronghold Defense](https://genshin-impact.fandom.com/wiki/Operation_Stronghold_Defense)" event
      * @since 6.4
      */
     NEW_ACTIVITY_TOWER_DEFENSE(6401),
 
     // TODO document used models
     /**
-     * TODO
+     * This is the 6.4 "[Sightseeing With Friends](https://genshin-impact.fandom.com/wiki/Sightseeing_With_Friends)" event
      * @since 6.4
      */
     NEW_ACTIVITY_MONSTER_SNAP(6402),
-    
+
     /**
      * This is the 6.4 flagship event "[Homeward, He Who Caught the Wind](https://genshin-impact.fandom.com/wiki/Homeward,_He_Who_Caught_the_Wind)"
      * @since 6.4
@@ -1633,21 +1633,21 @@ enum class ActivityType(val id: Int) : IntKey {
 
     // TODO document used models
     /**
-     * TODO
+     * This is the 6.5 "[Surveying & Mapping Studies](https://genshin-impact.fandom.com/wiki/Surveying_%26_Mapping_Studies)" event
      * @since 6.5
      */
     NEW_ACTIVITY_MAP_MARK(6501),
 
     // TODO document used models
     /**
-     * TODO
+     * This is the 6.5 "[Rapid Capture](https://genshin-impact.fandom.com/wiki/Rapid_Capture)" event
      * @since 6.5
      */
     NEW_ACTIVITY_SHORT_VIDEO(6502),
 
     // TODO document used models
     /**
-     * TODO
+     * This is the 6.5 flagship event "[Where Waves Meet the Reef](https://genshin-impact.fandom.com/wiki/Where_Waves_Meet_the_Reef)"
      * @since 6.5
      */
     NEW_ACTIVITY_TRADE_SHOW(6503),
