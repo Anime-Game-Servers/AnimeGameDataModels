@@ -238,7 +238,7 @@ enum class ActivityType(val id: Int) : IntKey {
     /**
      * @since 1.4
      */
-    NewActivityExcelConfigData(1401),
+    NEW_ACTIVITY_OPERATIONS_BONUS(1401),
 
     // TODO document used models
     /**
@@ -1604,11 +1604,13 @@ enum class ActivityType(val id: Int) : IntKey {
     @AddedIn(GI_6_3_0)
     NEW_ACTIVITY_SKIN_BANNER (6304),
 
+
     // TODO document used models
     /**
      * This is the 6.4 "[Operation Stronghold Defense](https://genshin-impact.fandom.com/wiki/Operation_Stronghold_Defense)" event
      * @since 6.4
      */
+    @AddedIn(GI_6_4_0)
     NEW_ACTIVITY_TOWER_DEFENSE(6401),
 
     // TODO document used models
@@ -1616,12 +1618,14 @@ enum class ActivityType(val id: Int) : IntKey {
      * This is the 6.4 "[Sightseeing With Friends](https://genshin-impact.fandom.com/wiki/Sightseeing_With_Friends)" event
      * @since 6.4
      */
+    @AddedIn(GI_6_4_0)
     NEW_ACTIVITY_MONSTER_SNAP(6402),
 
     /**
      * This is the 6.4 flagship event "[Homeward, He Who Caught the Wind](https://genshin-impact.fandom.com/wiki/Homeward,_He_Who_Caught_the_Wind)"
      * @since 6.4
      */
+    @AddedIn(GI_6_4_0)
     NEW_ACTIVITY_BUBBLE_DRAMA(6403),
 
     // TODO document used models
@@ -1629,13 +1633,16 @@ enum class ActivityType(val id: Int) : IntKey {
      * TODO
      * @since 6.4
      */
+    @AddedIn(GI_6_4_0)
     NEW_ACTIVITY_BEYOND_WELFARE(6404),
+
 
     // TODO document used models
     /**
      * This is the 6.5 "[Surveying & Mapping Studies](https://genshin-impact.fandom.com/wiki/Surveying_%26_Mapping_Studies)" event
      * @since 6.5
      */
+    @AddedIn(GI_6_5_0)
     NEW_ACTIVITY_MAP_MARK(6501),
 
     // TODO document used models
@@ -1643,6 +1650,7 @@ enum class ActivityType(val id: Int) : IntKey {
      * This is the 6.5 "[Rapid Capture](https://genshin-impact.fandom.com/wiki/Rapid_Capture)" event
      * @since 6.5
      */
+    @AddedIn(GI_6_5_0)
     NEW_ACTIVITY_SHORT_VIDEO(6502),
 
     // TODO document used models
@@ -1650,7 +1658,41 @@ enum class ActivityType(val id: Int) : IntKey {
      * This is the 6.5 flagship event "[Where Waves Meet the Reef](https://genshin-impact.fandom.com/wiki/Where_Waves_Meet_the_Reef)"
      * @since 6.5
      */
+    @AddedIn(GI_6_5_0)
     NEW_ACTIVITY_TRADE_SHOW(6503),
+
+
+    // TODO document used models
+    /**
+     * This is the 6.6 flagship event "[Phantasmal Pals](https://genshin-impact.fandom.com/wiki/Phantasmal_Pals)"
+     * @since 6.6
+     */
+    @AddedIn(GI_6_6_0)
+    NEW_ACTIVITY_LOLI_FRIEND(6601),
+
+    // TODO document used models
+    /**
+     * This is the 6.6 "[Trials of the Brave Warrior](https://genshin-impact.fandom.com/wiki/Trials_of_the_Brave_Warrior)" event
+     * @since 6.6
+     */
+    @AddedIn(GI_6_6_0)
+    NEW_ACTIVITY_BLADE_HEART(6602),
+
+    // TODO document used models
+    /**
+     * This is the 6.6 "[Kaleidoscopic Color Chase](https://genshin-impact.fandom.com/wiki/Kaleidoscopic_Color_Chase)" event
+     * @since 6.6
+     */
+    @AddedIn(GI_6_6_0)
+    NEW_ACTIVITY_COLOR_BALL(6603),
+
+
+    // TODO document used models
+    /**
+     * This is the 6.6 Event banner for the "[Beyond Silver and Fine Gold](https://genshin-impact.fandom.com/wiki/Beyond_Silver_and_Fine_Gold)" world quest
+     * @since 6.6
+     */
+    NEW_ACTIVITY_NICOLE_BANNER(6604),
 
 
     /**
