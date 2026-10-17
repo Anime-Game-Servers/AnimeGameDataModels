@@ -3,6 +3,7 @@
 package org.anime_game_servers.game_data_models.gi.data.city
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
@@ -24,6 +25,7 @@ data class CityData(
     val cityId: Int,
     @JsonNames("areaIdVec")
     val areaIds: List<Int>,
+    @SerialName("openState")
     val openStateString: String? = null,
     @Transient
     val openState: OpenState? = nullableEnumValueOfOrDefault(openStateString, OpenState.OPEN_STATE_UNKNOWN),

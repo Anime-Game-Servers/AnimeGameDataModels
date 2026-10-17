@@ -1,0 +1,38 @@
+@file:OptIn(ExperimentalSerializationApi::class)
+
+package org.anime_game_servers.game_data_models.gi.data.dungeon
+
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.JsonNames
+import org.anime_game_servers.core.base.interfaces.IntKey
+
+enum class DungeonEntryType(val id: Int): IntKey {
+    @JsonNames("DUNGEN_ENTRY_TYPE_NONE")
+    DUNGEON_ENTRY_TYPE_NONE(0),
+    @JsonNames("DUNGEN_ENTRY_TYPE_AVATAR_EXP")
+    DUNGEON_ENTRY_TYPE_AVATAR_EXP(1),
+    @JsonNames("DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE")
+    DUNGEON_ENTRY_TYPE_WEAPON_PROMOTE(2),
+    @JsonNames("DUNGEN_ENTRY_TYPE_AVATAR_TALENT")
+    DUNGEON_ENTRY_TYPE_AVATAR_TALENT(3),
+    @JsonNames("DUNGEN_ENTRY_TYPE_RELIQUARY")
+    DUNGEON_ENTRY_TYPE_RELIQUARY(4),
+    @JsonNames("DUNGEN_ENTRY_TYPE_SCOIN")
+    DUNGEON_ENTRY_TYPE_SCOIN(5),
+    DUNGEON_ENTRY_TYPE_OBSCURAE(6),
+    DUNGEON_ENTRY_TYPE_NORMAL(7),
+    DUNGEON_ENTRY_TYPE_TRIAL(8),
+    DUNGEON_ENTRY_TYPE_EFFIGY(9),
+    DUNGEON_ENTRY_TYPE_FLEUR_FAIR(10),
+    DUNGEON_ENTRY_TYPE_CHANNELLER_SLAB_LOOP(11),
+    DUNGEON_ENTRY_TYPE_CHANNELLER_SLAB_ONE_OFF(12),
+    DUNGEON_ENTRY_TYPE_BLITZ_RUSH(13),
+    DUNGEON_ENTRY_TYPE_SUMO(14),
+    DUNGEON_ENTRY_TYPE_ACTIVITY(15),
+    DUNGEON_ENTRY_TYPE_HACHI(16),
+    DUNGEON_ENTRY_TYPE_ROLE_COMBAT(17),
+    DUNGEON_ENTRY_TYPE_LEY_LINE_CHALLENGE(18),
+    DUNGEON_ENTRY_TYPE_UNKNOWN(9999);
+
+    override fun getIntKey() = id
+}
