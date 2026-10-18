@@ -16,7 +16,8 @@ kotlin {
             useJUnitPlatform()
         }
     }
-    js(IR) {
+    js {
+        nodejs()
         browser {
             commonWebpackConfig {
                 cssSupport {
@@ -29,7 +30,6 @@ kotlin {
     //linuxX64()
     //linuxArm64()
     //macosArm64()
-    //macosX64()
     //iosArm64()
     //iosX64()
 

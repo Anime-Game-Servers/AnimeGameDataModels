@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK
@@ -20,22 +20,7 @@ jobs:
         run: chmod +x gradlew
       - name: Publish with Gradle
         run: |
-            if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
-                ./gradlew build publishAllPublicationsToAgsmvnsnapshotsRepository
-            else
-                ./gradlew compileKotlinIosArm64 \
-                  compileKotlinIosX64 \
-                  compileKotlinMacosArm64 \
-                  compileKotlinMacosX64 \
-                  compileTestKotlinIosArm64 \
-                  compileTestKotlinIosX64 \
-                  compileTestKotlinMacosArm64 \
-                  compileTestKotlinMacosX64 \
-                  publishIosArm64PublicationToAgsmvnsnapshotsRepository \
-                  publishIosX64PublicationToAgsmvnsnapshotsRepository \
-                  publishMacosArm64PublicationToAgsmvnsnapshotsRepository \
-                  publishMacosX64PublicationToAgsmvnsnapshotsRepository
-            fi
+            ./gradlew build publishAllPublicationsToAgsmvnsnapshotsRepository
         env:
           ORG_GRADLE_PROJECT_agsmvnsnapshotsUsername: ${{ secrets.MAVEN_NAME }} # token name
           ORG_GRADLE_PROJECT_agsmvnsnapshotsPassword: ${{ secrets.MAVEN_SECRET }} # token secret (password)
