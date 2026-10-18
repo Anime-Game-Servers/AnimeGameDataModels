@@ -86,4 +86,8 @@ tasks{
         if (name != "kspCommonMainKotlinMetadata")
             dependsOn("kspCommonMainKotlinMetadata")
     }
+    withType<org.gradle.jvm.tasks.Jar> {
+        if (name.endsWith("SourcesJar", ignoreCase = true))
+            dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
