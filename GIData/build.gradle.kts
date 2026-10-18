@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+import com.google.devtools.ksp.gradle.KspAATask
 
 plugins {
     kotlin("multiplatform")
@@ -38,9 +38,11 @@ kotlin {
     iosArm64()
     iosX64()
 
-    
+    val kspCommonMetadata = tasks.matching {
+        it.name == "kspCommonMainKotlinMetadata"
+    }
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 api(project(":base"))
                 api(libs.bundles.common.ags.base)
@@ -49,7 +51,17 @@ kotlin {
                 implementation(libs.ags.core.gi)
                 implementation(libs.bundles.common.crypto)
             }
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin/")
+
+            // ksp generated loader and registry files
+            kotlin.srcDir(files(
+                layout.buildDirectory.dir("generated/ksp/metadata/commonMain/kotlin/")
+            ))
+
+            // generated common resources used for MetaInf service files in the jvm target
+            val generatedResources = files(
+                layout.buildDirectory.dir("generated/ksp/metadata/commonMain/resources")
+            ).builtBy(kspCommonMetadata)
+            resources.srcDir(generatedResources)
 
             ksp{
                 arg("type", "common")
@@ -57,15 +69,11 @@ kotlin {
                 arg("package_root", "org.anime_game_servers.game_data_models.gi")
             }
         }
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
     }
 }
 
@@ -74,44 +82,7 @@ dependencies {
 }
 
 tasks{
-
-    sourcesJar{
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("jvmSourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("jsSourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("nativeSourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("linuxArm64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("linuxArm64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("linuxX64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("mingwX64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("macosArm64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("macosX64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("iosArm64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    getTasksByName("iosX64SourcesJar", false).forEach {
-        it.dependsOn("kspCommonMainKotlinMetadata")
-    }
-    withType<KotlinCompilationTask<*>> {
+    withType<KspAATask> {
         if (name != "kspCommonMainKotlinMetadata")
             dependsOn("kspCommonMainKotlinMetadata")
     }

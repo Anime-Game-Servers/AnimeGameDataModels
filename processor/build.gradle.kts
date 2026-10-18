@@ -16,7 +16,6 @@ dependencies {
     implementation(project(":base"))
     implementation(libs.bundles.common.models.serialization)
     implementation(libs.bundles.ksp.processor)
-    implementation("com.squareup:kotlinpoet-ksp:1.16.0") //TODO move into toml
 }
 
 tasks.test {

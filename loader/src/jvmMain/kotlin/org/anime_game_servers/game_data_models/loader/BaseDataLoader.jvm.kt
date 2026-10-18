@@ -1,10 +1,19 @@
 package org.anime_game_servers.game_data_models.loader
 
 import kotlinx.coroutines.runBlocking
+import java.util.ServiceLoader
 
 
-actual class DefaultDataLoader : BaseDataLoader() {
+actual class DefaultDataLoader : BaseDataLoader {
     var classInfoMapping: MutableMap<Class<*>, DataClassInfo<*>> = mutableMapOf()
+
+    @JvmOverloads
+    constructor(autoRegister: Boolean = true) {
+        if(autoRegister){
+            autodetectSources()
+        }
+    }
+
     actual override fun onRegisterDataClassSources(dataClasses: List<DataClassInfo<*>>) {
         dataClasses.forEach {
             classInfoMapping[it.kClass.java] = it
@@ -14,6 +23,15 @@ actual class DefaultDataLoader : BaseDataLoader() {
     actual override fun onUnregisterDataClassSources(dataClasses: List<DataClassInfo<*>>) {
         dataClasses.forEach {
             classInfoMapping.remove(it.kClass::class.java)
+        }
+    }
+
+    fun autodetectSources(){
+        val sources = ServiceLoader.load(DataClassSourceProvider::class.java)
+            .toList()
+            .flatMap { it.getDataClassSource() }
+        sources.forEach {
+            registerDataClassSource(it)
         }
     }
 

@@ -57,7 +57,7 @@ object MetaDataGenerator {
                 .initializer(CodeBlock.builder().apply {
                     add("listOf(\n")
                     indent()
-                    metaData.fileInfos.map {
+                    metaData.fileInfos.forEach {
                         addStatement(
                             "%T(%S, %T.%L, %T.%L),",
                             DataFile::class,
@@ -80,9 +80,6 @@ object MetaDataGenerator {
             .build()
         val file = FileSpec.builder(className).apply {
             indent("    ")
-            addImport(DataFile::class, "")
-            addImport(FileType::class, "")
-            addImport(FolderType::class, "")
             addType(type)
         }.build()
 

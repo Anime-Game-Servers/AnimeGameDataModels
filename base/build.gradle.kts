@@ -31,18 +31,10 @@ kotlin {
 
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 api(libs.bundles.common.models.serialization)
             }
         }
-        val commonTest by getting
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
-        val mingwX64Main by getting
-        val linuxX64Main by getting
-        val linuxArm64Main by getting
     }
 }

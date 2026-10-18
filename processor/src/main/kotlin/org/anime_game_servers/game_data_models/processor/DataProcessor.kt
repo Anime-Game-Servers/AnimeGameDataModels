@@ -76,6 +76,7 @@ class DataProcessor(
         }
 
         MetaDataRegistryGenerator.createFileForMetaDataRegistry(moduleDataClasses, options["package_root"]!!, options["module"]!!, codeGenerator)
+        MetaDataRegistryProviderGenerator.createFilesForMetaDataRegistryProvider(options["package_root"]!!, options["module"]!!, codeGenerator)
 
         logger.info("Finished processing ${moduleDataClasses.size} data classes")
         return emptyList()

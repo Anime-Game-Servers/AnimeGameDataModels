@@ -35,7 +35,7 @@ kotlin {
 
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 api(project(":base"))
                 api(libs.bundles.common.ags.base)
@@ -43,21 +43,15 @@ kotlin {
                 api(libs.bundles.common.ktx)
             }
         }
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting {
+        jvmTest {
             dependencies {
                 implementation(project(":GIData"))
             }
         }
-        val jsMain by getting
-        val jsTest by getting
-        //val mingwX64Main by getting
-        //val linuxX64Main by getting
-        //val linuxArm64Main by getting
     }
 }

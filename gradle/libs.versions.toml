@@ -1,28 +1,33 @@
 [versions]
 # https://kotlinlang.org/docs/releases.html#release-details
-kotlin = "2.3.20"
+kotlin = "2.4.21"
 # https://github.com/google/ksp/releases
-ksp = "2.3.6"
+ksp = "2.3.12"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
-maven_publish = "0.35.0"
+maven_publish = "0.37.0"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.2.0"
 
 # https://github.com/Kotlin/kotlinx-io/releases
-kx_io = "0.9.0"
+kx_io = "0.9.1"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
-kx_coroutines = "1.10.2"
+kx_coroutines = "1.11.0"
 # https://github.com/Kotlin/kotlinx-datetime/releases
-kx_datetime = "0.7.1"
+kx_datetime = "0.8.0"
 # https://github.com/Kotlin/kotlinx.serialization/releases
 kx_serialization = "1.11.0"
 # https://github.com/hfhbd/kotlinx-serialization-csv/releases
 kx_serialization_csv = "0.0.23"
 
 # https://github.com/oshai/kotlin-logging/releases
-logger = "7.0.14"
+logger = "8.0.4"
 # https://github.com/KotlinCrypto/hash/releases
 kotlin_crypto = "0.8.0"
+
+## ksp processor specific
+# https://github.com/square/kotlinpoet/releases
+kotlinpoet = "2.4.0"
+
 
 ## testing libs
 # https://github.com/junit-team/junit5/releases
@@ -45,6 +50,7 @@ logging = { module = "io.github.oshai:kotlin-logging", version.ref = "logger" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 ksp-sympbol-processing = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+ksp-kotlinpoet = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
 kotlin_crypto_md5 = { module = "org.kotlincrypto.hash:md", version.ref = "kotlin_crypto" }
 
 ags-core-base = { module = "org.anime_game_servers.core:base", version.ref = "ags_core" }
@@ -58,7 +64,7 @@ common_models_serialization = ["kotlinx-serialization-json", "kotlinx-serializat
 common_ags_base = ["ags-core-base"]
 common_ktx = ["kotlinx-io-core", "kotlinx-coroutines-core"]
 common_crypto = ["kotlin_crypto_md5"]
-ksp_processor = ["ksp-sympbol-processing"]
+ksp_processor = ["ksp-sympbol-processing", "ksp-kotlinpoet"]
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
