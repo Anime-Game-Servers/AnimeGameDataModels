@@ -34,8 +34,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * txt/PushTipsCodexData.txt (with an appropriate parser)
  */
 @OptIn(ExperimentalSerializationApi::class)
-@DataFile("ExcelBinOutput/PushTipsCodexExcelConfigData.json", JSON, EXCEL)
-@DataFile("txt/PushTipsCodexData.txt", TSV, EXCEL)
+@DataFile("ExcelBinOutput/PushTipsCodexExcelConfigData.json", FileType.JSON, FolderType.EXCEL)
+@DataFile("txt/PushTipsCodexData.txt", FileType.TSV, FolderType.EXCEL)
 @Serializable
 data class CodexPushTipsData(
     @JsonNames("Id")

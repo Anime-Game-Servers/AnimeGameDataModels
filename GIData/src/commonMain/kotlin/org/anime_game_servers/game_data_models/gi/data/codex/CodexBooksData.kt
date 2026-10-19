@@ -34,8 +34,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * txt/BooksCodexData.txt (with an appropriate parser)
  */
 @OptIn(ExperimentalSerializationApi::class)
-@DataFile("ExcelBinOutput/BooksCodexExcelConfigData.json", JSON, EXCEL)
-@DataFile("txt/BooksCodexData.txt", TSV, EXCEL)
+@DataFile("ExcelBinOutput/BooksCodexExcelConfigData.json", FileType.JSON, FolderType.EXCEL)
+@DataFile("txt/BooksCodexData.txt", FileType.TSV, FolderType.EXCEL)
 @Serializable
 data class CodexBooksData(
     @JsonNames("Id")

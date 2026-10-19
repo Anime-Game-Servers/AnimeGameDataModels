@@ -14,6 +14,7 @@ import org.anime_game_servers.game_data_models.gi.data.quest.GainItem
 import org.anime_game_servers.game_data_models.gi.data.rewards.RewardData
 import org.anime_game_servers.game_data_models.gi.data.rewards.RewardPreviewData
 import org.anime_game_servers.game_data_models.gi.data.city.CityData
+import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
@@ -165,9 +166,9 @@ data class DungeonData(
     fun getDungeonSubTypeNonNull() = subType ?: DungeonSubType.DUNGEON_SUB_NONE
     fun getPlayerTypeNonNull() = playType ?: DungeonPlayType.DUNGEON_PLAY_TYPE_NONE
     fun getInvolveTypeNonNull() = involveType ?: InvolveType.INVOLVE_NONE
-    fun isDynamicLevelNonNull() = isDynamicLevel ?: false
-    fun getSettleShowsNonNull() = settleShows ?: emptyList()
-    fun getInterceptReviveAfterSettleNonNull() = interceptReviveAfterSettle ?: false
-    fun getLevelConfigMapNonNull() = levelConfigMap ?: emptyMap()
+    fun isDynamicLevelNonNull() = isDynamicLevel.getNonNull()
+    fun getSettleShowsNonNull() = settleShows.getNonNull()
+    fun getInterceptReviveAfterSettleNonNull() = interceptReviveAfterSettle.getNonNull()
+    fun getLevelConfigMapNonNull() = levelConfigMap.getNonNull()
     fun getStateTypeNonNull() = stateType ?: DungeonStateType.DUNGEON_STATE_NONE
 }
