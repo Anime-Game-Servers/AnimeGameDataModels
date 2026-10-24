@@ -1,10 +1,9 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package org.anime_game_servers.game_data_models.gi.data.codex
 
-import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
 
+@Serializable
 enum class CodexAnimalSubType(val id: Int): IntKey {
     CODEX_SUBTYPE_ELEMENTAL(0),
     CODEX_SUBTYPE_HILICHURL(1),
