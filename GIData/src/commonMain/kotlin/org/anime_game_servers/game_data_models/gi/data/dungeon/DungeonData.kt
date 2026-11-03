@@ -15,9 +15,13 @@ import org.anime_game_servers.game_data_models.gi.data.city.CityData
 import org.anime_game_servers.game_data_models.gi.data.general.ElementContainerSerializer
 import org.anime_game_servers.game_data_models.gi.data.general.ElementMetadata
 import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
+import org.anime_game_servers.game_data_models.gi.helpers.stripEnumWrapperListField
+import org.anime_game_servers.game_data_models.gi.helpers.stripListByIntField
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.stripping.StripConfig
+import org.anime_game_servers.game_data_models.loader.stripping.Strippable
 import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
@@ -142,7 +146,7 @@ data class DungeonData(
     val displayNameTextMapHash: TextMapHash = UnsetTextMap,
     val descTextMapHash: TextMapHash = UnsetTextMap,
     val gearDescTextMapHash: TextMapHash = UnsetTextMap,
-) : IntKey {
+) : IntKey, Strippable<DungeonData> {
     override fun getIntKey() = id
 
     fun getDungeonTypeNonNull() = type?.value ?: DUNGEON_NONE
@@ -154,4 +158,13 @@ data class DungeonData(
     fun getInterceptReviveAfterSettleNonNull() = interceptReviveAfterSettle.getNonNull()
     fun getLevelConfigMapNonNull() = levelConfigMap.getNonNull()
     fun getStateTypeNonNull() = stateType?.value ?: DUNGEON_STATE_NONE
+
+    override fun strip(config: StripConfig) = context(config) {
+        copy(
+            settleShows = settleShows?.stripEnumWrapperListField(SettleShowTypeMetadata),
+            enterCostItems = enterCostItems?.stripListByIntField { it.itemId },
+            recommendElementTypes = recommendElementTypes?.stripEnumWrapperListField(ElementMetadata)
+        )
+    }
+
 }

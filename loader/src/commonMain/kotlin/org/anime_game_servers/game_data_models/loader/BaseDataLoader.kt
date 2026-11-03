@@ -1,5 +1,7 @@
 package org.anime_game_servers.game_data_models.loader
 
+import org.anime_game_servers.game_data_models.loader.stripping.StripConfig
+
 expect class DefaultDataLoader : BaseDataLoader{
     override fun onRegisterDataClassSources(dataClasses: List<DataClassInfo<*>>)
     override fun onUnregisterDataClassSources(dataClasses: List<DataClassInfo<*>>)
@@ -9,6 +11,8 @@ abstract class BaseDataLoader : DataLoader {
     private val parsers: MutableMap<FileType, DataParser> = mutableMapOf()
     private val paths: MutableMap<FolderType, MutableList<AGDMFile>> = mutableMapOf()
     private val knownDataClasses: MutableSet<DataClassInfo<*>> = mutableSetOf()
+
+    override var stripConfig = StripConfig.NONE
 
     override fun setParser(type: FileType, parser: DataParser) {
         require(parser.supportedTypes.contains(type)){
@@ -39,19 +43,19 @@ abstract class BaseDataLoader : DataLoader {
 
     override suspend fun <T> loadList(dataClassInfo: DataClassInfo<T>): List<T>? {
         return handlePath(dataClassInfo) { dataClassInfo, parser, path ->
-            return@handlePath parser.parseList(dataClassInfo, path)
+            return@handlePath parser.parseList(dataClassInfo, path, stripConfig)
         }
     }
 
     override suspend fun <T, K> loadMap(dataClassInfo: DataClassInfo<T>): Map<K, T>? {
         return handlePath(dataClassInfo) { dataClassInfo, parser, path ->
-            return@handlePath parser.parseMap(dataClassInfo, path)
+            return@handlePath parser.parseMap(dataClassInfo, path, stripConfig)
         }
     }
 
     override suspend fun <T> loadModel(dataClassInfo: DataClassInfo<T>): T? {
         return handlePath(dataClassInfo) { dataClassInfo, parser, path ->
-            return@handlePath parser.parseModel(dataClassInfo, path)
+            return@handlePath parser.parseModel(dataClassInfo, path, stripConfig)
         }
     }
 

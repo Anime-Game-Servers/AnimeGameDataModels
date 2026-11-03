@@ -3,10 +3,13 @@ package org.anime_game_servers.game_data_models.gi.data.activity.dragonspine
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.helpers.stripListByEnumWrapperField
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
 import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
+import org.anime_game_servers.game_data_models.loader.stripping.StripConfig
+import org.anime_game_servers.game_data_models.loader.stripping.Strippable
 
 /**
  * TODO: Documentation
@@ -26,8 +29,17 @@ data class DragonspineMissionData(
     val chapterId: Int = UnsetInt,
     val watcherId: Int = UnsetInt,
     val finishExec: List<DragonspineFinishExec>? = null,
-) : IntKey {
+) : IntKey, Strippable<DragonspineMissionData> {
     override fun getIntKey() = id
+
+    override fun strip(config: StripConfig): DragonspineMissionData = context(config) {
+        copy(
+            finishExec = finishExec?.stripListByEnumWrapperField(
+                DragonspineFinishExec::type,
+                DragonspineMissionExecTypeMetadata
+            )
+        )
+    }
 
     @Serializable
     data class DragonspineFinishExec(

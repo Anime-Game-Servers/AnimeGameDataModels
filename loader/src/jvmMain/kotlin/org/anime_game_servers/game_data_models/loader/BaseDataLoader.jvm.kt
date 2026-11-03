@@ -1,6 +1,7 @@
 package org.anime_game_servers.game_data_models.loader
 
 import kotlinx.coroutines.runBlocking
+import org.anime_game_servers.game_data_models.loader.stripping.StripConfig
 import java.util.ServiceLoader
 
 
@@ -8,10 +9,11 @@ actual class DefaultDataLoader : BaseDataLoader {
     var classInfoMapping: MutableMap<Class<*>, DataClassInfo<*>> = mutableMapOf()
 
     @JvmOverloads
-    constructor(autoRegister: Boolean = true) {
+    constructor(stripConfig: StripConfig = StripConfig.NONE, autoRegister: Boolean = true) {
         if(autoRegister){
             autodetectSources()
         }
+        this.stripConfig = stripConfig
     }
 
     actual override fun onRegisterDataClassSources(dataClasses: List<DataClassInfo<*>>) {
