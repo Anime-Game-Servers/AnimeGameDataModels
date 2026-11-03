@@ -1,14 +1,13 @@
 package org.anime_game_servers.game_data_models.gi.data.entities.avatar
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.ArithType
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.data.general.ArithTypeContainerSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains information about the stats growth with each level for characters/avatars.
@@ -31,22 +30,16 @@ data class AvatarCurveData(
 
     /**
      * Contains information about the growth curve of a character at a certain level
-     * @property typeString The type of curve/stat to change
-     * @property type The enum representation of typeString. [GrowthCurveType.GROW_CURVE_UNKNOWN] if set to something not in the enum
-     * @property arithString The type of arithmetic to use for changing this stat
-     * @property arith The enum representation of arithString. [ArithType.ARITH_UNKNOWN] if set to something not in the enum
+     * @property type The enum wrapper for the type of curve/stat to change. [GrowthCurveType.GROW_CURVE_UNKNOWN] if set to something not in the enum
+     * @property arith The enum wrapper with type of arithmetic to use for changing this stat. [ArithType.ARITH_UNKNOWN] if set to something not in the enum
      * @property value The value of the growth curve
      */
     @Serializable
     data class GrowCurveInfo(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: GrowthCurveType? = nullableEnumValueOfOrDefault(typeString, GrowthCurveType.GROW_CURVE_UNKNOWN),
-        @SerialName("arith")
-        val arithString: String? = null,
-        @Transient
-        val arith: ArithType? = nullableEnumValueOfOrDefault(arithString, ArithType.ARITH_UNKNOWN),
+        @Serializable(with = GrowthCurveTypeContainerSerializer::class)
+        val type: EnumWrapper<GrowthCurveType>? = null,
+        @Serializable(with = ArithTypeContainerSerializer::class)
+        val arith: EnumWrapper<ArithType>? = null,
         val value: Float
     )
 }

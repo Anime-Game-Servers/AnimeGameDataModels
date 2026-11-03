@@ -1,11 +1,10 @@
 package org.anime_game_servers.game_data_models.gi.data.entities
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.game_data_models.gi.data.entities.avatar.GrowthCurveType
+import org.anime_game_servers.game_data_models.gi.data.entities.avatar.GrowthCurveTypeContainerSerializer
 import org.anime_game_servers.game_data_models.gi.data.general.TextHash
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 interface CreatureExcelConfig {
     val hpBase: Float
@@ -36,15 +35,12 @@ interface CreatureExcelConfig {
 
     @Serializable
     data class FightPropGrowConfig(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: FightPropType? = nullableEnumValueOfOrDefault(typeString, FightPropType.FIGHT_PROP_UNKNOWN),
-        @SerialName("growCurve")
-        val growCurveString: String? = null,
-        @Transient
-        val growCurve: GrowthCurveType? = nullableEnumValueOfOrDefault(growCurveString, GrowthCurveType.GROW_CURVE_UNKNOWN),
+        @Serializable(with = FightPropTypeContainerSerializer::class)
+        val type: EnumWrapper<FightPropType>? = null,
+        @Serializable(with = GrowthCurveTypeContainerSerializer::class)
+        val growCurve: EnumWrapper<GrowthCurveType>? = null,
     ) {
-        fun getTypeNonNull() = type ?: FightPropType.FIGHT_PROP_NONE
+        fun getTypeNonNull() = type?.value ?: FightPropType.FIGHT_PROP_NONE
+        fun getGrowthCurveNonNull() = growCurve?.value ?: GrowthCurveType.GROW_CURVE_NONE
     }
 }

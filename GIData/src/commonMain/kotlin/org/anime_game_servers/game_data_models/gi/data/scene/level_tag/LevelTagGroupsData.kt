@@ -4,6 +4,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.helpers.getDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -28,13 +30,17 @@ data class LevelTagGroupsData(
     @JsonNames("ID")
     val id: Int,
     @JsonNames("level_tag_group_list")
-    val levelTagGroupList: List<LevelTagGroup>,
+    val levelTagGroupList: List<LevelTagGroup>? = null,
     @JsonNames("initial_level_tag_id_list")
-    val initialLevelTagIdList: List<Int>,
+    val initialLevelTagIdList: List<Int>? = null,
     @JsonNames("change_cd")
-    val changeCd: Int,
+    val changeCd: Int? = null,
 ) : IntKey {
     override fun getIntKey() = id
+
+    fun getLevelTagGroupListNonNull() = levelTagGroupList ?: emptyList()
+    fun getInitialLevelTagIdListNonNull() = initialLevelTagIdList ?: emptyList()
+    fun getChangeCdWithDefault() = changeCd.getDefault()
 
     /**
      * This is a subgroup of level tags. In each subgroup there can only be one tag active at a time

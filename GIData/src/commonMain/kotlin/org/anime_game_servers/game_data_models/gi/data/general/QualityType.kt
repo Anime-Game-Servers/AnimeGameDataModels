@@ -1,11 +1,18 @@
 package org.anime_game_servers.game_data_models.gi.data.general
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * This represents the rarity/quality/stars of something (e.g. character or buff).
  */
+@DataEnum
+@Serializable
 enum class QualityType(val id: Int): IntKey {
+    @NoneEntry
     QUALITY_NONE(0),
 
     /**
@@ -37,6 +44,8 @@ enum class QualityType(val id: Int): IntKey {
      * Special orange/5 Star quality, for example used for special promotion characters like Aloy
      */
     QUALITY_ORANGE_SP(105),
+
+    @UnknownEntry
     QUALITY_UNKNOWN(99999);
 
     override fun getIntKey() = id

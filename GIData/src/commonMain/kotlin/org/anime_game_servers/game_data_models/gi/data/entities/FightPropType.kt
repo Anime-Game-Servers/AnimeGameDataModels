@@ -3,11 +3,18 @@
 package org.anime_game_servers.game_data_models.gi.data.entities
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class FightPropType(val id: Int): IntKey {
+    @NoneEntry
     FIGHT_PROP_NONE(0),
     FIGHT_PROP_BASE_HP(1),
     FIGHT_PROP_HP(2),
@@ -151,6 +158,8 @@ enum class FightPropType(val id: Int): IntKey {
     FIGHT_PROP_ELEM_REACT_OVERGROW_FIRE_CRITICAL_HURT(3042),
     FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL(3043),
     FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL_HURT(3044),
+
+    @UnknownEntry
     FIGHT_PROP_UNKNOWN(99999);
 
     override fun getIntKey() = id

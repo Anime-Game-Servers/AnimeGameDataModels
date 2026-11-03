@@ -1,14 +1,12 @@
 package org.anime_game_servers.game_data_models.gi.data.activity.dragonspine
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO: Documentation
@@ -33,10 +31,8 @@ data class DragonspineMissionData(
 
     @Serializable
     data class DragonspineFinishExec(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: DragonspineMissionExecType? = nullableEnumValueOfOrDefault(typeString, DRAGON_SPINE_EXEC_TYPE_UNKNOWN),
+        @Serializable(with = DragonspineMissionExecTypeContainerSerializer::class)
+        val type: EnumWrapper<DragonspineMissionExecType>? = null,
         val param: List<String>? = null,
     )
 }

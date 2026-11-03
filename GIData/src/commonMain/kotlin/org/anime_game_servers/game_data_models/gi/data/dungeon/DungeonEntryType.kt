@@ -3,10 +3,17 @@
 package org.anime_game_servers.game_data_models.gi.data.dungeon
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class DungeonEntryType(val id: Int): IntKey {
+    @NoneEntry
     @JsonNames("DUNGEN_ENTRY_TYPE_NONE")
     DUNGEON_ENTRY_TYPE_NONE(0),
     @JsonNames("DUNGEN_ENTRY_TYPE_AVATAR_EXP")
@@ -32,6 +39,8 @@ enum class DungeonEntryType(val id: Int): IntKey {
     DUNGEON_ENTRY_TYPE_HACHI(16),
     DUNGEON_ENTRY_TYPE_ROLE_COMBAT(17),
     DUNGEON_ENTRY_TYPE_LEY_LINE_CHALLENGE(18),
+
+    @UnknownEntry
     DUNGEON_ENTRY_TYPE_UNKNOWN(9999);
 
     override fun getIntKey() = id

@@ -1,9 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.general
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class OpenState(val id: Int) : IntKey {
+    @NoneEntry
     OPEN_STATE_NONE(0),
     OPEN_STATE_PAIMON(1),
     OPEN_STATE_PAIMON_NAVIGATION(2),
@@ -813,7 +820,9 @@ enum class OpenState(val id: Int) : IntKey {
     @AddedIn(GI_6_5_0)
     OPEN_STATE_GUIDE_FIRMAMENT_PAINT(6515),
 
-    OPEN_STATE_UNKNOWN(9999);
+
+    @UnknownEntry
+    OPEN_STATE_UNKNOWN(99999);
 
     override fun getIntKey() = id
 }

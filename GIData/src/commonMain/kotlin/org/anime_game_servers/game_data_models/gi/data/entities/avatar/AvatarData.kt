@@ -3,17 +3,16 @@ package org.anime_game_servers.game_data_models.gi.data.entities.avatar
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.entities.CreatureExcelConfig
 import org.anime_game_servers.game_data_models.gi.data.entities.EntityExcelConfig
 import org.anime_game_servers.game_data_models.gi.data.general.*
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.gi.data.rewards.RewardData
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This defines a lot of information about playable characters/avatars in the game.
@@ -22,14 +21,10 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * txt/AvatarData.txt
  * @property id the id o the avatar and primary identifier
  * @property camp TODO document
- * @property useTypeString TODO document
- * @property useType enum representation of useTypeString. [AvatarUseType.AVATAR_UNKNOWN] if set to something not in the enum
- * @property bodyTypeString The body type assigned to the avatar
- * @property bodyType enum representation of bodyTypeString. [BodyType.BODY_UNKNOWN] if set to something not in the enum
- * @property qualityTypeString The rarity /stars of the character
- * @property qualityType enum representation of qualityTypeString. [QualityType.QUALITY_UNKNOWN] if set to something not in the enum
- * @property avatarIdentityTypeString TODO document
- * @property avatarIdentityType enum representation of avatarIdentityTypeString. [AvatarIdentityType.AVATAR_IDENTITY_UNKNOWN] if set to something not in the enum
+ * @property useType Enum wrapper. [AvatarUseType.AVATAR_UNKNOWN] if set to something not in the enum // TODO document
+ * @property bodyType Enum wrapper with the body type assigned to the avatar. [BodyType.BODY_UNKNOWN] if set to something not in the enum
+ * @property qualityType Enum wrapper with the rarity /stars of the character. [QualityType.QUALITY_UNKNOWN] if set to something not in the enum
+ * @property avatarIdentityType Enum wrapper. [AvatarIdentityType.AVATAR_IDENTITY_UNKNOWN] if set to something not in the enum // TODO document
  * @property chargeEfficiency TODO document
  * @property isRangeAttack TODO document
  * @property staminaRecoverSpeed TODO document
@@ -41,9 +36,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * @property avatarPromoteId references to [AvatarPromoteData], containing some information about the process of the characters promotion
  * @property avatarPromoteRewardLevelList The levels of promotion, at which the character gets rewards
  * @property avatarPromoteRewardIdList The [RewardData] ids for the rewards the character gets at each promotion from [avatarPromoteRewardLevelList]
- * @property initialWeapon The [WeaponData] id of the default weapon the character has when obtained. This is also given to the player with the character.
- * @property weaponTypeString The type of weapon the character uses
- * @property weaponType enum representation of weaponTypeString. [WeaponType.WEAPON_UNKNOWN] if set to something not in the enum
+ * @property initialWeapon The [org.anime_game_servers.game_data_models.gi.data.item.WeaponData] id of the default weapon the character has when obtained. This is also given to the player with the character.
+ * @property weaponType Enum wrapper with the type of weapon the character uses. [WeaponType.WEAPON_UNKNOWN] if set to something not in the enum
  * @property propGrowCurves Info about the character specific growth curves to use for some stats
  * @property hpBase The base health points of the character
  * @property attackBase The base attack points of the character
@@ -101,24 +95,14 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class AvatarData(
     override val id: Int,
     override val camp: Int = UnsetInt,
-    @SerialName("useType")
-    val useTypeString: String? = null,
-    @Transient
-    val useType: AvatarUseType? = nullableEnumValueOfOrDefault(useTypeString, AvatarUseType.AVATAR_UNKNOWN),
-    @SerialName("bodyType")
-    val bodyTypeString: String? = null,
-    @Transient
-    val bodyType: BodyType? = nullableEnumValueOfOrDefault(bodyTypeString, BodyType.BODY_UNKNOWN),
-    @SerialName("qualityType")
-    val qualityTypeString: String? = null,
-    @Transient
-    val qualityType: QualityType? = nullableEnumValueOfOrDefault(qualityTypeString, QualityType.QUALITY_UNKNOWN),
-    @SerialName("avatarIdentityType")
-    val avatarIdentityTypeString: String? = null,
-    @Transient
-    val avatarIdentityType: AvatarIdentityType? = nullableEnumValueOfOrDefault(avatarIdentityTypeString,
-        AvatarIdentityType.AVATAR_IDENTITY_UNKNOWN
-    ),
+    @Serializable(with = AvatarUseTypeContainerSerializer::class)
+    val useType: EnumWrapper<AvatarUseType>? = null,
+    @Serializable(with = BodyTypeContainerSerializer::class)
+    val bodyType: EnumWrapper<BodyType>? = null,
+    @Serializable(with = QualityTypeContainerSerializer::class)
+    val qualityType: EnumWrapper<QualityType>? = null,
+    @Serializable(with = AvatarIdentityTypeContainerSerializer::class)
+    val avatarIdentityType: EnumWrapper<AvatarIdentityType>? = null,
 
     @SerialName("charge_efficiency")
     val chargeEfficiency: Float = UnsetFloat,
@@ -146,10 +130,8 @@ data class AvatarData(
     // weapon
     @JsonNames("initial_weapon")
     val initialWeapon: Int = UnsetInt,
-    @SerialName("weaponType")
-    val weaponTypeString: String? = null,
-    @Transient
-    val weaponType: WeaponType? = nullableEnumValueOfOrDefault(weaponTypeString, WeaponType.WEAPON_UNKNOWN),
+    @Serializable(with = WeaponTypeContainerSerializer::class)
+    val weaponType: EnumWrapper<WeaponType>? = null,
 
 
     // Stats/Props
@@ -229,7 +211,7 @@ data class AvatarData(
 
     fun getCandSkillDepotIdsNonNull() = candSkillDepotIds ?: emptyList()
 
-    fun getWeaponTypeNonNull() = weaponType ?: WeaponType.WEAPON_NONE
+    fun getWeaponTypeNonNull() = weaponType?.value ?: WEAPON_NONE
     fun getPropGrowCurvesNonNull() = propGrowCurves ?: emptyList()
 
     fun getCombatConfigHashJvm(): Long = combatConfigHash.toLong()
@@ -237,22 +219,18 @@ data class AvatarData(
 
     @Serializable
     data class GrowCurveInfo(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: GrowthCurveType? = nullableEnumValueOfOrDefault(typeString, GrowthCurveType.GROW_CURVE_UNKNOWN),
-        @SerialName("arith")
-        val arithString: String? = null,
-        @Transient
-        val arith: ArithType? = nullableEnumValueOfOrDefault(arithString, ArithType.ARITH_UNKNOWN),
+        @Serializable(with = GrowthCurveTypeContainerSerializer::class)
+        val type: EnumWrapper<GrowthCurveType>? = null,
+        @Serializable(with = ArithTypeContainerSerializer::class)
+        val arith: EnumWrapper<ArithType>? = null,
         val value: Float
     ) {
         fun getTypeNonNull(): GrowthCurveType {
-            return type ?: GrowthCurveType.GROW_CURVE_NONE
+            return type?.value ?: GROW_CURVE_NONE
         }
 
         fun getArithNonNull(): ArithType {
-            return arith ?: ArithType.ARITH_NONE
+            return arith?.value ?: ARITH_NONE
         }
     }
 

@@ -1,16 +1,23 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.Element
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityCondData
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityData
 import org.anime_game_servers.game_data_models.gi.data.talks.TalkData
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class QuestCondType(val id: Int) : IntKey {
     /**
      * Nothing to be checked, if its only this, the quest should be accepted by default
      */
+    @NoneEntry
     QUEST_COND_NONE(0),
 
     /**
@@ -979,6 +986,7 @@ enum class QuestCondType(val id: Int) : IntKey {
     /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
+    @UnknownEntry
     QUEST_COND_UNKNOWN(9999);
 
     override fun getIntKey() = id

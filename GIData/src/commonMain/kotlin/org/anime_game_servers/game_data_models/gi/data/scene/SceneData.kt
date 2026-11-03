@@ -7,9 +7,11 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.ElementContainerSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This file contains information about scenes, that the server should use to manage and set up scenes the player joins.
@@ -21,39 +23,38 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @Serializable
 data class SceneData(
     val id: Int,
-    @SerialName("type")
-    val typeString: String? = null,
-    @Transient
-    val type: SceneType? = nullableEnumValueOfOrDefault(typeString, SceneType.SCENE_UNKNOWN),
-    @SerialName("subtype")
-    val subtypeString: String? = null,
-    @Transient
-    val subType: SceneSubType? = nullableEnumValueOfOrDefault(subtypeString, SceneSubType.SCENE_SUB_TYPE_UNKNOWN),
-    val scriptData: String? = null, // only in client
+    @Serializable(with = SceneTypeContainerSerializer::class)
+    val type: EnumWrapper<SceneType>? = null,
+    @JsonNames("subtype")
+    @Serializable(with = SceneSubTypeContainerSerializer::class)
+    val subType: EnumWrapper<SceneSubType>? = null,
     val ignoreNavMesh: Boolean? = null,
     val useToTheMoon: Boolean? = null,
-    val navmeshModeString: String? = null, // not in client
-    @Transient
-    val navmeshMode: NavmeshModeType? = nullableEnumValueOfOrDefault(navmeshModeString,
-        NavmeshModeType.NAVMESH_MODE_UNKNOWN
-    ),
+    @Serializable(with = NavmeshModeTypeContainerSerializer::class)
+    val navmeshMode: EnumWrapper<NavmeshModeType>? = null,
     val levelEntityConfig: String? = null,
     val entityAppearSorted: Int? = null,
     val specifiedAvatarList: List<Int>? = null,
     val maxSpecifiedAvatarNum: Int? = null,
-    @JsonNames("is_check_output_config")
-    val checkLevelOutputConfig: Boolean? = null, // not in client
     val safePoint: Int? = null,
-    @SerialName("mpType")
-    val mpTypeString: String? = null,
-    @Transient
-    val mpType: SceneMpType? = nullableEnumValueOfOrDefault(mpTypeString, SceneMpType.SCENE_MP_UNKNOWN),
+    @Serializable(with = SceneMpTypeContainerSerializer::class)
+    val mpType: EnumWrapper<SceneMpType>? = null,
     val isAllowMapMarkPoint: Boolean? = null,
     val isDeleteMapMarkPoint: Boolean? = null,
     val dungeonEntryPoint: List<Int>? = null,
-    val isBlockBinAbandoned: Boolean? = null, // not in client
-    val isSceneBinAbandoned: Boolean? = null, // not in client
     val imageSceneId: Int? = null,
+
+    // Server only
+    val navmeshModeString: String? = null,
+    @JsonNames("is_check_output_config")
+    val checkLevelOutputConfig: Boolean? = null,
+    val isBlockBinAbandoned: Boolean? = null,
+    val isSceneBinAbandoned: Boolean? = null,
+
+    // Client only
+    val scriptData: String? = null,
 ) : IntKey {
     override fun getIntKey() = id
+
+    fun getTypeNonNull() = type?.value ?: SceneType.SCENE_NONE
 }

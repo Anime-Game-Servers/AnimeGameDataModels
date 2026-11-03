@@ -7,8 +7,11 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 import kotlin.jvm.JvmStatic
 
+@DataEnum
 @Serializable
 enum class SubChallengeSortType(val id: Int) : IntKey {
     SUB_CHALLENGE_SORT_TYPE_DEFAULT(0),
@@ -18,6 +21,7 @@ enum class SubChallengeSortType(val id: Int) : IntKey {
     /**
      * This is used when the type is unknown to the library, check the string version of the field to see what it contained
      */
+    @UnknownEntry
     SUB_CHALLENGE_SORT_TYPE_UNKNOWN(9999);
 
     override fun getIntKey() = id

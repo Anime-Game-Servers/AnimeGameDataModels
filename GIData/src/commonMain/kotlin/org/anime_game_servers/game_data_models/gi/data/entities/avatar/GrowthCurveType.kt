@@ -3,13 +3,20 @@
 package org.anime_game_servers.game_data_models.gi.data.entities.avatar
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * TODO documentation
  */
+@DataEnum
+@Serializable
 enum class GrowthCurveType(val id: Int): IntKey {
+    @NoneEntry
     GROW_CURVE_NONE(0),
     GROW_CURVE_HP(1),
     GROW_CURVE_ATTACK(2),
@@ -78,6 +85,8 @@ enum class GrowthCurveType(val id: Int): IntKey {
     GROW_CURVE_ACTIVITY_ATTACK_2(5701),
     GROW_CURVE_ACTIVITY_HP_2(5702),
     GROW_CURVE_ACTIVITY_DEFENSE_2(5703),
+
+    @UnknownEntry
     GROW_CURVE_UNKNOWN(99999);
 
     override fun getIntKey() = id

@@ -1,15 +1,22 @@
 package org.anime_game_servers.game_data_models.gi.data.general
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityShopOverallData
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityType
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * These are the known shop types used in different shop definitions, including [ActivityShopOverallData], [ShopData] and more
  * TODO Identify all shops
  */
+@DataEnum
+@Serializable
 enum class ShopType(val id: Int) : IntKey {
+    @NoneEntry
     SHOP_TYPE_NONE(0),
     SHOP_TYPE_RECOMMEND(900),
     SHOP_TYPE_HCOIN(901),
@@ -263,6 +270,7 @@ enum class ShopType(val id: Int) : IntKey {
     SHOP_TYPE_BEYOND_RECOMMEND(104000),
 
 
+    @UnknownEntry
     SHOP_TYPE_UNKNOWN(99999);
 
     override fun getIntKey() = id

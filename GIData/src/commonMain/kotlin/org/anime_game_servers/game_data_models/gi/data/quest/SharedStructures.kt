@@ -9,6 +9,9 @@ import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.core.base.interfaces.StringKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
@@ -69,18 +72,26 @@ data class QuestGuide(
     val autoGuide: String? = null,
 )
 
+@DataEnum
+@Serializable
 enum class QuestGuideType(val id: Int) : IntKey {
+    @NoneEntry
     QUEST_GUIDE_NONE(0),
     QUEST_GUIDE_LOCATION(1),
     QUEST_GUIDE_NPC(2),
     QUEST_GUIDE_GADGET(3),
     QUEST_GUIDE_SHOW_OR_HIDE_NPC(4),
     QUEST_GUIDE_DUNGEON_ENTRY(5),
+    @UnknownEntry
     QUEST_GUIDE_UNKNOWN(9999);
 
     override fun getIntKey() = id
 }
 
+/**
+ *
+ * @param itemId Can reference the id of any element if the type [org.anime_game_servers.game_data_models.gi.data.item.ItemData]
+ */
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class GainItem (

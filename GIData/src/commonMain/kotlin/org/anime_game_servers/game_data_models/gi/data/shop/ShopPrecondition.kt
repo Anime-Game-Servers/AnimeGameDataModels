@@ -1,9 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.shop
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class ShopPrecondition(val id: Int) : IntKey {
+    @NoneEntry
     SHOP_PRECONDITION_NONE(0),
     SHOP_PRECONDITION_SPECIFY(1),
     SHOP_PRECONDITION_REST(2),
@@ -32,6 +39,8 @@ enum class ShopPrecondition(val id: Int) : IntKey {
     SHOP_PRECONDITION_QUEST_GLOBAL_VAR_EQUAL(23),
     @AddedIn(GI_6_2_0)
     SHOP_PRECONDITION_LAN_V6_REST(24),
+
+    @UnknownEntry
     SHOP_PRECONDITION_UNKNOWN(9999);
 
     override fun getIntKey() = id

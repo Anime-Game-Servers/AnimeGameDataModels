@@ -9,9 +9,12 @@ import org.anime_game_servers.game_data_models.gi.data.general.Element
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.ElementContainerSerializer
+import org.anime_game_servers.game_data_models.gi.data.general.LogicTypeContainerSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  *
@@ -25,10 +28,9 @@ data class WorldAreaConfigData(
     val id: Int,
     @JsonNames("SceneID", "SceneId", "scene_id")
     val sceneId: Int,
-    @SerialName("areaType") @JsonNames("AreaType", "area_type")
-    val areaTypeString: String? = null,
-    @Transient
-    val areaType: WorldAreaType? = nullableEnumValueOfOrDefault(areaTypeString, WorldAreaType.LEVEL_UNKNOWN),
+    @JsonNames("AreaType", "area_type")
+    @Serializable(with = WorldAreaTypeContainerSerializer::class)
+    val areaType: EnumWrapper<WorldAreaType>? = null,
     @JsonNames("AreaID1", "AreaId1", "area_id_1")
     val areaId1: Int,
     @JsonNames("AreaID2", "AreaId2", "area_id_2")
@@ -37,21 +39,18 @@ data class WorldAreaConfigData(
     val areaDefaultLock: Boolean? = null,
     @JsonNames("tower_point_id")
     val towerPointId: Int = UnsetInt,
-    @SerialName("elementType") @JsonNames("element_type")
-    val elementTypeString: String? = null,
-    @Transient
-    val elementType: Element? = nullableEnumValueOfOrDefault(elementTypeString, Element.DEFAULT),
-    @SerialName("terrainType") @JsonNames("TerrainType", "terrain_type")
-    val terrainTypeString: String? = null,
-    @Transient
-    val terrainType: AreaTerrainType? = nullableEnumValueOfOrDefault(
-        terrainTypeString,
-        AreaTerrainType.AREA_TERRAIN_UNKNOWN
-    ),
+    @JsonNames("element_type")
+    @Serializable(with = ElementContainerSerializer::class)
+    val elementType: EnumWrapper<Element>? = null,
+    @JsonNames("TerrainType", "terrain_type")
+    @Serializable(with = AreaTerrainTypeContainerSerializer::class)
+    val terrainType: EnumWrapper<AreaTerrainType>? = null,
     @JsonNames("show_tips")
     val showTips: Boolean? = null,
     @JsonNames("minimap_scale")
     val minimapScale: Float,
 ) : IntKey {
     override fun getIntKey() = id
+
+    fun getElementTypeNonNull() = elementType?.value ?: Element.NONE
 }

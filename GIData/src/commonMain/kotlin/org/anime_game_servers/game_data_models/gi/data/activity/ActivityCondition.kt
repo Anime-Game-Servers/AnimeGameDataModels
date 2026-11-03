@@ -1,14 +1,21 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * This enum contains all types of conditions that can be used by an [ActivityCondData.ActivityConfigCondition].
  * They can either return true for valid or false for invalid.
  * @property id The int representation of this enum
  */
+@DataEnum
+@Serializable
 enum class ActivityCondition(val id: Int) : IntKey {
+    @NoneEntry
     NEW_ACTIVITY_COND_NONE(0),
     /**
      * Checks if the activity is open for more than a certain amount of days already
@@ -230,6 +237,8 @@ enum class ActivityCondition(val id: Int) : IntKey {
     NEW_ACTIVITY_COND_SETTLE_ACTIVITY_PLAY_LEVEL(141),
     @AddedIn(GI_6_3_0)
     NEW_ACTIVITY_COND_LAN_V6_NOT_BUY_SKIN(142),
+
+    @UnknownEntry
     NEW_ACTIVITY_COND_UNKNOWN(9999);
 
     override fun getIntKey() = id

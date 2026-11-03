@@ -1,6 +1,5 @@
 package org.anime_game_servers.game_data_models.gi.data.scene.weather
 
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -20,7 +19,6 @@ import kotlin.jvm.JvmStatic
  */
 @DataFile("ExcelBinOutput/WeatherTemplateExcelConfigData.json", FileType.JSON, FolderType.EXCEL)
 @DataFile("txt/WeatherTemplate.txt", FileType.TSV, FolderType.EXCEL)
-@OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class WeatherTemplateData(
     val templateName: String,

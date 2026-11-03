@@ -1,9 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.dungeon
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class DungeonType(val id: Int) : IntKey {
+    @NoneEntry
     DUNGEON_NONE(0),
     DUNGEON_PLOT(1),
     DUNGEON_FIGHT(2),
@@ -202,7 +209,33 @@ enum class DungeonType(val id: Int) : IntKey {
     DUNGEON_TRADE_SHOW_BATTLE(163),
     @AddedIn(GI_6_5_0)
     DUNGEON_TRADE_SHOW_TD_TUTORIAL(170),
-    
+
+    // todo identify versions
+    DUNGEON_TPS_MERCENARIES(171),
+    DUNGEON_ONE_SHOT(172),
+    DUNGEON_AQUARIUM_DIVING(173),
+    DUNGEON_AQUARIUM_FISHING(174),
+    DUNGEON_AQUARIUM_SELL(175),
+    DUNGEON_RANKED_MATCH_SHOOTING(176),
+    DUNGEON_RANKED_MATCH_TRAIN(177),
+    DUNGEON_RANKED_MATCH_SNOW_BALL(178),
+    DUNGEON_RANKED_MATCH_PUZZLE(179),
+    DUNGEON_ADVENTURER_STATUE(180),
+    DUNGEON_TPS_DEFENSE(181),
+    DUNGEON_TPS_SHOOTING_RANGE(182),
+    DUNGEON_AVATAR_ENHANCE_AQUARIUM(183),
+    DUNGEON_QUEST_MUSIC_PARTY(184),
+    DUNGEON_REPUTATION_SNEZ_TPS(185),
+    DUNGEON_GAMBLING_CHESS_FIGHT(186),
+    DUNGEON_SNOW_BALL_FIGHT(187),
+    DUNGEON_ROGUE_BALL(188),
+    DUNGEON_VINE_MAN_RUN(189),
+    DUNGEON_SUMMON_BATTLE(190),
+    DUNGEON_VINE_MAN_RUN_QUEST(191),
+    DUNGEON_SUMMON_BATTLE_QUEST(192),
+
+
+    @UnknownEntry
     DUNGEON_UNKNOWN(9999);
 
     override fun getIntKey() = id

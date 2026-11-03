@@ -1,12 +1,19 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * This enum contains all action an ActivityCond can trigger. These can be triggered on valid or invalid conditions.
  * @property id The int representation of this enum
  */
+@DataEnum
+@Serializable
 enum class ActivityAction(val id: Int) : IntKey {
+    @NoneEntry
     ACTIVITY_ACTION_NONE(0),
 
     /**
@@ -221,6 +228,8 @@ enum class ActivityAction(val id: Int) : IntKey {
     ACTIVITY_ACTION_OPEN_CHAR_AMUSEMENT_STAGE(160),
     ACTIVITY_ACTION_OPEN_EFFIGY_CHALLENGE_V2_STAGE(161),
     ACTIVITY_ACTION_COMMON_CLOSE_CONTENT(162),
+
+    @UnknownEntry
     ACTIVITY_ACTION_UNKNOWN(9999);
 
     override fun getIntKey() = id

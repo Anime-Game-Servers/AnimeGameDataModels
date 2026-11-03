@@ -27,14 +27,18 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class SceneTagConfigData(
     val id: Int,
     @JsonNames("scene_tag_name")
-    val sceneTagName: String,
+    val sceneTagName: String? = null,
     @JsonNames("scene_id")
     val sceneId: Int,
     @JsonNames("is_default_valid")
-    val isDefaultValid: Boolean = false,
+    val isDefaultValid: Boolean? = null,
     @JsonNames("is_skip_loading")
-    val isSkipLoading: Boolean = false,
+    val isSkipLoading: Boolean? = null,
     val cond: List<SceneTagCond> = emptyList(),
 ) : IntKey {
     override fun getIntKey() = id
+
+    fun getSceneTagNameNonNull() = sceneTagName ?: ""
+    fun isDefaultValidNonNull() = isDefaultValid ?: false
+    fun isSkipLoadingNonNull() = isSkipLoading ?: false
 }

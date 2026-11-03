@@ -1,15 +1,13 @@
 package org.anime_game_servers.game_data_models.gi.custom.activity
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.gi.data.activity.ActivityCondition
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains extra info about activities, that's either custom, or collected together from multiple smaller resources.
@@ -60,13 +58,8 @@ data class ActivityExtraInfo(
      */
     @Serializable
     data class ActivityStateCondition(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: ActivityStateCondType? = nullableEnumValueOfOrDefault(
-            typeString,
-            ActivityStateCondType.UNKNOWN
-        ),
+        @Serializable(with = ActivityStateCondTypeContainerSerializer::class)
+        val type: EnumWrapper<ActivityStateCondType>? = null,
         val param: String? = null,
     )
 }

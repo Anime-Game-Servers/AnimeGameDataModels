@@ -6,12 +6,19 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
 @Serializable
 enum class DungeonEntrySatisfiedConditionType(val id: Int): IntKey {
+    @NoneEntry
     DUNGEON_ENTRY_CONDITION_NONE(0),
     DUNGEON_ENTRY_CONDITION_LEVEL(1),
     DUNGEON_ENTRY_CONDITION_QUEST(2),
+
+    @UnknownEntry
     DUNGEON_ENTRY_CONDITION_UNKNOWN(9999);
 
     override fun getIntKey() = id

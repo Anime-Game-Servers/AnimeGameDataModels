@@ -1,9 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.item
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class MaterialType(val id: Int) : IntKey {
+    @NoneEntry
     MATERIAL_NONE (0),
     MATERIAL_FOOD (1),
     MATERIAL_QUEST (2),
@@ -100,6 +107,18 @@ enum class MaterialType(val id: Int) : IntKey {
     @AddedIn(GI_6_5_0)
     MATERIAL_NATURALIST_CODEX(81),
 
+    MATERIAL_SUMERU_ADVENTURE_GLOSSARY(82),
+    MATERIAL_MARIONETTE_TEA_TIME_INVITE(83),
+    MATERIAL_ODETTE_QUEST_MANGA_BOOK(84),
+    MATERIAL_ODETTE_QUEST_PHOTO_BOOK(85),
+    MATERIAL_ZDAQ_BOOK_PHOTO(86),
+    MATERIAL_TPS_ACCESSORY(87),
+    MATERIAL_TPS_CLOAK_UPGRADE(88),
+    MATERIAL_LUNARITEV2_INVITE(89),
+    MATERIAL_VESNA_FASHION(90),
+    MATERIAL_VODYANITSA_OUTLOOK(91),
+
+    @UnknownEntry
     MATERIAL_UNKNOWN(9999);
 
     override fun getIntKey() = id

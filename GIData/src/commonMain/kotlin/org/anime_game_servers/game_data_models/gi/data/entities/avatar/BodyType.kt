@@ -1,15 +1,22 @@
 package org.anime_game_servers.game_data_models.gi.data.entities.avatar
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * This defines the body type of the avatar/character.
  * @property id The identifier for the body type
  */
+@DataEnum
+@Serializable
 enum class BodyType(val id: Int): IntKey {
     /**
      * No body type specified
      */
+    @NoneEntry
     BODY_NONE(0),
 
     /**
@@ -40,6 +47,7 @@ enum class BodyType(val id: Int): IntKey {
     /**
      * Unknown body type, check the string version of the field for more information
      */
+    @UnknownEntry
     BODY_UNKNOWN(99999);
 
     override fun getIntKey() = id

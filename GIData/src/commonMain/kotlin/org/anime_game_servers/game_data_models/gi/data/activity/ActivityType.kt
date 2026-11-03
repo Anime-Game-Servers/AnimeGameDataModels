@@ -1,5 +1,6 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 
@@ -8,11 +9,15 @@ import org.anime_game_servers.game_data_models.gi.data.activity.echo_shell.EchoS
 import org.anime_game_servers.game_data_models.gi.data.activity.echo_shell.EchoShellPreviewData
 import org.anime_game_servers.game_data_models.gi.data.activity.echo_shell.EchoShellRewardData
 import org.anime_game_servers.game_data_models.gi.data.activity.echo_shell.EchoShellSummerTimeDungeonData
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * Only one activity per type is allowed to be active at the same time
  * TODO fully document
  */
+@DataEnum
+@Serializable
 enum class ActivityType(val id: Int) : IntKey {
     NEW_ACTIVITY_GENERAL(0),
 
@@ -1698,6 +1703,7 @@ enum class ActivityType(val id: Int) : IntKey {
     /**
      * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.
      */
+    @UnknownEntry
     NEW_ACTIVITY_UNKNOWN(999999);
 
     override fun getIntKey() = id

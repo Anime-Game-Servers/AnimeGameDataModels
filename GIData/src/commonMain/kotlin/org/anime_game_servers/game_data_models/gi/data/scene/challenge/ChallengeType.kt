@@ -3,10 +3,15 @@ package org.anime_game_servers.game_data_models.gi.data.scene.challenge
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 import kotlin.jvm.JvmStatic
 
+@DataEnum
 @Serializable
 enum class ChallengeType(val id: Int) : IntKey {
+    @NoneEntry
     CHALLENGE_NONE(0),
     CHALLENGE_KILL_COUNT(1),
     CHALLENGE_KILL_COUNT_IN_TIME(2),
@@ -37,6 +42,7 @@ enum class ChallengeType(val id: Int) : IntKey {
     /**
      * This is used when the type is unknown to the library, check the string version of the field to see what it contained
      */
+    @UnknownEntry
     CHALLENGE_UNKNOWN(9999);
 
     override fun getIntKey() = id

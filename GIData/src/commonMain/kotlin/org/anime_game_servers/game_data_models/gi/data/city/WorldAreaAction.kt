@@ -1,8 +1,15 @@
 package org.anime_game_servers.game_data_models.gi.data.city
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class WorldAreaAction(val id: Int) : IntKey {
+    @NoneEntry
     WORLD_AREA_ACTION_NONE(0),
 
     /**
@@ -53,6 +60,7 @@ enum class WorldAreaAction(val id: Int) : IntKey {
     /**
      * Used to identify unknown actions, check the string params for more information about the unknown action type
      */
+    @UnknownEntry
     WORLD_AREA_ACTION_UNKNOWN(9999);
 
     override fun getIntKey() = id

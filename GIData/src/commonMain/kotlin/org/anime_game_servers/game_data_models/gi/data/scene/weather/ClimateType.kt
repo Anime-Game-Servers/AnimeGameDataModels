@@ -3,10 +3,15 @@ package org.anime_game_servers.game_data_models.gi.data.scene.weather
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 import kotlin.jvm.JvmStatic
 
+@DataEnum
 @Serializable
 enum class ClimateType(val id: Int) : IntKey {
+    @NoneEntry
     CLIMATE_NONE(0),
     CLIMATE_SUNNY(1),
     CLIMATE_CLOUDY(2),
@@ -20,6 +25,7 @@ enum class ClimateType(val id: Int) : IntKey {
     /**
      * This is used when the type is unknown to the library, check the string version of the field to see what it contained
      */
+    @UnknownEntry
     CLIMATE_UNKNOWN(9999);
 
     override fun getIntKey() = id

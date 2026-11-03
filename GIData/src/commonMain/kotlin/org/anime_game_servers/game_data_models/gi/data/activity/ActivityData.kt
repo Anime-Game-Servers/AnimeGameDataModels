@@ -1,17 +1,15 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO Add documentation
@@ -26,13 +24,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @Serializable
 data class ActivityData(
     val activityId: Int,
-    @SerialName("activityType")
-    val activityTypeString: String? = null,
-    @Transient
-    val activityType: ActivityType? = nullableEnumValueOfOrDefault(
-        activityTypeString,
-        ActivityType.NEW_ACTIVITY_UNKNOWN
-    ),
+    @Serializable(with = ActivityTypeContainerSerializer::class)
+    val activityType: EnumWrapper<ActivityType>? = null,
     @JsonNames("condGroupIds", "condGroupId")
     val condGroupIds: List<Int>? = null,
     @JsonNames("watcherIds", "watcherId")
@@ -50,4 +43,6 @@ data class ActivityData(
 
     ) : IntKey {
     override fun getIntKey() = activityId
+
+    fun getActivityTypeNonNull() = activityType?.value ?: NEW_ACTIVITY_GENERAL
 }

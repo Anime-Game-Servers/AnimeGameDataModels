@@ -1,17 +1,13 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package org.anime_game_servers.game_data_models.gi.data.dungeon
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.*
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO
@@ -30,16 +26,12 @@ data class DungeonEntryData(
     val isDefaultOpen: Boolean? = null,
     val cooldownTipsDungeonId: List<Int>? = null,
 
-    @SerialName("type")
-    val typeString: String? = null,
-    @Transient
-    val type: DungeonEntryType? = nullableEnumValueOfOrDefault(typeString, DUNGEON_ENTRY_TYPE_UNKNOWN),
+    @Serializable(with = DungeonEntryTypeContainerSerializer::class)
+    val type: EnumWrapper<DungeonEntryType>? = null,
 
-    @SerialName("condComb")
-    val condCombString: String? = null,
-    @Transient
-    val condComb: LogicType? = nullableEnumValueOfOrDefault(condCombString, LOGIC_UNKNOWN),
-    val satisfiedCond: List<SatisfiedCond>,
+    @Serializable(with = LogicTypeContainerSerializer::class)
+    val condComb: EnumWrapper<LogicType>? = null,
+    val satisfiedCond: List<SatisfiedCond>? = null,
 
 
     // Client only
@@ -52,14 +44,18 @@ data class DungeonEntryData(
     ) : IntKey {
     override fun getIntKey() = id
 
+    fun getTypeNonNull() = type?.value ?: DUNGEON_ENTRY_TYPE_NONE
+    fun getCondCombNonNull() = condComb?.value ?: LOGIC_NONE
+    fun getSatisfiedCondNonNull() = satisfiedCond ?: emptyList()
 
     @Serializable
     data class SatisfiedCond (
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: DungeonEntrySatisfiedConditionType? = nullableEnumValueOfOrDefault(typeString, DUNGEON_ENTRY_CONDITION_UNKNOWN),
+        @Serializable(with = DungeonEntrySatisfiedConditionTypeContainerSerializer::class)
+        val type: EnumWrapper<DungeonEntrySatisfiedConditionType>? = null,
         val param1: Int = 0,
         val param2: Int = 0,
-    )
+    ){
+        fun getTypeNonNull() = type?.value ?: DUNGEON_ENTRY_CONDITION_NONE
+
+    }
 }

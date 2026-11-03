@@ -3,13 +3,18 @@ package org.anime_game_servers.game_data_models.gi.data.watcher
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 /**
  * TODO document
  * @param id int representation of the enum entry
  */
+@DataEnum
 @Serializable
 enum class WatcherTriggerType(val id: Int) : IntKey {
+    @NoneEntry
     TRIGGER_NONE (0),
     TRIGGER_COMBAT_CONFIG_COMMON (1),
     TRIGGER_ELEMENT_VIEW (2),
@@ -895,6 +900,7 @@ enum class WatcherTriggerType(val id: Int) : IntKey {
     @AddedIn(GI_6_5_0)
     TRIGGER_BEYOND_FINISH_DIFF_LEVELS_OR_TOTAL_PLAY_TIME(6503),
 
+    @UnknownEntry
     TRIGGER_UNKNOWN (99999);
 
     override fun getIntKey() = id

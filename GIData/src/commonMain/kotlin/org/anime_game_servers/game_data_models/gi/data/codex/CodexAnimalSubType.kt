@@ -2,7 +2,10 @@ package org.anime_game_servers.game_data_models.gi.data.codex
 
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
 @Serializable
 enum class CodexAnimalSubType(val id: Int): IntKey {
     CODEX_SUBTYPE_ELEMENTAL(0),
@@ -17,6 +20,8 @@ enum class CodexAnimalSubType(val id: Int): IntKey {
     CODEX_SUBTYPE_ANIMAL(9),
     CODEX_SUBTYPE_FISH(10),
     CODEX_SUBTYPE_CRITTER(11),
+
+    @UnknownEntry
     CODEX_SUBTYPE_UNKNOWN(9999);
 
     override fun getIntKey() = id

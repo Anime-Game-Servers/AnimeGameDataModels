@@ -1,10 +1,17 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
+import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.dungeon.DungeonData
 import org.anime_game_servers.game_data_models.gi.data.item.MaterialType
+import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
+import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
+@DataEnum
+@Serializable
 enum class QuestContentType(val id: Int) : IntKey {
+    @NoneEntry
     QUEST_CONTENT_NONE(0),
 
     /**
@@ -589,6 +596,7 @@ enum class QuestContentType(val id: Int) : IntKey {
     /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
+    @UnknownEntry
     QUEST_CONTENT_UNKNOWN(9999);
 
     override fun getIntKey() = id
