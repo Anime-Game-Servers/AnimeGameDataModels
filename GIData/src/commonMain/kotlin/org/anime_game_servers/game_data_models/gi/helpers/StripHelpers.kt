@@ -24,10 +24,10 @@ inline fun <T> List<T>?.stripServerField() = if (config.removeServerOnly) this e
 
 
 context(config: StripConfig)
-inline fun <T : Enum<T>> T?.stripClientField() = if (config.removeClientOnly) this else null
+inline fun <T : Enum<T>> EnumWrapper<T>?.stripClientField() = if (config.removeClientOnly) this else null
 
 context(config: StripConfig)
-inline fun <T : Enum<T>> T?.stripServerField() = if (config.removeServerOnly) this else null
+inline fun <T : Enum<T>> EnumWrapper<T>?.stripServerField() = if (config.removeServerOnly) this else null
 
 
 context(config: StripConfig)
