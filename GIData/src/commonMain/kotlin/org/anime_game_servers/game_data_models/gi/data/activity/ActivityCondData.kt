@@ -1,16 +1,19 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.LogicType
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.data.general.LogicTypeContainerSerializer
+import org.anime_game_servers.game_data_models.gi.data.general.LogicTypeMetadata
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains information about conditions during activities.
@@ -21,8 +24,7 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * ExcelBinOutput/NewActivityCondExcelConfigData.json
  * txt/NewActivityCondData.txt (with an appropriate parser)
  * @property id The ID of the condition
- * @property condCombString The type of logic to use when combining the conditions
- * @property condComb The enum representation of the logic type from condCombString
+ * @property condComb The type of logic to use when combining the conditions
  * @property cond The list of conditions that must be met for this condition to be valid/not be met to be invalid
  * @property onValidExec The list of ActivityActions to execute when the condition is valid
  * @property onInvalidExec The list of ActivityActions to execute when the condition is invalid
@@ -36,10 +38,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class ActivityCondData(
     @JsonNames("id", "condId")
     val id: Int,
-    @SerialName("condComb")
-    val condCombString: String? = null,
-    @Transient
-    val condComb: LogicType? = nullableEnumValueOfOrDefault(condCombString, LogicType.LOGIC_UNKNOWN),
+    @Serializable(with = LogicTypeContainerSerializer::class)
+    val condComb: EnumWrapper<LogicType>? = null,
     val cond: List<ActivityConfigCondition>? = null,
 
     val onValidExec: List<ActivityConfigExec>? = null,
@@ -47,21 +47,31 @@ data class ActivityCondData(
 ) : IntKey {
     override fun getIntKey() = id
 
+    fun getCondCombNonNull() = condComb.getValueNonNull(LogicTypeMetadata)
+    fun getCondNonNull() = cond.getNonNull()
+    fun getOnValidExecNonNull() = onValidExec.getNonNull()
+    fun getOnInvalidExecNonNull() = onInvalidExec.getNonNull()
+
     /**
      * Defines one condition for an ActivityCondData
      * The params usage depends on the type
+     * @param type TODO
+     * @param param was originally an Int Array, now its using Strings TODO
      */
     @Serializable
     data class ActivityConfigCondition(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: ActivityCondition? = nullableEnumValueOfOrDefault(
-            typeString,
-            ActivityCondition.NEW_ACTIVITY_COND_UNKNOWN
-        ),
-        val param: List<Int>? = null,
-    )
+        @Serializable(with = ActivityConditionContainerSerializer::class)
+        val type: EnumWrapper<ActivityCondition>? = null,
+        val param: List<String>? = null,
+    ) {
+        fun getTypeNonNull() = type?.getValueNonNull(ActivityConditionMetadata)
+        fun getParamNonNull() = param.getNonNull()
+        // at least [NEW_ACTIVITY_COND_FINISH_ACTIVITY_PLAY_LEVEL] has actually strings, so only use it
+        // with known types that have only int params
+        fun getIntParamsNonNull() = param.getNonNull().map { try {it.toInt()} catch (e: NumberFormatException) {
+            UnsetInt
+        } }
+    }
 
     /**
      * Defines an action to be executed when a condition state changes
@@ -69,10 +79,11 @@ data class ActivityCondData(
      */
     @Serializable
     data class ActivityConfigExec(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: ActivityAction? = nullableEnumValueOfOrDefault(typeString, ActivityAction.ACTIVITY_ACTION_UNKNOWN),
+        @Serializable(with = ActivityActionContainerSerializer::class)
+        val type: EnumWrapper<ActivityAction>? = null,
         val param: List<Int>? = null,
-    )
+    ){
+        fun getTypeNonNull() = type?.getValueNonNull(ActivityActionMetadata)
+        fun getParamNonNull() = param.getNonNull()
+    }
 }

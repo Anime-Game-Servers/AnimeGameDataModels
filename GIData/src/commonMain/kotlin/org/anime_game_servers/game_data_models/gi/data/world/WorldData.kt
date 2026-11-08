@@ -1,20 +1,17 @@
 package org.anime_game_servers.game_data_models.gi.data.world
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains information about the main scenes for a world
  * @param id The id of the world instance
- * @param typeString The string representation of the world type, check this if [type] is [WorldType.WORLD_UNKNOWN]
  * @param type The type of the world instance
  * @param mainSceneId The id of the main scene of the world
  * @param subSceneIdVec A list of scenes that are sub scenes to the main scene
@@ -25,10 +22,8 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @Serializable
 data class WorldData(
     val id: Int,
-    @SerialName("type")
-    val typeString: String,
-    @Transient
-    val type: WorldType? = nullableEnumValueOfOrDefault(typeString, WorldType.WORLD_UNKNOWN),
+    @Serializable(with = WorldTypeContainerSerializer::class)
+    val type: EnumWrapper<WorldType>? = null,
     @JsonNames("main_scene_id")
     val mainSceneId: Int,
     @JsonNames("sub_scene_id_vec")

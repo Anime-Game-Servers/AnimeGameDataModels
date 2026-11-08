@@ -2,7 +2,6 @@ package org.anime_game_servers.game_data_models.gi.data.scene.challenge
 
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
-import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.enums.DataEnum
 import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
 import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry

@@ -2,7 +2,6 @@ package org.anime_game_servers.game_data_models.gi.data.scene.weather
 
 import kotlinx.serialization.Serializable
 import org.anime_game_servers.core.base.interfaces.IntKey
-import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.enums.DataEnum
 import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
 import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
@@ -33,10 +32,6 @@ enum class ClimateType(val id: Int) : IntKey {
     fun getShortName() = this.name.let { name -> if(name.length > 8) name.substring(8).lowercase() else name }
 
     companion object {
-        @JvmStatic
-        fun getTypeByValue(value: Int): ClimateType? = entries.find { it.id == value }
-        @JvmStatic
-        fun getTypeByName(name: String): ClimateType = enumValueOfOrDefault(name, CLIMATE_UNKNOWN)
         @JvmStatic
         fun getTypeByShortName(name: String?): ClimateType = entries.find { it.getShortName() == name } ?: CLIMATE_UNKNOWN
     }

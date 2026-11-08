@@ -6,7 +6,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
-import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.enums.DataEnum
 import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 import kotlin.jvm.JvmStatic

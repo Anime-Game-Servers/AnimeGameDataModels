@@ -1,19 +1,18 @@
 package org.anime_game_servers.game_data_models.gi.data.codex
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO
@@ -35,23 +34,17 @@ data class CodexAnimalData(
     val showOnlyUnlocked: Boolean? = null,
     val isSeenActive: Boolean? = null,
 
-    @SerialName("type")
-    val typeString: String? = null,
-    @Transient
-    val type: CodexAnimalType? = nullableEnumValueOfOrDefault(typeString, CODEX_UNKNOWN),
-    @SerialName("countType")
-    val countTypeString: String? = null,
-    @Transient
-    val countType: CodexAnimalCountType? = nullableEnumValueOfOrDefault(typeString, CODEX_COUNT_TYPE_UNKNOWN),
+    @Serializable(with = CodexAnimalTypeContainerSerializer::class)
+    val type: EnumWrapper<CodexAnimalType>? = null,
+    @Serializable(with = CodexAnimalCountTypeContainerSerializer::class)
+    val countType: EnumWrapper<CodexAnimalCountType>? = null,
 
     // client only
     val pushTipsCodexId: Int = UnsetInt,
     val modelPath: String? = null,
 
-    @SerialName("subType")
-    val subTypeString: String? = null,
-    @Transient
-    val subType: CodexAnimalSubType? = nullableEnumValueOfOrDefault(typeString, CODEX_SUBTYPE_UNKNOWN),
+    @Serializable(with = CodexAnimalSubTypeContainerSerializer::class)
+    val subType: EnumWrapper<CodexAnimalSubType>? = null,
 
     // Textmaps
     val descTextMapHash: TextMapHash = UnsetTextMap,
@@ -61,4 +54,8 @@ data class CodexAnimalData(
     fun isDisuseNonNull() = isDisuse.getNonNull()
     fun getShowOnlyUnlockedNonNull() = showOnlyUnlocked.getNonNull()
     fun isSeenActiveNonNull() = isSeenActive.getNonNull()
+
+    fun getTypeNonNull() = type.getValueNonNull(CodexAnimalTypeMetadata)
+    fun getCountTypeNonNull() = countType.getValueNonNull(CodexAnimalCountTypeMetadata)
+    fun getSubTypeNonNull() = subType.getValueNonNull(CodexAnimalSubTypeMetadata)
 }

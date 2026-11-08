@@ -1,26 +1,22 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.core.base.interfaces.StringKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
 import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class QuestContent(
-    @SerialName("type")
     @JsonNames("type", "_type")
-    val typeString: String? = null,
-    @Transient
-    val type: QuestContentType? = nullableEnumValueOfOrDefault(typeString, QuestContentType.QUEST_CONTENT_UNKNOWN),
+    @Serializable(with = QuestContentTypeContainerSerializer::class)
+    val type: EnumWrapper<QuestContentType>? = null,
     @JsonNames("param_str", "_param_str")
     val paramString: String? = null,
     @JsonNames("param", "_param")
@@ -28,30 +24,26 @@ data class QuestContent(
     @JsonNames("count", "_count")
     val count: Int = UnsetInt
 ) : StringKey {
-    override fun getStringKey() = (typeString ?: "")+(param?.getOrNull(0) ?: "")
+    override fun getStringKey() = (type?.key ?: "")+(param?.getOrNull(0) ?: "")
 }
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class QuestCondition(
-    @SerialName("type")
     @JsonNames("type", "_type")
-    val typeString: String? = null,
-    @Transient
-    val type: QuestCondType? = nullableEnumValueOfOrDefault(typeString, QuestCondType.QUEST_COND_UNKNOWN),
+    @Serializable(with = QuestCondTypeContainerSerializer::class)
+    val type: EnumWrapper<QuestCondType>? = null,
     @JsonNames("param", "_param")
     val param: List<Int>? = null,
 ) : StringKey {
-    override fun getStringKey() = (typeString ?: "")+(param?.getOrNull(0) ?: "")
+    override fun getStringKey() = (type?.key ?: "")+(param?.getOrNull(0) ?: "")
 }
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class QuestExec(
-    @SerialName("type")
     @JsonNames("type", "_type")
-    val typeString: String? = null,
-    @Transient
-    val type: QuestExecType? = nullableEnumValueOfOrDefault(typeString, QuestExecType.QUEST_EXEC_UNKNOWN),
+    @Serializable(with = QuestExecTypeContainerSerializer::class)
+    val type: EnumWrapper<QuestExecType>? = null,
     @JsonNames("param", "_param")
     val param: List<String>? = null
 )
@@ -59,11 +51,9 @@ data class QuestExec(
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class QuestGuide(
-    @SerialName("type")
     @JsonNames("type", "_type")
-    val typeString: String? = null,
-    @Transient
-    val type: QuestGuideType? = nullableEnumValueOfOrDefault(typeString, QuestGuideType.QUEST_GUIDE_UNKNOWN),
+    @Serializable(with = QuestGuideTypeContainerSerializer::class)
+    val type: EnumWrapper<QuestGuideType>? = null,
     @JsonNames("param", "_param")
     val param: List<String>? = null,
     val guideScene: Int = UnsetInt,

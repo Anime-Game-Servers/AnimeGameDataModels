@@ -3,16 +3,14 @@
 package org.anime_game_servers.game_data_models.gi.data.city
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.gi.data.general.*
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains info about the regions (cities), their areas and some more
@@ -25,10 +23,8 @@ data class CityData(
     val cityId: Int,
     @JsonNames("areaIdVec")
     val areaIds: List<Int>,
-    @SerialName("openState")
-    val openStateString: String? = null,
-    @Transient
-    val openState: OpenState? = nullableEnumValueOfOrDefault(openStateString, OpenState.OPEN_STATE_UNKNOWN),
+    @Serializable(with = OpenStateContainerSerializer::class)
+    val openState: EnumWrapper<OpenState>? = null,
 
     // Client only
     val mapPosX: Int = UnsetInt,

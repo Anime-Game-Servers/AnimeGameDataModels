@@ -1,14 +1,12 @@
 package org.anime_game_servers.game_data_models.gi.data.hangouts
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.*
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO
@@ -24,13 +22,11 @@ data class CoopCgData(
     val chapterId: Int = UnsetInt,
     val unlockPointId: Int = UnsetInt,
     val sortId: Int = UnsetInt,
-    @SerialName("cgType")
-    val cgTypeString: String? = null,
-    @Transient
-    val cgType: CoopCGType? = nullableEnumValueOfOrDefault(cgTypeString, CoopCGType.CG_TYPE_UNKNOWN),
+    @Serializable(with = CoopCGTypeContainerSerializer::class)
+    val cgType: EnumWrapper<CoopCGType>? = null,
     val unlockCond: List<CoopCondConfig>? = null,
-    val showImageHash: Long = UnsetLong,
-    val showImageSmallHash: Long = UnsetLong,
+    val showImageHash: TextHash = UnsetTextHash,
+    val showImageSmallHash: TextHash = UnsetTextHash,
 
     //TextMapHash
     val cgNameTextMapHash: TextMapHash = UnsetTextMap,

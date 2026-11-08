@@ -34,6 +34,7 @@ kotlin {
         commonMain {
             dependencies {
                 api(libs.bundles.common.models.serialization)
+                api(libs.bundles.common.ags.base)
             }
         }
     }

@@ -1701,7 +1701,7 @@ enum class ActivityType(val id: Int) : IntKey {
 
 
     /**
-     * This is a placeholder used when the actual activity string can not be identified. Check [ActivityData.activityTypeString] in this case.
+     * This is a placeholder used when the actual activity string can not be identified. Check [org.anime_game_servers.game_data_models.loader.enums.EnumWrapper.key] in this case.
      */
     @UnknownEntry
     NEW_ACTIVITY_UNKNOWN(999999);

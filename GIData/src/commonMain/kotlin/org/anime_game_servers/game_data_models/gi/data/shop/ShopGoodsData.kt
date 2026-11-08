@@ -2,24 +2,23 @@ package org.anime_game_servers.game_data_models.gi.data.shop
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.game_data_models.gi.data.general.ShopType
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.data.general.UnsetLong
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.ShopTypeContainerSerializer
+import org.anime_game_servers.game_data_models.gi.data.general.ShopTypeMetadata
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetDouble
-import org.anime_game_servers.game_data_models.gi.data.general.UnsetFloat
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.data.quest.GainItem
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.gi.serializers.StringToLocalDatetimeSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains the entries of the shops, together with information about the cost, refreshing, requirements and more
@@ -34,10 +33,9 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 data class ShopGoodsData(
     @JsonNames("goods_id")
     val goodsId: Int,
-    @SerialName("shopType") @JsonNames("shop_type")
-    val shopTypeId: Int,
-    @Transient
-    val shopType: ShopType? = nullableEnumValueOfOrDefault(shopTypeId, ShopType.SHOP_TYPE_UNKNOWN),
+    @JsonNames("shop_type")
+    @Serializable(with = ShopTypeContainerSerializer::class)
+    val shopType: EnumWrapper<ShopType>? = null,
     @JsonNames("item_id")
     val itemId: Int = UnsetInt, // yes there are actually entries without an itemId, like 102005
     @JsonNames("item_count")
@@ -54,13 +52,9 @@ data class ShopGoodsData(
     val costItems: List<GainItem>,
     @JsonNames("buy_limit")
     val buyLimit: Int = UnsetInt,
-    @SerialName("refreshType") @JsonNames("refresh_type")
-    val refreshTypeString: String? = null,
-    @Transient
-    val refreshType: ShopRefreshType? = nullableEnumValueOfOrDefault(
-        refreshTypeString,
-        ShopRefreshType.SHOP_REFRESH_UNKNOWN
-    ),
+    @JsonNames("refresh_type")
+    @Serializable(with = ShopRefreshTypeContainerSerializer::class)
+    val refreshType: EnumWrapper<ShopRefreshType>? = null,
     @JsonNames("refresh_param")
     val refreshParam: Int = UnsetInt,
     @JsonNames("display_days_before_sell")
@@ -73,13 +67,8 @@ data class ShopGoodsData(
     val endTime: LocalDateTime? = null,
     @JsonNames("is_buy_once")
     val isBuyOnce: Boolean? = null,
-    @SerialName("precondition")
-    val preconditionString: String? = null,
-    @Transient
-    val precondition: ShopPrecondition? = nullableEnumValueOfOrDefault(
-        preconditionString,
-        ShopPrecondition.SHOP_PRECONDITION_UNKNOWN
-    ),
+    @Serializable(with = ShopPreconditionContainerSerializer::class)
+    val precondition: EnumWrapper<ShopPrecondition>? = null,
     @JsonNames("precondition_param")
     val preconditionParam: Int = UnsetInt,
     @JsonNames("precondition_param_list")
@@ -117,4 +106,7 @@ data class ShopGoodsData(
     val subTagNameTextMapHash: TextMapHash = UnsetTextMap
 ) : IntKey {
     override fun getIntKey() = goodsId
+
+    fun getShopTypeNonNull() = shopType.getValueNonNull(ShopTypeMetadata)
+    fun getRefreshTypeNonNull() = refreshType.getValueNonNull(ShopRefreshTypeMetadata)
 }

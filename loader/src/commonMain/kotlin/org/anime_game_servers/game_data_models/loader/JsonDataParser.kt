@@ -37,7 +37,7 @@ class JsonDataParser(val serializer: Json): DataParser {
     }
 
     suspend fun <T> loadFileObject(deserializer: KSerializer<T>, source: AGDMFile): T {
-        val string = source.getSource().readString()
+        val string = source.getSource().use { it.readString() }
         return serializer.decodeFromString(deserializer, string)
     }
 }

@@ -1,19 +1,17 @@
 package org.anime_game_servers.game_data_models.gi.data.codex
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
 import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO
@@ -35,11 +33,8 @@ data class CodexMaterialData(
     val showOnlyUnlocked: Boolean? = null,
     val icon: String? = null,
 
-    @SerialName("type")
-    val typeString: String? = null,
-    @Transient
-    val type: CodexMaterialType? = nullableEnumValueOfOrDefault(typeString, CODEX_UNKNOWN),
-
+    @Serializable(with = CodexMaterialTypeContainerSerializer::class)
+    val type: EnumWrapper<CodexMaterialType>? = null,
 
     // Textmaps
     val nameTextMapHash: TextMapHash = UnsetTextMap,

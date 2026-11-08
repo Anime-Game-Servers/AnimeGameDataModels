@@ -41,5 +41,13 @@ data class AvatarCurveData(
         @Serializable(with = ArithTypeContainerSerializer::class)
         val arith: EnumWrapper<ArithType>? = null,
         val value: Float
-    )
+    ){
+        fun getTypeNonNull(): GrowthCurveType {
+            return type?.value ?: GROW_CURVE_NONE
+        }
+
+        fun getArithNonNull(): ArithType {
+            return arith?.value ?: ARITH_NONE
+        }
+    }
 }

@@ -1,16 +1,11 @@
 package org.anime_game_servers.game_data_models.gi.data.watcher
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 @Serializable
 data class PredicateConfig(
-    val predicateTypeString: String? = null,
-    @Transient
-    val predicateType: PredicateType? = nullableEnumValueOfOrDefault(
-        predicateTypeString,
-        PredicateType.PREDICATE_UNKNOWN
-    ),
+    @Serializable(with = PredicateTypeContainerSerializer::class)
+    val predicateType: EnumWrapper<PredicateType>? = null,
     val paramList: List<Int>? = null
 )

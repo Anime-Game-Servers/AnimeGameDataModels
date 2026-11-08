@@ -1,7 +1,13 @@
+@file:OptIn(ExperimentalSerializationApi::class)
+
 package org.anime_game_servers.game_data_models.gi.data.rewards
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
+import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
+import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
@@ -24,11 +30,17 @@ import kotlin.jvm.JvmStatic
 data class TransPointRewardData(
     val sceneId: Int,
     val pointId: Int,
-    val rewardId: Int,
-    val unlockAreaId: List<Int>,
-    val notificationGroupId: List<Int>,
+    val rewardId: Int = UnsetInt,
+    val unlockAreaId: List<Int>? = null,
+    @JsonNames("groupIdVec")
+    val notificationGroupId: List<Int>? = null,
 ) : IntKey {
     override fun getIntKey() = getKey(sceneId, pointId)
+
+    fun hasRewardId() = rewardId != UnsetInt
+    fun getUnlockAreaIdNonNull() = unlockAreaId.getNonNull()
+    fun getNotificationGroupIdNonNull() = notificationGroupId.getNonNull()
+
     companion object {
         @JvmStatic
         fun getKey(sceneId: Int, pointId: Int) = (pointId shl 8) + sceneId

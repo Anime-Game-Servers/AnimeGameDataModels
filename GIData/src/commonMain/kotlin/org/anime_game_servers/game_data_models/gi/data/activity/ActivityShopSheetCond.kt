@@ -1,15 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.activity
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 @Serializable
 data class ActivityShopSheetCond(
-    @SerialName("type")
-    val typeString : String? = null,
-    @Transient
-    val type: ActivityShopSheetCondType? = nullableEnumValueOfOrDefault(typeString, ActivityShopSheetCondType.ACTIVITY_SHOP_SHEET_COND_UNKNOWN),
+    @Serializable(with = ActivityShopSheetCondTypeContainerSerializer::class)
+    val type: EnumWrapper<ActivityShopSheetCondType>? = null,
     val param: List<Int>? = null
-)
+) {
+    fun getTypeNonNull() = type.getValueNonNull(ActivityShopSheetCondTypeMetadata)
+    fun getParamNonNull() = param.getNonNull()
+}

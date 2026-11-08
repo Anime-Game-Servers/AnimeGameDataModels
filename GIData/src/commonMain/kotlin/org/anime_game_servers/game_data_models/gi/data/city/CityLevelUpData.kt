@@ -3,17 +3,17 @@
 package org.anime_game_servers.game_data_models.gi.data.city
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.gi.data.quest.GainItem
+import org.anime_game_servers.game_data_models.gi.helpers.getNonNull
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 import kotlin.jvm.JvmStatic
 
 /**
@@ -34,23 +34,24 @@ data class CityLevelUpData(
 ) : IntKey {
     override fun getIntKey() = getKey(cityId, level)
 
+    fun getActionsNonNull() = actions.getNonNull()
+
     /*
      * Defines
      */
     @Serializable
     data class CityLevelUpAction(
-        @SerialName("type")
-        val typeString: String? = null,
-        @Transient
-        val type: WorldAreaAction? = nullableEnumValueOfOrDefault(
-            typeString,
-            WorldAreaAction.WORLD_AREA_ACTION_UNKNOWN
-        ),
+        @Serializable(with = WorldAreaActionContainerSerializer::class)
+        val type: EnumWrapper<WorldAreaAction>? = null,
         @JsonNames("param1Vec")
         val param1: List<Int>? = null,
         @JsonNames("param2Vec")
         val param2: List<Int>? = null,
-    )
+    ){
+        fun getTypeNonNull() = type.getValueNonNull(WorldAreaActionMetadata)
+        fun getParam1NonNull() = param1.getNonNull()
+        fun getParam2NonNull() = param2.getNonNull()
+    }
 
     companion object {
         @JvmStatic

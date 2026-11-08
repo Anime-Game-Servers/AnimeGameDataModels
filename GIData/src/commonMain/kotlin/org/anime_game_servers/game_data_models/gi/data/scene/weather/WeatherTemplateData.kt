@@ -1,14 +1,13 @@
 package org.anime_game_servers.game_data_models.gi.data.scene.weather
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.StringKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetFloat
-import org.anime_game_servers.game_data_models.gi.helpers.enumValueOfOrDefault
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 import kotlin.jvm.JvmStatic
 
 /**
@@ -22,10 +21,8 @@ import kotlin.jvm.JvmStatic
 @Serializable
 data class WeatherTemplateData(
     val templateName: String,
-    @SerialName("weatherType")
-    val weatherTypeString: String,
-    @Transient
-    val weatherType: ClimateType = enumValueOfOrDefault(weatherTypeString, CLIMATE_UNKNOWN),
+    @Serializable(with = ClimateTypeContainerSerializer::class)
+    val weatherType: EnumWrapper<ClimateType>? = null,
     val sunnyProb: Float = UnsetFloat,
     val cloudyProb: Float = UnsetFloat,
     val rainProb: Float = UnsetFloat,
@@ -33,7 +30,9 @@ data class WeatherTemplateData(
     val snowProb: Float = UnsetFloat,
     val mistProb: Float = UnsetFloat,
 ) : StringKey {
-    override fun getStringKey() = getKey(templateName, weatherType)
+    override fun getStringKey() = getKey(templateName, weatherType?.value?: ClimateType.CLIMATE_NONE)
+
+    fun getWeatherTypeNonNull() = weatherType.getValueNonNull(ClimateTypeMetadata)
 
     fun hasSunnyProb() = sunnyProb >= 0f
     fun hasCloudyProb() = cloudyProb >= 0f

@@ -63,6 +63,7 @@ abstract class BaseDataLoader : DataLoader {
         dataClassInfo.fileInfos.forEach { fileInfo ->
             val parser = parsers[fileInfo.fileType] ?: return@forEach
             val paths = paths[fileInfo.folderType] ?: return@forEach
+            // todo merge from multiple paths instead of using first successfull
             paths.forEach paths@{ path ->
                 val file = path.getFile(fileInfo.filePath)
                 //TODO add handling for wildcards in file paths and folders

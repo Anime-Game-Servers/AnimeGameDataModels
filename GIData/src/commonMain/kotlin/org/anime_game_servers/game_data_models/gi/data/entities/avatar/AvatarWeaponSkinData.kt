@@ -1,18 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.entities.avatar
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.Version.GI_5_7_0
 import org.anime_game_servers.core.base.annotations.AddedIn
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.*
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * This contains some information about the weapon skins.
@@ -28,14 +26,10 @@ import org.anime_game_servers.game_data_models.loader.FolderType
  * @property sortId id used for sorting in the ui
  * @property unRotate TODO document
  *
- * @property weaponTypeString weapon type this skin is applied to
- * @property weaponType enum representation of [weaponTypeString]. [WeaponType.WEAPON_UNKNOWN] if set to something not in the enum
- * @property tagTypeString TODO document
- * @property tagType enum representation of [tagTypeString]. [WeaponSkinTagType.TAG_TYPE_UNKNOWN] if set to something not in the enum
- * @property displayTypeString TODO document
- * @property displayType  [displayTypeString]. [WeaponSkinDisplayType.USE_TIME_TYPE_UNKNOWN] if set to something not in the enum
- * @property useTimeTypeString TODO document
- * @property useTimeType  [useTimeTypeString]. [WeaponSkinUseTimeType.USE_TIME_TYPE_UNKNOWN] if set to something not in the enum
+ * @property weaponType [WeaponType.WEAPON_UNKNOWN] if set to something not in the enum // todo document
+ * @property tagType [WeaponSkinTagType.TAG_TYPE_UNKNOWN] if set to something not in the enum  // todo document
+ * @property displayType [WeaponSkinDisplayType.USE_TIME_TYPE_UNKNOWN] if set to something not in the enum  // todo document
+ * @property useTimeType [WeaponSkinUseTimeType.USE_TIME_TYPE_UNKNOWN] if set to something not in the enum  // todo document
  *
  * @property nameTextMapHash The [TextMapHash] of the name of the skin, that can be shown in the UI
  * @property descTextMapHash The [TextMapHash] of the description of the skin, that can be shown in the UI
@@ -68,25 +62,14 @@ data class AvatarWeaponSkinData(
     val sortId: Int = UnsetInt,
     val unRotate: Boolean = false,
 
-    @SerialName("qualityType")
-    val weaponTypeString: String? = null,
-    @Transient
-    val weaponType: WeaponType? = nullableEnumValueOfOrDefault(weaponTypeString, WeaponType.WEAPON_UNKNOWN),
-
-    @SerialName("tagType")
-    val tagTypeString: String? = null,
-    @Transient
-    val tagType: WeaponSkinTagType? = nullableEnumValueOfOrDefault(tagTypeString, WeaponSkinTagType.TAG_TYPE_UNKNOWN),
-
-    @SerialName("displayType")
-    val displayTypeString: String? = null,
-    @Transient
-    val displayType: WeaponSkinDisplayType? = nullableEnumValueOfOrDefault(displayTypeString, WeaponSkinDisplayType.USE_TIME_TYPE_UNKNOWN),
-
-    @SerialName("useTimeType")
-    val useTimeTypeString: String? = null,
-    @Transient
-    val useTimeType: WeaponSkinUseTimeType? = nullableEnumValueOfOrDefault(useTimeTypeString, WeaponSkinUseTimeType.USE_TIME_TYPE_UNKNOWN),
+    @Serializable(with = WeaponTypeContainerSerializer::class)
+    val weaponType: EnumWrapper<WeaponType>? = null,
+    @Serializable(with = WeaponSkinTagTypeContainerSerializer::class)
+    val tagType: EnumWrapper<WeaponSkinTagType>? = null,
+    @Serializable(with =WeaponSkinDisplayTypeContainerSerializer::class)
+    val displayType: EnumWrapper<WeaponSkinDisplayType>? = null,
+    @Serializable(with = WeaponSkinUseTimeTypeContainerSerializer::class)
+    val useTimeType: EnumWrapper<WeaponSkinUseTimeType>? = null,
 
     //textMaps
     val nameTextMapHash: TextMapHash = UnsetTextMap,

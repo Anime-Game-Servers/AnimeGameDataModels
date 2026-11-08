@@ -1,20 +1,18 @@
 package org.anime_game_servers.game_data_models.gi.data.scene.challenge
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetFloat
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
-import org.anime_game_servers.game_data_models.gi.data.scene.weather.ClimateType
+import org.anime_game_servers.game_data_models.gi.helpers.getValueNonNull
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO Add documentation
@@ -30,40 +28,30 @@ data class ChallengeData(
     val id: Int,
     val isTransBackWhenInterrupt: Boolean? = null,
 
-    @SerialName("challengeType")
-    val challengeTypeString: String? = null,
-    @Transient
-    val challengeType: ChallengeType? = nullableEnumValueOfOrDefault(challengeTypeString, CHALLENGE_UNKNOWN),
 
-    @SerialName("recordType")
-    val recordTypeString: String? = null,
-    @Transient
-    val recordType: ChallengeRecordType? = nullableEnumValueOfOrDefault(recordTypeString, CHALLENGE_RECORD_TYPE_UNKNOWN),// todo
+    @Serializable(with = ChallengeTypeContainerSerializer::class)
+    val challengeType: EnumWrapper<ChallengeType>? = null,
 
-    @SerialName("interruptButtonType")
-    val interruptButtonTypeString: String? = null,
-    @Transient
-    val interruptButtonType: InterruptButtonType? = nullableEnumValueOfOrDefault(interruptButtonTypeString, INTERRUPT_UNKNOWN),
+    @Serializable(with = ChallengeRecordTypeContainerSerializer::class)
+    val recordType: EnumWrapper<ChallengeRecordType>? = null,// todo
 
-    @SerialName("subChallengeSortType")
-    val subChallengeSortTypeString: String? = null,
-    @Transient
-    val subChallengeSortType: SubChallengeSortType? = nullableEnumValueOfOrDefault(subChallengeSortTypeString, SUB_CHALLENGE_SORT_TYPE_UNKNOWN),
+    @Serializable(with = InterruptButtonTypeContainerSerializer::class)
+    val interruptButtonType: EnumWrapper<InterruptButtonType>? = null,
 
-    @SerialName("animationOnSubStart") @JsonNames("subChallengeStartAnim")
-    val animationOnSubStartString: String? = null,
-    @Transient
-    val animationOnSubStart: SubChallengeAnimationType? = nullableEnumValueOfOrDefault(animationOnSubStartString, SUB_CHALLENGE_ANIM_TYPE_UNKNOWN),
+    @Serializable(with = SubChallengeSortTypeContainerSerializer::class)
+    val subChallengeSortType: EnumWrapper<SubChallengeSortType>? = null,
 
-    @SerialName("animationOnSubSuccess") @JsonNames("subChallengeSuccessAnim")
-    val animationOnSubSuccessString: String? = null,
-    @Transient
-    val animationOnSubSuccess: SubChallengeAnimationType? = nullableEnumValueOfOrDefault(animationOnSubSuccessString, SUB_CHALLENGE_ANIM_TYPE_UNKNOWN),
+    @JsonNames("subChallengeStartAnim")
+    @Serializable(with = SubChallengeAnimationTypeContainerSerializer::class)
+    val animationOnSubStart: EnumWrapper<SubChallengeAnimationType>? = null,
 
-    @SerialName("animationOnSubFail") @JsonNames("subChallengeFailAnim")
-    val animationOnSubFailString: String? = null,
-    @Transient
-    val animationOnSubFail: SubChallengeAnimationType? = nullableEnumValueOfOrDefault(animationOnSubFailString, SUB_CHALLENGE_ANIM_TYPE_UNKNOWN),
+    @JsonNames("subChallengeSuccessAnim")
+    @Serializable(with = SubChallengeAnimationTypeContainerSerializer::class)
+    val animationOnSubSuccess: EnumWrapper<SubChallengeAnimationType>? = null,
+
+    @JsonNames("subChallengeFailAnim")
+    @Serializable(with = SubChallengeAnimationTypeContainerSerializer::class)
+    val animationOnSubFail: EnumWrapper<SubChallengeAnimationType>? = null,
 
     @JsonNames("activitySkillID")
     val activitySkillId: Int = UnsetInt,
@@ -88,15 +76,11 @@ data class ChallengeData(
     val subProgressTextTemplate: String? = null,
     val subChallengeFadeOutDelayTime: Float = UnsetFloat,
 
-    @SerialName("subChallengeFadeOutRule")
-    val subChallengeFadeOutRuleString: String? = null,
-    @Transient
-    val subChallengeFadeOutRule: SubChallengeFadeOutType? = nullableEnumValueOfOrDefault(subChallengeFadeOutRuleString, SUBCHALLENGE_FADEOUT_TYPE_UNKNOWN),
+    @Serializable(with = SubChallengeFadeOutTypeContainerSerializer::class)
+    val subChallengeFadeOutRule: EnumWrapper<SubChallengeFadeOutType>? = null,
 
-    @SerialName("subChallengeBannerRule")
-    val subChallengeBannerRuleString: String? = null,
-    @Transient
-    val subChallengeBannerRule: SubChallengeBannerType? = nullableEnumValueOfOrDefault(subChallengeBannerRuleString, SUBCHALLENGE_BANNER_TYPE_UNKNOWN),
+    @Serializable(with = SubChallengeBannerTypeContainerSerializer::class)
+    val subChallengeBannerRule: EnumWrapper<SubChallengeBannerType>? = null,
 
 
     // Textmaps
@@ -109,5 +93,10 @@ data class ChallengeData(
 
 ) : IntKey {
     override fun getIntKey() = id
+
+    fun getChallengeTypeNonNull() = challengeType.getValueNonNull(ChallengeTypeMetadata)
+    fun getRecordTypeNonNull() = recordType.getValueNonNull(ChallengeRecordTypeMetadata)
+    fun getInterruptButtonTypeNonNull() = interruptButtonType.getValueNonNull(InterruptButtonTypeMetadata)
+    fun getSubChallengeSortTypeNonNull() = subChallengeSortType.getValueNonNull(SubChallengeSortTypeMetadata)
 
 }

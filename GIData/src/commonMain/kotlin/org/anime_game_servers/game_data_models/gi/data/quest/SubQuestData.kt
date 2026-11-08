@@ -1,17 +1,16 @@
 package org.anime_game_servers.game_data_models.gi.data.quest
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.LogicType
+import org.anime_game_servers.game_data_models.gi.data.general.LogicTypeContainerSerializer
 import org.anime_game_servers.game_data_models.gi.data.general.TextMapHash
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetTextMap
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 @DataFile("ExcelBinOutput/QuestExcelConfigData.json", FileType.JSON, FolderType.EXCEL)
 @DataFile("txt/QuestData*.txt", FileType.TSV, FolderType.EXCEL)
@@ -35,20 +34,16 @@ data class SubQuestData(
     val versionEnd: String? = null,
 
     // quest conditions
-    @SerialName("acceptCondComb")
-    val acceptCondCombString: String? = null,
-    @Transient
-    val acceptCondComb: LogicType? = nullableEnumValueOfOrDefault(acceptCondCombString, LogicType.LOGIC_UNKNOWN),
+    @Serializable(with = LogicTypeContainerSerializer::class)
+    val acceptCondComb: EnumWrapper<LogicType>? = null,
     val acceptCond: List<QuestCondition>? = null,
-    @SerialName("finishCondComb")
-    val finishCondCombString: String? = null,
-    @Transient
-    val finishCondComb: LogicType? = nullableEnumValueOfOrDefault(finishCondCombString, LogicType.LOGIC_UNKNOWN),
+
+    @Serializable(with = LogicTypeContainerSerializer::class)
+    val finishCondComb: EnumWrapper<LogicType>? = null,
     val finishCond: List<QuestContent>? = null,
-    @SerialName("failCondComb")
-    val failCondCombString: String? = null,
-    @Transient
-    val failCondComb: LogicType? = nullableEnumValueOfOrDefault(failCondCombString, LogicType.LOGIC_UNKNOWN),
+
+    @Serializable(with = LogicTypeContainerSerializer::class)
+    val failCondComb: EnumWrapper<LogicType>? = null,
     val failCond: List<QuestContent>? = null,
 
 

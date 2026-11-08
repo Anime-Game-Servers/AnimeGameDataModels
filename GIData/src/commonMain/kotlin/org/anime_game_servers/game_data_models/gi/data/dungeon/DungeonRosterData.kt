@@ -4,17 +4,15 @@ package org.anime_game_servers.game_data_models.gi.data.dungeon
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonNames
 import org.anime_game_servers.core.base.interfaces.IntKey
 import org.anime_game_servers.game_data_models.gi.data.general.UnsetInt
-import org.anime_game_servers.game_data_models.gi.helpers.nullableEnumValueOfOrDefault
 import org.anime_game_servers.game_data_models.gi.serializers.StringToLocalDatetimeSerializer
 import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
+import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 
 /**
  * TODO
@@ -30,10 +28,8 @@ data class DungeonRosterData(
     val cycleTime: Int = UnsetInt,
     val rosterPool: List<RosterPool>? = null,
 
-    @SerialName("cycleType")
-    val cycleTypeString: String? = null,
-    @Transient
-    val cycleType: DungeonRosterCycleType? = nullableEnumValueOfOrDefault(cycleTypeString, DUNGEON_ROSTER_CYCLE_TYPE_UNKNOWN),
+    @Serializable(with = DungeonRosterCycleTypeContainerSerializer::class)
+    val cycleType: EnumWrapper<DungeonRosterCycleType>? = null,
 
     @Serializable(with = StringToLocalDatetimeSerializer::class)
     @JsonNames("openTimeStr")

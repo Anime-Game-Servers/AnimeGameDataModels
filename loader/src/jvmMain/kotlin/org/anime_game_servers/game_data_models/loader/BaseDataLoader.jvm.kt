@@ -24,7 +24,7 @@ actual class DefaultDataLoader : BaseDataLoader {
 
     actual override fun onUnregisterDataClassSources(dataClasses: List<DataClassInfo<*>>) {
         dataClasses.forEach {
-            classInfoMapping.remove(it.kClass::class.java)
+            classInfoMapping.remove(it.kClass.java)
         }
     }
 

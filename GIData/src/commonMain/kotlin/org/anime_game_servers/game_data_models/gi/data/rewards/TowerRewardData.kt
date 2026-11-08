@@ -28,16 +28,17 @@ import kotlin.jvm.JvmStatic
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class TowerRewardData(
-    @JsonNames("reward_group")
+    @JsonNames("reward_group", "levelIndex")
     val rewardGroup: Int,
+    @JsonNames("reward_id3_stars", "rewardId3Stars", "floorIndex")
     val floor: Int,
-    @JsonNames("reward_id3_stars")
+    @JsonNames("reward_id3_stars", "rewardId3Stars", "threeStarsReward")
     val threeStarReward: Int,
-    @JsonNames("reward_id6_stars")
+    @JsonNames("reward_id6_stars", "rewardId6Stars", "sixStarsReward")
     val sixStarReward: Int,
-    @JsonNames("reward_id9_stars")
+    @JsonNames("reward_id9_stars", "rewardId9Stars", "nineStarsReward")
     val nineStarReward: Int,
-    @JsonNames("reward_id_room")
+    @JsonNames("reward_id_room", "rewardIdRoom", "chamberBountyRewards")
     val chamberRewards: List<Int>
 ) : IntKey {
     override fun getIntKey() = getKey(rewardGroup, floor)
