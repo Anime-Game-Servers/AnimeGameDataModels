@@ -64,7 +64,7 @@ data class ActivityCondData(
         val type: EnumWrapper<ActivityCondition>? = null,
         val param: List<String>? = null,
     ) {
-        fun getTypeNonNull() = type?.getValueNonNull(ActivityConditionMetadata)
+        fun getTypeNonNull() = type.getValueNonNull(ActivityConditionMetadata)
         fun getParamNonNull() = param.getNonNull()
         // at least [NEW_ACTIVITY_COND_FINISH_ACTIVITY_PLAY_LEVEL] has actually strings, so only use it
         // with known types that have only int params
@@ -83,7 +83,7 @@ data class ActivityCondData(
         val type: EnumWrapper<ActivityAction>? = null,
         val param: List<Int>? = null,
     ){
-        fun getTypeNonNull() = type?.getValueNonNull(ActivityActionMetadata)
+        fun getTypeNonNull() = type.getValueNonNull(ActivityActionMetadata)
         fun getParamNonNull() = param.getNonNull()
     }
 }

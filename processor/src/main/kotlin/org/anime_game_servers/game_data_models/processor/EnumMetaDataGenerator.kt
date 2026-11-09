@@ -95,7 +95,6 @@ object EnumMetaDataGenerator {
         val intMapKey = "intEnumMap"
         val stringMapKey = "stringEnumMap"
         val stringMapFunctionKey = "getStringKeyMap"
-        val intMapFunctionKey = "getIntKeyMap"
         val stringKeyType = String::class.asClassName()
         val intKeyType = Int::class.asClassName()
 
@@ -170,7 +169,7 @@ object EnumMetaDataGenerator {
                 .addParameter(ParameterSpec("target", MUTABLE_MAP.parameterizedBy(stringKeyType, enumType)))
                 .addCode(CodeBlock.builder().apply {
                     entries.forEach { entry ->
-                        addStatement("target[\"${entry.key}\"] = ${entry.value.simpleName.asString()}")
+                        addStatement("target[%S] = %L", entry.key, entry.value)
                     }
                 }.build())
                 .build()

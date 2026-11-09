@@ -6,6 +6,7 @@ import org.anime_game_servers.game_data_models.loader.DataFile
 import org.anime_game_servers.game_data_models.loader.FileType
 import org.anime_game_servers.game_data_models.loader.FolderType
 import org.anime_game_servers.game_data_models.loader.enums.DataEnum
+import java.security.InvalidParameterException
 import kotlin.reflect.KProperty
 
 class DataProcessor(
@@ -40,13 +41,22 @@ class DataProcessor(
         return arguments.find { it.name?.asString() == member.name }?.value?.toString() ?: fallback
     }
 
+    data class KspConfig(
+        val packageRoot: String,
+        val moduleName: String,
+    )
+
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        logger.info("Processing...")
+        val packageRoot = options["package_root"] ?: throw InvalidParameterException("Missing 'package_root' ksp option, please set it")
+        val moduleName = options["module"] ?: throw InvalidParameterException("Missing 'module' ksp option, please set it")
+        val kspConfig = KspConfig(packageRoot = packageRoot, moduleName = moduleName)
+
         val dataEnums = resolver.getClassSymbolsByAnnotation(DataEnum::class.qualifiedName!!).toList()
         val dataClasses = resolver.getClassSymbolsByAnnotation(DataFile::class.qualifiedName!!).toList()
         verifyClasses(dataClasses, dataEnums)
+        logger.info("Processing...")
         val dataEnumResult = handleDataEnum(dataEnums)
-        val dataClassResult = handleDataClass(dataClasses)
+        val dataClassResult = handleDataClass(dataClasses, kspConfig)
         return dataClassResult + dataEnumResult
     }
 
@@ -64,10 +74,11 @@ class DataProcessor(
             }
             throw RuntimeException("Enum Validation failed")
         }
+        logger.info("Verifying completed")
     }
 
 
-    fun handleDataClass(dataClasses: List<KSClassDeclaration>): List<KSAnnotated> {
+    fun handleDataClass(dataClasses: List<KSClassDeclaration>, config: KspConfig): List<KSAnnotated> {
         logger.info("Processing Data classes")
         logger.info("Found ${dataClasses.count()} data annotations")
 
@@ -102,8 +113,8 @@ class DataProcessor(
             logger.info("Processing ${dataAnnotationInfo.className}")
         }
 
-        MetaDataRegistryGenerator.createFileForMetaDataRegistry(moduleDataClasses, options["package_root"]!!, options["module"]!!, codeGenerator)
-        MetaDataRegistryProviderGenerator.createFilesForMetaDataRegistryProvider(options["package_root"]!!, options["module"]!!, codeGenerator)
+        MetaDataRegistryGenerator.createFileForMetaDataRegistry(moduleDataClasses, config.packageRoot, config.moduleName, codeGenerator)
+        MetaDataRegistryProviderGenerator.createFilesForMetaDataRegistryProvider(config.packageRoot, config.moduleName, codeGenerator)
 
         logger.info("Finished processing ${moduleDataClasses.size} data classes")
         return emptyList()
