@@ -26,11 +26,11 @@ data class ActivityData(
     val activityId: Int,
     @Serializable(with = ActivityTypeContainerSerializer::class)
     val activityType: EnumWrapper<ActivityType>? = null,
-    @JsonNames("condGroupIds", "condGroupId")
+    @JsonNames("condGroupId")
     val condGroupIds: List<Int>? = null,
-    @JsonNames("watcherIds", "watcherId")
+    @JsonNames("watcherId")
     val watcherIds: List<Int>? = null,
-    @JsonNames("dungeonIds", "dungeonIdList")
+    @JsonNames("dungeonIdList")
     val dungeonIds: List<Int>? = null,
     @JsonNames("activityCoinIdList")
     val activityTokens: List<Int>? = null,

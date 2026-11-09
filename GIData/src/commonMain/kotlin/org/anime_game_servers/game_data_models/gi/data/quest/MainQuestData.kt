@@ -21,13 +21,13 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class MainQuestData(
-    @JsonNames("id", "mainId")
+    @JsonNames("mainId")
     val id: Int,
 
     val collectionId: Int = UnsetInt,
     val series: Int = UnsetInt,
     val chapterId: Int = UnsetInt,
-    @JsonNames("taskType", "type")
+    @JsonNames("type")
     val taskType: String? = null, // TODO enum
 
 
@@ -43,7 +43,7 @@ data class MainQuestData(
     val activityId: Int = UnsetInt,
     val mainQuestTag: String? = null,
     val showRedPoint: Boolean? = null,
-    @JsonNames("taskId", "taskID")
+    @JsonNames("taskID")
     val taskId: Int = UnsetInt,
 
     // Textmaps

@@ -23,7 +23,7 @@ data class GlobalWatcherData(
     override val id: Int,
     override val triggerConfig: WatcherTriggerConfig? = null,
     override val progress: Int = UnsetInt,
-    @JsonNames("isObsolete", "isDisuse")
+    @JsonNames("isDisuse")
     override val isObsolete: Boolean? = null,
     val predicateConfigs: List<PredicateConfig>? = null,
 ) : WatcherData

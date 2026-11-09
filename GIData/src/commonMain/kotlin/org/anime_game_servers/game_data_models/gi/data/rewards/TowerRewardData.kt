@@ -30,7 +30,7 @@ import kotlin.jvm.JvmStatic
 data class TowerRewardData(
     @JsonNames("reward_group", "levelIndex")
     val rewardGroup: Int,
-    @JsonNames("reward_id3_stars", "rewardId3Stars", "floorIndex")
+    @JsonNames("floor_index", "floorIndex")
     val floor: Int,
     @JsonNames("reward_id3_stars", "rewardId3Stars", "threeStarsReward")
     val threeStarReward: Int,

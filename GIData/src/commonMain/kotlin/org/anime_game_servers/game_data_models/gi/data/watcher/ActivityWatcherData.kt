@@ -23,23 +23,23 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class ActivityWatcherData(
-    @JsonNames("id", "Id")
+    @JsonNames("Id")
     override val id: Int,
-    @JsonNames("triggerConfig", "TriggerConfig", "trigger_config")
+    @JsonNames("TriggerConfig", "trigger_config")
     override val triggerConfig: WatcherTriggerConfig? = null,
-    @JsonNames("progress", "Progress")
+    @JsonNames("Progress")
     override val progress: Int = UnsetInt,
-    @JsonNames("isObsolete", "isDisuse", "is_disuse")
+    @JsonNames("isDisuse", "is_disuse")
     override val isObsolete: Boolean? = null,
 
-    @JsonNames("rewardId", "RewardId")
+    @JsonNames("RewardId")
     val rewardId: Int = UnsetInt,
-    @JsonNames("rewardPreview", "RewardPreview")
+    @JsonNames("RewardPreview")
     val rewardPreview: Int = UnsetInt,
     val isAutoGrant: Boolean? = null,
 
-    @JsonNames("activitychallengetipsTextMapHash", "ActivitychallengetipsTextMapHash")
+    @JsonNames("ActivitychallengetipsTextMapHash")
     val activitychallengetipsTextMapHash: TextMapHash = UnsetTextMap,
-    @JsonNames("extraActivitychallengetipsTextMapHash", "ExtraActivitychallengetipsTextMapHash")
+    @JsonNames("ExtraActivitychallengetipsTextMapHash")
     val extraActivitychallengetipsTextMapHash: TextMapHash = UnsetTextMap,
 ) : WatcherData

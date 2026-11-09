@@ -26,7 +26,7 @@ data class ReunionWatcherData(
     override val id: Int,
     override val triggerConfig: WatcherTriggerConfig? = null,
     override val progress: Int = UnsetInt,
-    @JsonNames("isObsolete", "isDisuse")
+    @JsonNames("isDisuse")
     override val isObsolete: Boolean? = null,
 
     val watcherGroupId: Int = UnsetInt,

@@ -65,7 +65,7 @@ data class AvatarCostumeData(
     val prefabRemotePathHash: TextHash = UnsetTextHash,
     @JsonNames("prefab_npc_pathHash")
     val prefabNpcPathHash: TextHash = UnsetTextHash,
-    @JsonNames("animatorConfigPathHash")
+    @JsonNames("animator_config_pathHash")
     val animatorConfigPathHash: TextHash = UnsetTextHash,
     @JsonNames("prefab_manekin_pathHash", "prefabManekinPathHash")
     val prefabMannequinPathHash: TextHash = UnsetTextHash,

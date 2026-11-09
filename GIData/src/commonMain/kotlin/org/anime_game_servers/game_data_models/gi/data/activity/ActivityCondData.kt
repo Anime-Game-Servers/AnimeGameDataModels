@@ -36,7 +36,7 @@ import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class ActivityCondData(
-    @JsonNames("id", "condId")
+    @JsonNames("condId")
     val id: Int,
     @Serializable(with = LogicTypeContainerSerializer::class)
     val condComb: EnumWrapper<LogicType>? = null,

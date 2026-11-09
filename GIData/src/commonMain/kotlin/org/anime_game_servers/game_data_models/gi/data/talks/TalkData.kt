@@ -21,61 +21,61 @@ import org.anime_game_servers.game_data_models.loader.FolderType
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class TalkData(
-    @JsonNames("id", "_id")
+    @JsonNames("_id")
     val id: Int,
-    @JsonNames("beginWay", "_beginWay")
+    @JsonNames("_beginWay")
     val beginWay: String? = null,
-    @JsonNames("beginCondComb", "_beginCondComb")
+    @JsonNames("_beginCondComb")
     val beginCondComb: String? = null,
-    @JsonNames("beginCond", "_beginCond")
+    @JsonNames("_beginCond")
     val beginCond: List<BeginCond>? = null,
-    @JsonNames("heroTalk", "_heroTalk")
+    @JsonNames("_heroTalk")
     val heroTalk: String? = null,
-    @JsonNames("loadType", "_loadType")
+    @JsonNames("_loadType")
     val loadType: String? = null,
-    @JsonNames("activeMode", "_activeMode")
+    @JsonNames("_activeMode")
     val activeMode: String? = null,
-    @JsonNames("nextTalks", "_nextTalks") // TODO check
+    @JsonNames("_nextTalks") // TODO check
     val nextTalks: List<Int>? = null,
-    @JsonNames("priority", "_priority")
+    @JsonNames("_priority")
     val priority: Int = UnsetInt,
-    @JsonNames("initDialog", "_initDialog")
+    @JsonNames("_initDialog")
     val initDialog: Long = UnsetLong,
-    @JsonNames("npcIds", "_npcId", "npcId")
+    @JsonNames("_npcId", "npcId")
     val npcIds: List<Int>? = null,
-    @JsonNames("performCfg", "_performCfg")
+    @JsonNames("_performCfg")
     val performCfg: String? = null,
-    @JsonNames("prePerformCfg", "_prePerformCfg")
+    @JsonNames("_prePerformCfg")
     val prePerformCfg: String? = null,
-    @JsonNames("questId", "_questId")
+    @JsonNames("_questId")
     val questId: Int = UnsetInt,
-    @JsonNames("decoratorId", "_decoratorID") // E.g. EJHGBAPGFHG
+    @JsonNames("_decoratorID") // E.g. EJHGBAPGFHG
     val decoratorID: Int = UnsetInt,
 
-    @JsonNames("crowdLOD0List", "_crowdLOD0List") // E.g. DGOJPEGIFOC
+    @JsonNames("_crowdLOD0List") // E.g. DGOJPEGIFOC
     val crowdLOD0List: List<Int>? = null,
-    @JsonNames("participantId", "_participantId")
+    @JsonNames("_participantId")
     val participantId: List<Int>? = null,
-    @JsonNames("nextRandomTalks", "_nextRandomTalks") // E.g. NECBIIDHGOA
+    @JsonNames("_nextRandomTalks") // E.g. NECBIIDHGOA
     val nextRandomTalks: List<Int>? = null,
-    @JsonNames("showRandomTalkCount", "_showRandomTalkCount") // E.g. PBJHILLACIA
+    @JsonNames("_showRandomTalkCount") // E.g. PBJHILLACIA
     val showRandomTalkCount: Int = UnsetInt,
-    @JsonNames("lockGameTime", "_lockGameTime")
+    @JsonNames("_lockGameTime")
     val lockGameTime: Boolean? = null,
-    @JsonNames("finishExec", "_finishExec")
+    @JsonNames("_finishExec")
     val finishExec: List<TalkExec>? = null,
 
-    @JsonNames("talkMarkType", "_talkMarkType")
+    @JsonNames("_talkMarkType")
     val talkMarkType: String? = null,
-    @JsonNames("enableCameraDisplacement", "_enableCameraDisplacement")
+    @JsonNames("_enableCameraDisplacement")
     val enableCameraDisplacement: Boolean? = null,
-    @JsonNames("stayFreeStyle", "_stayFreeStyle")
+    @JsonNames("_stayFreeStyle")
     val stayFreeStyle: Boolean? = null,
-    @JsonNames("questIdleTalk", "_questIdleTalk")
+    @JsonNames("_questIdleTalk")
     val questIdleTalk: Boolean? = null,
-    @JsonNames("lowPriority", "_lowPriority")
+    @JsonNames("_lowPriority")
     val lowPriority: Boolean? = null,
-    @JsonNames("dontBlockDaily", "_dontBlockDaily")
+    @JsonNames("_dontBlockDaily")
     val dontBlockDaily: Boolean? = null,
 
     // binout only:
@@ -85,9 +85,9 @@ data class TalkData(
     //val CIAAAKHILBD: List<Int>? = null,
 
     // excel only
-    @JsonNames("talkMarkHideList", "_talkMarkHideList") // quests in talks with this set don't exist in binout
+    @JsonNames("_talkMarkHideList") // quests in talks with this set don't exist in binout
     val talkMarkHideList: List<Int>? = null,
-    @JsonNames("extraLoadMarkId", "_extraLoadMarkId") // talks  don't appear in the referenced quests in binout
+    @JsonNames("_extraLoadMarkId") // talks  don't appear in the referenced quests in binout
     val extraLoadMarkId: List<Int>? = null,
     ) : IntKey {
     override fun getIntKey() = id

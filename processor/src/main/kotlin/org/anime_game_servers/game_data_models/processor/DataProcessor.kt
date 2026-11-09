@@ -42,14 +42,33 @@ class DataProcessor(
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         logger.info("Processing...")
-        val dataEnumResult = handleDataEnum(resolver)
-        val dataClassResult = handleDataClass(resolver)
+        val dataEnums = resolver.getClassSymbolsByAnnotation(DataEnum::class.qualifiedName!!).toList()
+        val dataClasses = resolver.getClassSymbolsByAnnotation(DataFile::class.qualifiedName!!).toList()
+        verifyClasses(dataClasses, dataEnums)
+        val dataEnumResult = handleDataEnum(dataEnums)
+        val dataClassResult = handleDataClass(dataClasses)
         return dataClassResult + dataEnumResult
     }
 
-    fun handleDataClass(resolver: Resolver): List<KSAnnotated> {
+    fun verifyClasses(classes: List<KSClassDeclaration>, enums: List<KSClassDeclaration>){
+        logger.info("Verifying classes")
+        val classResult = ClassValidator.validate(classes)
+        val enumsResult = ClassValidator.validate(enums)
+        val mergedResults = classResult+enumsResult
+        if (mergedResults.isNotEmpty()){
+            mergedResults.forEach{ (resultClass, errors ) ->
+                logger.error("${resultClass.getName()} failed with ${errors.size} errors:")
+                errors.forEach { error ->
+                    logger.error(error.toString())
+                }
+            }
+            throw RuntimeException("Enum Validation failed")
+        }
+    }
+
+
+    fun handleDataClass(dataClasses: List<KSClassDeclaration>): List<KSAnnotated> {
         logger.info("Processing Data classes")
-        val dataClasses = resolver.getClassSymbolsByAnnotation(DataFile::class.qualifiedName!!)
         logger.info("Found ${dataClasses.count()} data annotations")
 
         val moduleDataClasses = mutableListOf<DataClassInfoMetadata>()
@@ -90,20 +109,19 @@ class DataProcessor(
         return emptyList()
     }
 
-    fun handleDataEnum(resolver: Resolver): List<KSAnnotated> {
+    fun handleDataEnum(dataEnums: List<KSClassDeclaration>): List<KSAnnotated> {
         logger.info("Processing Data Enums")
-        val dataClasses = resolver.getClassSymbolsByAnnotation(DataEnum::class.qualifiedName!!)
-        logger.info("Found ${dataClasses.count()} data enum annotations")
+        logger.info("Found ${dataEnums.count()} data enum annotations")
 
         val moduleDataClasses = mutableListOf<EnumMetaDataGenerator.DataEnumInfoMetadata>()
 
-        dataClasses.forEach { dataClass ->
-            logger.info("Processing ${dataClass.simpleName.asString()}")
+        dataEnums.forEach { dataEnums ->
+            logger.info("Processing ${dataEnums.simpleName.asString()}")
             try {
                 val dataAnnotationInfo = EnumMetaDataGenerator.DataEnumInfoMetadata(
-                    className = dataClass.simpleName.asString(),
-                    packageName = dataClass.packageName.asString(),
-                    ksClass = dataClass,
+                    className = dataEnums.simpleName.asString(),
+                    packageName = dataEnums.packageName.asString(),
+                    ksClass = dataEnums,
                 )
 
                 EnumMetaDataGenerator.createClassesForDataEnum(dataAnnotationInfo, codeGenerator)
@@ -111,9 +129,9 @@ class DataProcessor(
                 logger.info("processed ${dataAnnotationInfo.className}")
             } catch (e: Throwable) {
                 if(e is NoSuchElementException){
-                    logger.error("failed to process ${dataClass.simpleName.asString()} with $e\nDid you maybe forget the @UnknownEntry annotation?")
+                    logger.error("failed to process ${dataEnums.simpleName.asString()} with $e\nDid you maybe forget the @UnknownEntry annotation?")
                 }else {
-                    logger.error("failed to process ${dataClass.simpleName.asString()} with $e")
+                    logger.error("failed to process ${dataEnums.simpleName.asString()} with $e")
                 }
             }
         }

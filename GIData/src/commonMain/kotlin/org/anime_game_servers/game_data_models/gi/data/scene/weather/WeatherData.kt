@@ -24,7 +24,7 @@ import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 data class WeatherData(
     val areaID: Int,
     val weatherAreaId: Int = UnsetInt,
-    @JsonNames("maxHeightStr")
+    @JsonNames("max_height_str")
     val maxHeightStr: String? = null,
     val maxHeight: Int = if(maxHeightStr?.isNotBlank() == true) maxHeightStr.toInt() else UnsetInt,
     val gadgetID: Int = UnsetInt,

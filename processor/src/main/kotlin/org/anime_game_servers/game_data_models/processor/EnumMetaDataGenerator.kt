@@ -15,6 +15,7 @@ import org.anime_game_servers.game_data_models.loader.enums.EnumWrapper
 import org.anime_game_servers.game_data_models.loader.enums.EnumWrapperBaseSerializer
 import org.anime_game_servers.game_data_models.loader.enums.NoneEntry
 import org.anime_game_servers.game_data_models.loader.enums.UnknownEntry
+import kotlin.collections.set
 import kotlin.enums.EnumEntries
 import kotlin.reflect.KClass
 
@@ -34,9 +35,11 @@ object EnumMetaDataGenerator {
         fun getEnumWrapperSerializerName(): String {
             return className + "ContainerSerializer"
         }
+
         fun getKeyValueMapping(): Map<String, KSClassDeclaration>{
             val stringMapping = mutableMapOf<String, KSClassDeclaration>()
             entries.forEach { entry ->
+                // validation happens in its own step, so no need to worry about duplicates
                 stringMapping[entry.getSerialName()] = entry
                 entry.getJsonNames()?.forEach { jsonName ->
                     stringMapping[jsonName] = entry
@@ -44,20 +47,23 @@ object EnumMetaDataGenerator {
             }
             return stringMapping
         }
-    }
 
-    fun KSClassDeclaration.getUnknownEntry() = this.declarations.mapNotNull{ it as? KSClassDeclaration }
-        .filter { it.annotations.any { it.shortName.asString() == UnknownEntry::class.simpleName } }
-        .first()
-    fun KSClassDeclaration.getNoneEntry() = this.declarations.mapNotNull { it as? KSClassDeclaration }
-        .firstOrNull { it.annotations.any { it.shortName.asString() == NoneEntry::class.simpleName } }
-    fun KSClassDeclaration.getJsonNames() =
-        (this.annotations.find { it.shortName.asString() == JsonNames::class.simpleName }?.arguments as? ArrayList)?.flatMap {
-            @Suppress("UNCHECKED_CAST")
-            it.value as ArrayList<String>
+        companion object {
+            fun KSClassDeclaration.getUnknownEntry() = this.declarations.mapNotNull{ it as? KSClassDeclaration }
+                .filter { it.annotations.any { it.shortName.asString() == UnknownEntry::class.simpleName } }
+                .first()
+            fun KSClassDeclaration.getNoneEntry() = this.declarations.mapNotNull { it as? KSClassDeclaration }
+                .firstOrNull { it.annotations.any { it.shortName.asString() == NoneEntry::class.simpleName } }
+
+            fun KSClassDeclaration.getSerialName() = this.annotations.find { it.shortName.asString() == SerialName::class.simpleName }?.arguments?.map { it.value as String }?.first() ?: this.simpleName.asString()
+
+            fun KSClassDeclaration.getJsonNames() =
+                (this.annotations.find { it.shortName.asString() == JsonNames::class.simpleName }?.arguments as? ArrayList)?.flatMap {
+                    @Suppress("UNCHECKED_CAST")
+                    it.value as ArrayList<String>
+                }
         }
-
-    fun KSClassDeclaration.getSerialName() = this.annotations.find { it.shortName.asString() == SerialName::class.simpleName }?.arguments?.map { it.value as String }?.first() ?: this.simpleName.asString()
+    }
 
     fun createClassesForDataEnum(metaData: DataEnumInfoMetadata, codeGenerator: CodeGenerator){
         createFileForMetaData(metaData, codeGenerator)
@@ -155,6 +161,7 @@ object EnumMetaDataGenerator {
 
         var chunkCount = 0
         val keyValueMapping = metaData.getKeyValueMapping()
+
         keyValueMapping.entries.chunked(500){ entries ->
             val functionName = stringMapFunctionKey+chunkCount.toString()
             chunkCount++
