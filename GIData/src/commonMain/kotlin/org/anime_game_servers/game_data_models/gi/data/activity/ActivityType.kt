@@ -1700,6 +1700,113 @@ enum class ActivityType(val id: Int) : IntKey {
     NEW_ACTIVITY_NICOLE_BANNER(6604),
 
 
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.7
+     */
+    @AddedIn(GI_6_7_0)
+    NEW_ACTIVITY_ONE_SHOT(6701),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 6.7
+     */
+    @AddedIn(GI_6_7_0)
+    NEW_ACTIVITY_ACTIVITY_AQUARIUM(6702),
+
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.0
+     */
+    @AddedIn(GI_7_0_0)
+    NEW_ACTIVITY_RANKED_MATCH(7001),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.0
+     */
+    @AddedIn(GI_7_0_0)
+    NEW_ACTIVITY_ADVENTURER_STATUE(7002),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.0
+     */
+    @AddedIn(GI_7_0_0)
+    NEW_ACTIVITY_TPS_DEFENSE(7003),
+
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_SNOW_BALL_FIGHT(7101),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_GAMBLING_CHESS_FIGHT(7102),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_GAMBLING_CHESS(7103),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_LUNA_RITE_V2(7104),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_VESNA_QUEST(7105),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_VODYANITSA_QUEST(7106),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_BEYOND_ANNIVERSARY_BANNER(7107),
+
+    // TODO document used models
+    /**
+     * TODO
+     * @since 7.1
+     */
+    @AddedIn(GI_7_1_0)
+    NEW_ACTIVITY_INVITE_BANNER(7108),
+
+
     /**
      * This is a placeholder used when the actual activity string can not be identified. Check [org.anime_game_servers.game_data_models.loader.enums.EnumWrapper.key] in this case.
      */

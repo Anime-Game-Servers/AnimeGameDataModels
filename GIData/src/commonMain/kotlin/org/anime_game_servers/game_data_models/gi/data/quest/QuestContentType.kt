@@ -594,6 +594,41 @@ enum class QuestContentType(val id: Int) : IntKey {
     QUEST_CONTENT_TIME_VAR_PASS_REFRESH_POLICY(189),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_SCENERY_STATE_EQUAL(190),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_AVATAR_FETTER_EQUAL_GREATER(191),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_ACTIVITY_END(192),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_AVATAR_CAPTURE_ANIMAL(193),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_TPS_GLASSES_CHAT_PROGRESS_EQUAL(194),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_SPECIFIC_WIDGET_ATTACHED(195),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_CONTENT_CALL_PLAYER_TRAIN_IN_RANGE(196),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     @UnknownEntry

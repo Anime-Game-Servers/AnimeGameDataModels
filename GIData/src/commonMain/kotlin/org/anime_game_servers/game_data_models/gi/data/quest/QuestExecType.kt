@@ -630,6 +630,66 @@ enum class QuestExecType(val id: Int) : IntKey {
     QUEST_EXEC_BATCH_SET_OPEN_STATE (123),
 
     /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_CLEAR_INFERENCE_PAGE_DATA(124),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_UNLOCK_SCENE_MP(130),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_MODIFY_DUNGEON_EXIT_POINT(131),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_ENTER_AQUARIUM_DIVING_DUNGEON(132),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_SET_SCENE_VAR(133),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_SET_TPS_GLASSES_CHAT_PROGRESS(134),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_UNLOCK_TPS_AVATAR(135),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_LOCK_DUNGEON_MIRROR_AVATAR_TEAM(136),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_UNLOCK_DUNGEON_MIRROR_AVATAR_TEAM(137),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_CHANGE_PLAYER_TRAIN_FIGURE_SGV(138),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_GRANT_DUNGEON_TRIAL_AVATAR(139),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_EXEC_REMOVE_DUNGEON_TRIAL_AVATAR(140),
+
+    /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
     @UnknownEntry

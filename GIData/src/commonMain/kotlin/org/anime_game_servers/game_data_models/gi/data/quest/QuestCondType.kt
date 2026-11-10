@@ -983,6 +983,87 @@ enum class QuestCondType(val id: Int) : IntKey {
     @AddedIn(GI_6_5_0)
     QUEST_COND_ANY_TALK_FINISH_SAVED(180),
 
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_NICOLE_TASK_ACTIVE(181),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PARENT_QUEST_NOT_EXIST(182),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_MARIONETTE_TASK_ACTIVE(183),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_AQUARIUM_TASK_MEET(184),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_SNEZHNAYA_TRAIN_NEW_STATION_UNLOCK(185),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_TPS_GLASSES_CHAT_PROGRESS_EQUAL(186),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_SNEZHNAYA_QUEST_WEAPON_UPGRADED(187),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_OFFERING_LEVEL_EQUAL_GREATER(188),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_REPUTATION_SNEZ_TASK_ACTIVE(189),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_ODETTE_TASK_ACTIVE(190),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_STORY_REFRESH_POINT_MEET(191),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_SNEZHNAYA_QUEST_WEAPON_UPGRADED_LEVEL(192),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_FATUI_KILL_COUNT_LESS(193),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_DANICA_DINNER_LOOK_UP_COUNT_EQUAL_GREATER(194),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_DANICA_DINNER_FOCUS_TARGET_TRIGGERED(195),
+
+    /**
+     * TODO document specifics
+     */
+    QUEST_COND_PLAYER_ON_SNEZHNAYA_TRAIN(196),
+
     /**
      * An unknown condition type, check the representation string to get the missing enum values name
      */
